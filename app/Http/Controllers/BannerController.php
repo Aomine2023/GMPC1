@@ -29,6 +29,7 @@ class BannerController extends Controller
         $banner = Banner::get();
         return view('backend.banner.view', compact('banner'));
     }
+    
     public function Store(Request $request)
     {
         $request->validate([
