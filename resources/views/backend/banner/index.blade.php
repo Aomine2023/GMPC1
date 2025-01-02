@@ -15,6 +15,7 @@
                                         <thead>
                                             <tr>
                                                 <th data-ordering="false">SR No.</th>
+                                                <th data-ordering="false">Title</th>
                                                 <th data-ordering="false">Image</th>
                                                 <th>Action</th>
                                             </tr>
@@ -23,6 +24,7 @@
                                             @foreach ($banner as $list)
                                                 <tr>
                                                     <td>{{ $loop->index + 1 }}</td>
+                                                    <td>{{ $list->title }}</td>
                                                     <td>
                                                         @if ($list->image)
                                                             <img src="{{ asset($list->image) }}" alt="Participant Image"
@@ -63,11 +65,19 @@
                                     <div class="card-body">
                                         <div class="live-preview">
                                             <div class="row gy-4">
+                                                <!-- Combined Title and Image Section -->
                                                 <div class="col-xxl-6 col-md-6">
+                                                    <!-- Title Section -->
                                                     <div>
+                                                        <label for="rank" class="form-label">Title</label>
+                                                        <input type="text" class="form-control" id="title"
+                                                            name="title" placeholder="Enter">
+                                                    </div>
+                                                    <!-- Image Section -->
+                                                    <div class="mt-4">
                                                         <img id="showImage" class="rounded avatar-lg"
                                                             src="{{ url('upload/no_image.jpg') }}" alt="IMAGE"
-                                                            style="width:300px; border: 1px solid #000000;height:350px;">
+                                                            style="width:300px; border: 1px solid #000000; height:250px;">
                                                         <hr>
                                                         <input name="image" class="form-control" type="file"
                                                             id="image">
@@ -79,6 +89,7 @@
                                             </div>
                                         </div>
                                     </div>
+
                                     <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Save</button>
                                 </form>
                             </div>

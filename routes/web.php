@@ -4,6 +4,7 @@ use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CommandController;
+use App\Http\Controllers\CommunitiesController;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\Frontend\AboutController;
 use App\Http\Controllers\Frontend\CommandantController;
@@ -14,19 +15,20 @@ use App\Http\Controllers\ParticipantController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RankController;
 use App\Http\Controllers\RoleController;
-use App\Http\Controllers\StaffController;
 use App\Http\Controllers\UserController;
 use App\Models\Article;
+use App\Models\Banner;
+use App\Models\Community;
 use App\Models\Participant;
 use App\Models\Staff;
-use App\Models\Banner;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     $staffs = Staff::all();
     $participant = Participant::all();
     $banner = Banner::latest()->take(5)->get();
-    return view('website.layouts.gmpc.index', compact('staffs', 'participant','banner'));
+    $community = Community::get();
+    return view('website.layouts.gmpc.index', compact('staffs', 'participant', 'banner', 'community'));
 });
 
 Route::get('/email/verify', function () {
@@ -129,7 +131,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/update{uuid}', [AppointmentController::class, 'Update'])->name('appointment-update');
         Route::get('/delete{uuid}', [AppointmentController::class, 'Delete'])->name('appointment-delete');
     });
-    Route::prefix('participants')->group(function () {
+    Route::prefix('chaplains')->group(function () {
         Route::get('/', [ParticipantController::class, 'View'])->name('view-participant');
         Route::get('/mech', [ParticipantController::class, 'Add'])->name('participant-add');
         Route::post('/store', [ParticipantController::class, 'Store'])->name('participant-store');
@@ -137,13 +139,13 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/update', [ParticipantController::class, 'Update'])->name('participant-update');
         Route::get('/delete/{uuid}', [ParticipantController::class, 'Delete'])->name('participant-delete');
     });
-    Route::prefix('staffs')->group(function () {
-        Route::get('/', [StaffController::class, 'View'])->name('view-staff');
-        Route::get('/mech', [StaffController::class, 'Add'])->name('staff-add');
-        Route::post('/store', [StaffController::class, 'Store'])->name('staff-store');
-        Route::get('/edit/{uuid}', [StaffController::class, 'Edit'])->name('staff-edit');
-        Route::post('/update', [StaffController::class, 'Update'])->name('staff-update');
-        Route::get('/delete/{uuid}', [StaffController::class, 'Delete'])->name('staff-delete');
+    Route::prefix('communities')->group(function () {
+        Route::get('/', [CommunitiesController::class, 'View'])->name('view-communities');
+        Route::get('/mech', [CommunitiesController::class, 'Add'])->name('communities-add');
+        Route::post('/store', [CommunitiesController::class, 'Store'])->name('communities-store');
+        Route::get('/edit/{uuid}', [CommunitiesController::class, 'Edit'])->name('communities-edit');
+        Route::post('/update', [CommunitiesController::class, 'Update'])->name('communities-update');
+        Route::get('/delete/{uuid}', [CommunitiesController::class, 'Delete'])->name('communities-delete');
     });
     Route::prefix('news')->group(function () {
         Route::get('/', [NewsController::class, 'View'])->name('view-news');

@@ -19,19 +19,18 @@ class ParticipantController extends Controller
     public function View()
     {
         $participant = Participant::get();
-        return view('backend.participants.index', compact('participant'));
+        return view('backend.chaplians.index', compact('participant'));
     }
     public function Add()
     {
         $ranks = Rank::all();
-        return view('backend.participants.create', compact('ranks'));
+        return view('backend.chaplians.create', compact('ranks'));
     }
     public function Store(Request $request)
     {
         $request->validate([
             'rank_name' => 'required',
             'participant_name' => 'required',
-            'participant_course' => 'required',
             'image' => 'required|image',
         ]);
 
@@ -40,12 +39,11 @@ class ParticipantController extends Controller
             $name_gen = hexdec(uniqid()) . '.' . $request->file('image')->getClientOriginalExtension();
             $img = $manager->read($request->file('image'));
             // $img = $img->resize(200, 200);
-            $img->save(public_path('upload/participant/' . $name_gen));
-            $save_url = 'upload/participant/' . $name_gen;
+            $img->save(public_path('upload/chaplain/' . $name_gen));
+            $save_url = 'upload/chaplain/' . $name_gen;
             Participant::create([
                 'rank_name' => $request->rank_name,
                 'participant_name' => $request->participant_name,
-                'participant_course' => $request->participant_course,
                 'image' => $save_url,
                 'created_at' => now(),
             ]);
@@ -69,7 +67,7 @@ class ParticipantController extends Controller
             abort(404);
         }
         $ranks = Rank::all();
-        return view('backend.participants.edit', compact('participant', 'ranks'));
+        return view('backend.chaplians.edit', compact('participant', 'ranks'));
     }
 
     public function Update(Request $request)
@@ -87,13 +85,12 @@ class ParticipantController extends Controller
             $name_gen = hexdec(uniqid()) . '.' . $request->file('image')->getClientOriginalExtension();
             $img = $manager->read($request->file('image'));
             // $img->resize(370,246);
-            $img->save(public_path('upload/participant/' . $name_gen));
-            $save_url = 'upload/participant/' . $name_gen;
+            $img->save(public_path('upload/chaplain/' . $name_gen));
+            $save_url = 'upload/chaplain/' . $name_gen;
             $participant->image = $save_url;
         }
         $participant->rank_name = $request->rank_name;
         $participant->participant_name = $request->participant_name;
-        $participant->participant_course = $request->participant_course;
         $participant->save();
         $notification = [
             'message' => 'Partcipant Updated Successfully',
