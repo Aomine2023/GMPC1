@@ -61,8 +61,7 @@
                                     </li>
                                     <li class="nav-item">
                                         <a href="{{ route('view-participant') }}" class="nav-link"
-                                            data-key="t-buttons">Participants
-                                            (Students)</a>
+                                            data-key="t-buttons">Chaplains</a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="{{ route('gallery-view') }}" class="nav-link" data-key="t-colors">
@@ -73,9 +72,9 @@
                                         <a href="{{ route('view-gallery') }}" class="nav-link" data-key="t-colors">Add
                                             Gallery</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a href="{{ route('view-staff') }}" class="nav-link"
-                                            data-key="t-colors">Staffs</a>
+                                    <li class="nav-item {{ Route::is('view-communities') ? 'active' : '' }}">
+                                        <a href="{{ route('view-communities') }}" class="nav-link"
+                                            data-key="t-colors">Community</a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="ui-cards.html" class="nav-link" data-key="t-cards">Contact Us </a>

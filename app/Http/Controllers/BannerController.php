@@ -1,12 +1,13 @@
 <?php
-declare(strict_types=1);
+declare (strict_types = 1);
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Banner;
 use Illuminate\Http\Request;
 use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
-use App\Models\Banner;
+
 class BannerController extends Controller
 {
     public function __construct()
@@ -29,7 +30,7 @@ class BannerController extends Controller
         $banner = Banner::get();
         return view('backend.banner.view', compact('banner'));
     }
-    
+
     public function Store(Request $request)
     {
         $request->validate([
@@ -44,9 +45,10 @@ class BannerController extends Controller
             $img->save(public_path('upload/banner/' . $name_gen));
             $save_url = 'upload/banner/' . $name_gen;
             Banner::create([
-                        'image' => $save_url,
-                        'created_at' => now(),
-                    ]);
+                'title' => $request->title,
+                'image' => $save_url,
+                'created_at' => now(),
+            ]);
             $notification = [
                 'message' => 'Image Inserted Successfully',
                 'alert-type' => 'success',
