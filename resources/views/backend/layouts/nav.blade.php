@@ -47,9 +47,9 @@
                                             data-key="t-alerts">Banner</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ route('view-rank') }}"
-                                            class="nav-link {{ $activeRoute === 'view-rank' ? 'active locked' : '' }}"
-                                            data-key="t-alerts">Rank</a>
+                                        <a href="{{ route('view-sermon-vidoe-link') }}"
+                                            class="nav-link {{ $activeRoute === 'view-sermon-vidoe-link' ? 'active locked' : '' }}"
+                                            data-key="t-alerts">Sermon Vidoes Links</a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="{{ route('view-appointment') }}" class="nav-link"

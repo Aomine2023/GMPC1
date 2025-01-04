@@ -4,12 +4,12 @@ declare (strict_types = 1);
 
 namespace App\Http\Controllers;
 
-use App\Models\News;
+use App\Models\ChurchHistory;
 use Illuminate\Http\Request;
 use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
 
-class NewsController extends Controller
+class ChurchHistoryController extends Controller
 {
     public function __construct()
     {
@@ -18,7 +18,7 @@ class NewsController extends Controller
 
     public function View()
     {
-        $news = News::get();
+        $news = ChurchHistory::get();
         return view('backend.news.index', compact('news'));
     }
 
@@ -30,31 +30,17 @@ class NewsController extends Controller
     {
         $request->validate([
             'body' => 'required',
-            'news_date' => 'required',
-            'venue' => 'required',
-            'image' => 'required|image',
-        ]);
-        if ($request->hasFile('image')) {
-            $manager = new ImageManager(new Driver());
-            $name_gen = hexdec(uniqid()) . '.' . $request->file('image')->getClientOriginalExtension();
-            $img = $manager->read($request->file('image'));
-            $img = $img->resize(370, 246);
-            $img->save(public_path('upload/news/' . $name_gen));
-            $save_url = 'upload/news/' . $name_gen;
-            News::create([
-                'body' => $request->body,
-                'news_date' => $request->news_date,
-                'venue' => $request->venue,
-                'image' => $save_url,
-                'created_at' => now(),
-            ]);
-            $notification = [
-                'message' => 'News Inserted Successfully',
-                'alert-type' => 'success',
-            ];
-            return redirect()->route('view-staff')->with($notification);
-        }
 
+        ]);
+        ChurchHistory::create([
+            'body' => $request->body,
+            'created_at' => now(),
+        ]);
+        $notification = [
+            'message' => 'News Inserted Successfully',
+            'alert-type' => 'success',
+        ];
+        return redirect()->route('view-news')->with($notification);
         $notification = [
             'message' => 'No image uploaded.',
             'alert-type' => 'error',
@@ -64,7 +50,7 @@ class NewsController extends Controller
 
     public function Edit($uuid)
     {
-        $news = News::where('uuid', $uuid)->first();
+        $news = ChurchHistory::where('uuid', $uuid)->first();
         if (!$news) {
             abort(404);
         }
@@ -74,7 +60,7 @@ class NewsController extends Controller
     public function Update(Request $request)
     {
         $uuid = $request->uuid;
-        $news = News::where('uuid', $uuid)->first();
+        $news = ChurchHistory::where('uuid', $uuid)->first();
         if (!$news) {
             abort(404);
         }
@@ -104,7 +90,7 @@ class NewsController extends Controller
 
     public function Delete($uuid)
     {
-        $news = News::where('uuid', $uuid)->first();
+        $news = ChurchHistory::where('uuid', $uuid)->first();
         if (!$news) {
             abort(404);
         }

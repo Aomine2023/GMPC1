@@ -4,13 +4,13 @@ declare (strict_types = 1);
 
 namespace App\Http\Controllers;
 
-use App\Models\Participant;
+use App\Models\Chaplian;
 use App\Models\Rank;
 use Illuminate\Http\Request;
 use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
 
-class ParticipantController extends Controller
+class ChaplainsController extends Controller
 {
     public function __construct()
     {
@@ -18,7 +18,7 @@ class ParticipantController extends Controller
     }
     public function View()
     {
-        $participant = Participant::get();
+        $participant = Chaplian::get();
         return view('backend.chaplians.index', compact('participant'));
     }
     public function Add()
@@ -29,8 +29,8 @@ class ParticipantController extends Controller
     public function Store(Request $request)
     {
         $request->validate([
-            'rank_name' => 'required',
-            'participant_name' => 'required',
+            'title' => 'required',
+            'chaplain_name' => 'required',
             'image' => 'required|image',
         ]);
 
@@ -41,9 +41,10 @@ class ParticipantController extends Controller
             // $img = $img->resize(200, 200);
             $img->save(public_path('upload/chaplain/' . $name_gen));
             $save_url = 'upload/chaplain/' . $name_gen;
-            Participant::create([
-                'rank_name' => $request->rank_name,
-                'participant_name' => $request->participant_name,
+            Chaplian::create([
+                'title' => $request->title,
+                'chaplain_name' => $request->chaplain_name,
+                'designation' => $request->designation,
                 'image' => $save_url,
                 'created_at' => now(),
             ]);
@@ -62,7 +63,7 @@ class ParticipantController extends Controller
 
     public function Edit($uuid)
     {
-        $participant = Participant::where('uuid', $uuid)->first();
+        $participant = Chaplian::where('uuid', $uuid)->first();
         if (!$participant) {
             abort(404);
         }
@@ -73,7 +74,7 @@ class ParticipantController extends Controller
     public function Update(Request $request)
     {
         $uuid = $request->uuid;
-        $participant = Participant::where('uuid', $uuid)->first();
+        $participant = Chaplian::where('uuid', $uuid)->first();
         if (!$participant) {
             abort(404);
         }
@@ -89,8 +90,9 @@ class ParticipantController extends Controller
             $save_url = 'upload/chaplain/' . $name_gen;
             $participant->image = $save_url;
         }
-        $participant->rank_name = $request->rank_name;
-        $participant->participant_name = $request->participant_name;
+        $participant->title = $request->title;
+        $participant->chaplain_name = $request->chaplain_name;
+        $participant->designation = $request->designation;
         $participant->save();
         $notification = [
             'message' => 'Partcipant Updated Successfully',
@@ -101,7 +103,7 @@ class ParticipantController extends Controller
 
     public function Delete($uuid)
     {
-        $participant = Participant::where('uuid', $uuid)->first();
+        $participant = Chaplian::where('uuid', $uuid)->first();
         if (!$participant) {
             abort(404);
         }
