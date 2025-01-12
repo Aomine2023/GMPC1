@@ -85,7 +85,6 @@
         <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
 
-
                 @foreach ($banner as $banners)
                     <div class="carousel-item active">
                         <img class="w-100" src="{{ asset($banners->image) }}" alt="Image" />
@@ -96,7 +95,7 @@
                                         <h1 class="display-6 text-light mb-4 animated slideInDown welcome-message">
                                             {{ $banners->title }}
                                         </h1>
-                                        {{-- <p class="smaLl-text"> </p>
+                                        <p class="smaLl-text"> </p>
                   <h3 class="display-8 text-light mb-4 animated slideInDown welcome-message">
                   We Exist To Honour God And Make Disciples
                   </h3>
@@ -110,25 +109,6 @@
 
 @endforeach
 
-
-      {{-- <div class="carousel-item">
-        <img class="w-100" src="{{ asset('frontend/assets/img/camp1.jpg') }}"  alt="Image" />
-        <div class="carousel-caption">
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-lg-6">
-                <h1 class="display-6 text-light mb-4 animated slideInDown welcome-message">
-                  GARRISON! "CHRIST IS RISEN"
-                </h1>
-                <p class="fs-5 text-body mb-5">
-                  <!-- Add your text here -->
-                </p>
-                <a href="" class="btn btn-primary py-3 px-5">More Details</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> --}}
     </div>
     <button
       class="carousel-control-prev"
