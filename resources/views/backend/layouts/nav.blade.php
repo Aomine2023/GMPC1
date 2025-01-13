@@ -47,20 +47,20 @@
                                             data-key="t-alerts">Banner</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ route('view-rank') }}"
-                                            class="nav-link {{ $activeRoute === 'view-rank' ? 'active locked' : '' }}"
-                                            data-key="t-alerts">Rank</a>
+                                        <a href="{{ route('view-sermon-vidoe-link') }}"
+                                            class="nav-link {{ $activeRoute === 'view-sermon-vidoe-link' ? 'active locked' : '' }}"
+                                            data-key="t-alerts">Sermon Vidoes Links</a>
                                     </li>
-                                    <li class="nav-item">
+                                    {{-- <li class="nav-item">
                                         <a href="{{ route('view-appointment') }}" class="nav-link"
                                             data-key="t-colors">Appointment</a>
-                                    </li>
-                                    <li class="nav-item">
+                                    </li> --}}
+                                    {{-- <li class="nav-item">
                                         <a href="{{ route('view-article') }}" class="nav-link"
                                             data-key="t-badges">Article</a>
-                                    </li>
+                                    </li> --}}
                                     <li class="nav-item">
-                                        <a href="{{ route('view-participant') }}" class="nav-link"
+                                        <a href="{{ route('view-chaplain') }}" class="nav-link"
                                             data-key="t-buttons">Chaplains</a>
                                     </li>
                                     <li class="nav-item">
@@ -81,20 +81,20 @@
                                     </li>
                                     <li class="nav-item">
                                         <a href="{{ route('view-news') }}" class="nav-link"
-                                            data-key="t-carousel">News</a>
+                                            data-key="t-carousel">Church History</a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="{{ route('view-events') }}" class="nav-link"
                                             data-key="t-carousel">Events</a>
                                     </li>
-                                    <li class="nav-item">
+                                    {{-- <li class="nav-item">
                                         <a href="{{ route('view-commandants') }}" class="nav-link"
                                             data-key="t-dropdowns">Commandant</a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="ui-grid.html" class="nav-link" data-key="t-grid">Joining
                                             Instructions</a>
-                                    </li>
+                                    </li> --}}
                                 </ul>
                             </div>
                         </div>

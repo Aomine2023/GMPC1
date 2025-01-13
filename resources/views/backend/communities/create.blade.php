@@ -20,7 +20,7 @@
                             <div class="row gy-4">
                                 <div class="col-xxl-12 col-md-6">
                                     <div>
-                                        <label for="title" class="form-label">Title</label>
+                                        <label for="title" class="form-label">Name</label>
                                         <input type="text" class="form-control" id="title" name="title">
                                         @error('title')
                                             <span class="badge bg-danger">{{ $message }}</span>

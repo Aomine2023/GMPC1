@@ -14,7 +14,7 @@
                         <thead>
                             <tr>
                                 <th data-ordering="false">SR No.</th>
-                                <th data-ordering="false">Title</th>
+                                <th data-ordering="false">Name</th>
                                 <th data-ordering="false" width="60%">Body</th>
                                 <th>Action</th>
                             </tr>

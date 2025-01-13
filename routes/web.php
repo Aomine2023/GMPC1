@@ -3,15 +3,16 @@
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\ChaplainsController;
+use App\Http\Controllers\ChurchHistoryController;
 use App\Http\Controllers\CommandController;
+use App\Http\Controllers\SermonVidoesLinkController;
 use App\Http\Controllers\CommunitiesController;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\Frontend\AboutController;
 use App\Http\Controllers\Frontend\CommandantController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\LogsController;
-use App\Http\Controllers\NewsController;
-use App\Http\Controllers\ParticipantController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RankController;
 use App\Http\Controllers\RoleController;
@@ -115,6 +116,7 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('/activation{id}', [ProfileController::class, 'Active'])->name('user.active');
         });
     });
+
     Route::prefix('rank')->group(function () {
         Route::get('/', [RankController::class, 'View'])->name('view-rank');
         Route::get('/mech', [RankController::class, 'RankAdd'])->name('rank-add');
@@ -123,6 +125,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/update{uuid}', [RankController::class, 'Update'])->name('rank-update');
         Route::get('/delete{uuid}', [RankController::class, 'Delete'])->name('rank-delete');
     });
+
     Route::prefix('appointment')->group(function () {
         Route::get('/', [AppointmentController::class, 'View'])->name('view-appointment');
         Route::get('/mech', [AppointmentController::class, 'Add'])->name('appointment-add');
@@ -131,14 +134,16 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/update{uuid}', [AppointmentController::class, 'Update'])->name('appointment-update');
         Route::get('/delete{uuid}', [AppointmentController::class, 'Delete'])->name('appointment-delete');
     });
+
     Route::prefix('chaplains')->group(function () {
-        Route::get('/', [ParticipantController::class, 'View'])->name('view-participant');
-        Route::get('/mech', [ParticipantController::class, 'Add'])->name('participant-add');
-        Route::post('/store', [ParticipantController::class, 'Store'])->name('participant-store');
-        Route::get('/edit/{uuid}', [ParticipantController::class, 'Edit'])->name('participant-edit');
-        Route::post('/update', [ParticipantController::class, 'Update'])->name('participant-update');
-        Route::get('/delete/{uuid}', [ParticipantController::class, 'Delete'])->name('participant-delete');
+        Route::get('/', [ChaplainsController::class, 'View'])->name('view-chaplain');
+        Route::get('/mech', [ChaplainsController::class, 'Add'])->name('chaplain-add');
+        Route::post('/store', [ChaplainsController::class, 'Store'])->name('chaplain-store');
+        Route::get('/edit/{uuid}', [ChaplainsController::class, 'Edit'])->name('chaplain-edit');
+        Route::post('/update', [ChaplainsController::class, 'Update'])->name('chaplain-update');
+        Route::get('/delete/{uuid}', [ChaplainsController::class, 'Delete'])->name('chaplain-delete');
     });
+
     Route::prefix('communities')->group(function () {
         Route::get('/', [CommunitiesController::class, 'View'])->name('view-communities');
         Route::get('/mech', [CommunitiesController::class, 'Add'])->name('communities-add');
@@ -147,13 +152,21 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/update', [CommunitiesController::class, 'Update'])->name('communities-update');
         Route::get('/delete/{uuid}', [CommunitiesController::class, 'Delete'])->name('communities-delete');
     });
+    Route::prefix('sermon-links')->group(function () {
+        Route::get('/', [SermonVidoesLinkController::class, 'View'])->name('view-sermon-vidoe-link');
+        Route::get('/mech', [SermonVidoesLinkController::class, 'Add'])->name('sermon-vidoe-link-add');
+        Route::post('/store', [SermonVidoesLinkController::class, 'Store'])->name('sermon-vidoe-link-store');
+        Route::get('/edit/{uuid}', [SermonVidoesLinkController::class, 'Edit'])->name('sermon-vidoe-link-edit');
+        Route::post('/update', [SermonVidoesLinkController::class, 'Update'])->name('sermon-vidoe-link-update');
+        Route::get('/delete/{uuid}', [SermonVidoesLinkController::class, 'Delete'])->name('sermon-vidoe-link-delete');
+    });
     Route::prefix('news')->group(function () {
-        Route::get('/', [NewsController::class, 'View'])->name('view-news');
-        Route::get('/mech', [NewsController::class, 'Add'])->name('news-add');
-        Route::post('/store', [NewsController::class, 'Store'])->name('news-store');
-        Route::get('/edit/{uuid}', [NewsController::class, 'Edit'])->name('news-edit');
-        Route::post('/update', [NewsController::class, 'Update'])->name('news-update');
-        Route::get('/delete/{uuid}', [NewsController::class, 'Delete'])->name('news-delete');
+        Route::get('/', [ChurchHistoryController::class, 'View'])->name('view-news');
+        Route::get('/mech', [ChurchHistoryController::class, 'Add'])->name('news-add');
+        Route::post('/store', [ChurchHistoryController::class, 'Store'])->name('news-store');
+        Route::get('/edit/{uuid}', [ChurchHistoryController::class, 'Edit'])->name('news-edit');
+        Route::post('/update', [ChurchHistoryController::class, 'Update'])->name('news-update');
+        Route::get('/delete/{uuid}', [ChurchHistoryController::class, 'Delete'])->name('news-delete');
     });
     Route::prefix('events')->group(function () {
         Route::get('/', [EventsController::class, 'View'])->name('view-events');

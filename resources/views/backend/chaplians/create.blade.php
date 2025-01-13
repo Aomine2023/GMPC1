@@ -13,16 +13,16 @@
                         </div>
                     </div> --}}
                 </div>
-                <form action="{{ route('participant-store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('chaplain-store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body">
                         <div class="live-preview">
                             <div class="row gy-4">
                                 <div class="col-xxl-4 col-md-6">
                                     <div>
-                                        <label for="rank" class="form-label">Title</label>
-                                        <input type="text" class="form-control" id="rank_name" name="rank_name">
-                                        @error('rank_name')
+                                        <label for="title" class="form-label">Title</label>
+                                        <input type="text" class="form-control" id="title" name="title">
+                                        @error('title')
                                             <span class="badge bg-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
@@ -30,10 +30,20 @@
                                 <!--end col-->
                                 <div class="col-xxl-4 col-md-6">
                                     <div>
-                                        <label for="participant_name" class="form-label">Name</label>
-                                        <input type="text" class="form-control" id="participant_name"
-                                            name="participant_name">
-                                        @error('participant_name')
+                                        <label for="chaplain_name" class="form-label">Name</label>
+                                        <input type="text" class="form-control" id="chaplain_name"
+                                            name="chaplain_name">
+                                        @error('chaplain_name')
+                                            <span class="badge bg-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-xxl-4 col-md-6">
+                                    <div>
+                                        <label for="designation" class="form-label">Designation</label>
+                                        <input type="text" class="form-control" id="designation"
+                                            name="designation">
+                                        @error('designation')
                                             <span class="badge bg-danger">{{ $message }}</span>
                                         @enderror
                                     </div>

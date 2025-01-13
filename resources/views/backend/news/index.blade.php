@@ -15,9 +15,7 @@
                             <tr>
                                 <th data-ordering="false">SR No.</th>
                                 <th data-ordering="false" width="60%">News</th>
-                                <th data-ordering="false">Date</th>
-                                <th data-ordering="false">Venue</th>
-                                <th data-ordering="false">Image</th>
+
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -26,17 +24,6 @@
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
                                     <td>{{ $list->body ?? '' }}</td>
-                                    <td>{{ $list->news_date ?? '' }}</td>
-                                    <td>{{ $list->venue ?? '' }}</td>
-                                    <td>
-                                        @if ($list->image)
-                                            <img src="{{ asset($list->image ?? '') }}" alt="Participant Image"
-                                                style="max-width:200px; max-height: 80px;">
-                                        @else
-                                            No Image Available
-                                        @endif
-                                    </td>
-
                                     <td>
                                         <div class="dropdown d-inline-block">
                                             <button class="btn btn-soft-secondary btn-sm dropdown" type="button"

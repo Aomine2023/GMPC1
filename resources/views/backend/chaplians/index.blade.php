@@ -5,7 +5,7 @@
             <div class="card">
                 <div class="card-header">
                     <h5 class="card-title mb-0">Chaplains</h5>
-                    <a href="{{ route('participant-add') }}" type="button" class="btn btn-primary waves-effect waves-light"
+                    <a href="{{ route('chaplain-add') }}" type="button" class="btn btn-primary waves-effect waves-light"
                         style="float: right;">Add Chaplain</a>
                 </div>
                 <div class="card-body">
@@ -15,6 +15,7 @@
                             <tr>
                                 <th data-ordering="false">SR No.</th>
                                 <th data-ordering="false">Title</th>
+                                 <th data-ordering="false">Designation</th>
                                 <th data-ordering="false">Name</th>
                                 <th data-ordering="false">Image</th>
                                 <th>Action</th>
@@ -24,8 +25,9 @@
                             @foreach ($participant as $list)
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
-                                    <td>{{ $list->rank_name ?? '' }}</td>
-                                    <td>{{ $list->participant_name ?? '' }}</td>
+                                    <td>{{ $list->title ?? '' }}</td>
+                                     <td>{{ $list->designation ?? '' }}</td>
+                                    <td>{{ $list->chaplain_name ?? '' }}</td>
                                     <td>
                                         @if ($list->image)
                                             <img src="{{ asset($list->image) }}" alt="Participant Image"
@@ -43,13 +45,13 @@
                                             <ul class="dropdown-menu dropdown-menu-end">
                                                 <li>
                                                     <a class="dropdown-item edit-item-btn"
-                                                        href="{{ route('participant-edit', $list->uuid) }}"><i
+                                                        href="{{ route('chaplain-edit', $list->uuid) }}"><i
                                                             class="ri-pencil-fill align-bottom me-2 text-muted"></i>
                                                         Edit</a>
                                                 </li>
                                                 <li>
                                                     <a class="dropdown-item remove-item-btn"
-                                                        href="{{ route('participant-delete', $list->uuid) }}">
+                                                        href="{{ route('chaplain-delete', $list->uuid) }}">
                                                         <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>
                                                         Delete
                                                     </a>

@@ -106,8 +106,6 @@
                         <section class="dark-bg no-bottom-padding">
                             <div class="container">
                                 <div class="main-video-wrap fl-wrap">
-
-
                                     <div class="video-main-cont">
                                         <div class="video-section-title fl-wrap">
                                             <h2>Featured Video</h2>
