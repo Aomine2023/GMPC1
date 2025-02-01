@@ -115,4 +115,10 @@ class ChaplainsController extends Controller
 
         return redirect()->back()->with($notification);
     }
+
+    public function index()
+{
+    $chaplains = Chaplian::all(); // Fetch all chaplains
+    return view('website.layouts.index', compact('chaplains'));
+}
 }
