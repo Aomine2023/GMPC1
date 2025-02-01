@@ -98,102 +98,107 @@
         </div>
         <!-- Service End -->
 
-        <div class="container-fluid appointment my-5 py-5 wow fadeIn" data-wow-delay="0.1s">
-            <div class="container py-5">
-                <div class="row g-5">
-                    <div class="col-lg-6 wow fadeIn" data-wow-delay="0.3s">
+<div class="container-fluid appointment my-5 py-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container py-5">
+        <div class="row g-5">
+            <div class="col-lg-12 wow fadeIn" data-wow-delay="0.3s"> <!-- Changed to col-lg-12 for full width -->
+                <section class="dark-bg no-bottom-padding">
+                    <div class="container">
+                        <div class="main-video-wrap fl-wrap">
+                            <div class="video-main-cont">
+                                <div class="video-section-title fl-wrap">
+                                    <h2 class="text-white">Featured Video</h2>
+                                    <h4 class="text-white">Stay up-to-date</h4>
+                                    <a href="https://www.youtube.com/@officialgaftv" target="_blank" class="text-white">
+                                        <i class="fas fa-caret-right"></i> Visit Channel
+                                    </a>
+                                </div>
+                                <a class="video-holder vh-main fl-wrap image-popup" style="height:500px"
+                                   href="https://www.youtube.com/watch?v=vhu7JP7doSU">
+                                    <iframe width="100%" height="500"
+                                            src="https://www.youtube.com/embed/vhu7JP7doSU">
+                                    </iframe>
+                                    <div class="video-item-title text-white">
+                                                <h4>BURIAL SERVICE FOR THE LATE AIR COMMODORE GODFRIED SACKEY PARKER</h4>
+                                                <span class="video-date"><i class="far fa-clock"></i>
+                                                    <strong>Feb 12 2024</strong></span>
+                                            </div>
+                                </a>
+                            </div>
 
-                        <section class="dark-bg no-bottom-padding">
-                            <div class="container">
-                                <div class="main-video-wrap fl-wrap">
-                                    <div class="video-main-cont">
-                                        <div class="video-section-title fl-wrap">
-                                            <h2>Featured Video</h2>
-                                            <h4>Stay up-to-date</h4>
-                                            <a href="https://www.youtube.com/@officialgaftv" target="_blank" view=""
-                                                all="" <i="" class="fas fa-caret-right"></a>
-                                        </div>
-                                        <a class="video-holder vh-main fl-wrap  image-popup" style="height:500px"
-                                            href="https://www.youtube.com/embed/https://www.youtube.com/watch?v=vhu7JP7doSU">
-                                            <iframe width="100%" height="500"
-                                                src="https://www.youtube.com/embed/https://www.youtube.com/watch?v=vhu7JP7doSU">
-                                            </iframe>
-                                        </a>
-
-                                    </div>
-
-                                    <!-- video-links-wrap   -->
-                                    <div class="video-links-wrap ps ps--active-y">
-                                        <!-- video-item  -->
+                            <!-- video-links-wrap -->
+                            <div class="video-links-wrap ps ps--active-y">
+                                <div class="row g-4"> <!-- Added row for horizontal arrangement -->
+                                    <!-- Video Item 1 -->
+                                    <div class="col-lg-3 col-md-6">
                                         <div class="video-item fl-wrap" data-url="javascript:void(0)"
-                                            data-video-link="https://www.youtube.com/watch?v=K-6tPkm6cZA">
+                                             data-video-link="https://www.youtube.com/watch?v=K-6tPkm6cZA">
                                             <iframe width="100%" height="300"
-                                                src="https://www.youtube.com/embed/1pQFgf2n-Nc">
+                                                    src="https://www.youtube.com/embed/1pQFgf2n-Nc">
                                             </iframe>
-                                            <div class="video-item-title">
-                                                <h4>Defence Minister Cuts Sod for Infrastructural Development Projects at
-                                                    Military Training Schools.</h4>
+                                            <div class="video-item-title text-white">
+                                                <h4>Defence Minister Cuts Sod for Infrastructural Development Projects at Military Training Schools.</h4>
                                                 <span class="video-date"><i class="far fa-clock"></i>
                                                     <strong>Jul 31 2023</strong></span>
                                             </div>
                                         </div>
+                                    </div>
+
+                                    <!-- Video Item 2 -->
+                                    <div class="col-lg-3 col-md-6">
                                         <div class="video-item fl-wrap" data-url="javascript:void(0)"
-                                            data-video-link="https://www.youtube.com/watch?v=K-6tPkm6cZA">
+                                             data-video-link="https://www.youtube.com/watch?v=K-6tPkm6cZA">
                                             <iframe width="100%" height="300"
-                                                src="https://www.youtube.com/embed/QG957ewLYlE">
+                                                    src="https://www.youtube.com/embed/QG957ewLYlE">
                                             </iframe>
-                                            <div class="video-item-title">
-                                                <h4>CAS Sees Off 12 Ab Initio and 4 Certified Instructor Pilots to Train in
-                                                    USA.</h4>
+                                            <div class="video-item-title text-white">
+                                                <h4>CAS Sees Off 12 Ab Initio and 4 Certified Instructor Pilots to Train in USA.</h4>
                                                 <span class="video-date"><i class="far fa-clock"></i>
                                                     <strong>Jun 19 2023</strong></span>
                                             </div>
                                         </div>
+                                    </div>
+
+                                    <!-- Video Item 3 -->
+                                    <div class="col-lg-3 col-md-6">
                                         <div class="video-item fl-wrap" data-url="javascript:void(0)"
-                                            data-video-link="https://www.youtube.com/watch?v=K-6tPkm6cZA">
+                                             data-video-link="https://www.youtube.com/watch?v=K-6tPkm6cZA">
                                             <iframe width="100%" height="300"
-                                                src="https://www.youtube.com/embed/z96Or3b_Vlo">
+                                                    src="https://www.youtube.com/embed/z96Or3b_Vlo">
                                             </iframe>
-                                            <div class="video-item-title">
+                                            <div class="video-item-title text-white">
                                                 <h4>AVM FAK Bekoe Appointed Chief of the Air Staff.</h4>
                                                 <span class="video-date"><i class="far fa-clock"></i>
                                                     <strong>Jun 19 2023</strong></span>
                                             </div>
                                         </div>
+                                    </div>
+
+                                    <!-- Video Item 4 -->
+                                    <div class="col-lg-3 col-md-6">
                                         <div class="video-item fl-wrap" data-url="javascript:void(0)"
-                                            data-video-link="https://www.youtube.com/watch?v=K-6tPkm6cZA">
+                                             data-video-link="https://www.youtube.com/watch?v=K-6tPkm6cZA">
                                             <iframe width="100%" height="300"
-                                                src="https://www.youtube.com/embed/vhu7JP7doSU">
+                                                    src="https://www.youtube.com/embed/vhu7JP7doSU">
                                             </iframe>
-                                            <div class="video-item-title">
+                                            <div class="video-item-title text-white">
                                                 <h4>BURIAL SERVICE FOR THE LATE AIR COMMODORE GODFRIED SACKEY PARKER</h4>
                                                 <span class="video-date"><i class="far fa-clock"></i>
                                                     <strong>Feb 12 2024</strong></span>
                                             </div>
                                         </div>
-                                        <!--video-item end   -->
-                                        <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
-                                            <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
-                                        </div>
-                                        <div class="ps__rail-y" style="top: 0px; height: 516px; right: 0px;">
-                                            <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 211px;">
-                                            </div>
-                                        </div>
                                     </div>
-                                    <!-- video-links-wrap end   -->
+                                    <!-- video-item end -->
                                 </div>
+                                <!-- video-links-wrap end -->
                             </div>
-
-
-                        </section>
-
-
-
+                        </div>
                     </div>
-
-                </div>
+                </section>
             </div>
         </div>
+    </div>
+</div>
         <!-- Appointment End -->
 
         <!-- Team Start -->
