@@ -1,73 +1,64 @@
     <!-- About Start -->
     @extends('website.layouts.gmpc.master')
     @section('content')
-        <div class="container-xxl py-5">
-            <div class="container">
-                <div class="row g-5">
-                    <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="position-relative overflow-hidden rounded ps-5 pt-5 h-100" style="min-height: 400px">
-                            <img class="position-absolute w-100 h-100" src="img/about1.jpg" alt=""
-                                style="object-fit: cover" />
-                            <div class="position-absolute top-0 start-0 bg-white rounded pe-3 pb-3"
-                                style="width: 200px; height: 200px">
-                                <div
-                                    class="d-flex flex-column justify-content-center text-center bg-primary rounded h-100 p-3">
-                                    <h1 class="text-white mb-0">67</h1>
-                                    <h2 class="text-white">Years</h2>
-                                    <h5 class="text-white mb-0">In Christ</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="h-100">
-                            <h3 class="display-8 mb-6">
-                                Upcoming Programs
-                            </h3>
-                            <p class="fs-5 text-primary mb-4">
-                                The GMPC family. Church isn't for perfect people. It's for hurting people, for hungry
-                                people, for growing people. It doesn't matter your background, your race, your ethnicity,
-                                your lifestyle, or what you've been through. You are welcome here. This is one of the
-                                avenues members converge to fellowship during the week.
-                            </p>
-                            <h3 class="display-8 mb-6">
-                                Prayer Meetings
-                            </h3>
-                            <p class="fs-5 text-primary mb-4">
-                                The GMPC family meets every Friday evening to commit family and loved ones into the hands of
-                                God. This is one of the avenues members converge to fellowship during the week.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="border-top mt-4 pt-4">
-                        <div class="d-flex align-items-center">
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="position-relative overflow-hidden rounded ps-5 pt-5 h-100" style="min-height: 400px">
+                    <img class="position-absolute w-100 h-100" src="img/about1.jpg" alt=""
+                         style="object-fit: cover; max-height: 400px; max-width: 100%;" />
+                    <div class="position-absolute top-0 start-0 bg-white rounded pe-3 pb-3"
+                         style="width: 200px; height: 200px">
+                        <div class="d-flex flex-column justify-content-center text-center bg-primary rounded h-100 p-3">
+                            <h1 class="text-white mb-0">67</h1>
+                            <h2 class="text-white">Years</h2>
+                            <h5 class="text-white mb-0">In Christ</h5>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- About End -->
-            <!-- Facts Start -->
-            <div class="container-fluid overflow-hidden my-5 px-lg-0">
-                <div class="container facts px-lg-0">
-                    <div class="row g-0 mx-lg-0">
-                        <div class="col facts-text wow fadeIn" data-wow-delay="0.1s">
-                            <div class="h-100 px-4 ps-lg-0">
-                                <h1 class="text-white mb-4">History Of GMPC</h1>
-                                <p class="text-light mb-5">
-                                    Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit.
-                                    Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit,
-                                    sed stet lorem sit clita duo justo magna dolore erat amet
-                                </p>
-                                <a href="" class="align-self-start btn btn-secondary py-3 px-5">More Details</a>
-                            </div>
-                        </div>
-                    </div>
+
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="h-100">
+                    <h3 class="display-8 mb-4">Upcoming Programs</h3>
+                    <p class="fs-5 text-primary mb-4">
+                        The GMPC family. Church isn't for perfect people. It's for hurting people, for hungry
+                        people, for growing people. It doesn't matter your background, your race, your ethnicity,
+                        your lifestyle, or what you've been through. You are welcome here. This is one of the
+                        avenues members converge to fellowship during the week.
+                    </p>
+                    <h3 class="display-8 mb-4">Prayer Meetings</h3>
+                    <p class="fs-5 text-primary mb-4">
+                        The GMPC family meets every Friday evening to commit family and loved ones into the hands of
+                        God. This is one of the avenues members converge to fellowship during the week.
+                    </p>
                 </div>
             </div>
         </div>
-        <!-- Facts End -->
+    </div>
+</div>
+<!-- About End -->
+
+<!-- Facts Start -->
+<div class="container-fluid overflow-hidden my-5 px-lg-0">
+    <div class="container facts px-lg-0">
+        <div class="row g-0 mx-lg-0">
+            <div class="col facts-text wow fadeIn" data-wow-delay="0.1s">
+                <div class="h-100 px-4 ps-lg-0">
+                    <h1 class="text-white mb-4">History Of GMPC</h1>
+                    <p class="text-light mb-5">
+                        Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit.
+                        Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit,
+                        sed stet lorem sit clita duo justo magna dolore erat amet
+                    </p>
+                    <a href="" class="align-self-start btn btn-secondary py-3 px-5">More Details</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Facts End -->
 
         <!-- Service Start -->
         <div class="container-xxl py-5">
