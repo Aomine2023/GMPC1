@@ -125,7 +125,7 @@
                     <div class="about-content h-100">
                         <h4 class="text-primary">Upcoming Programs</h4>
                         <h1 class="display-4 text-white mb-4">We are the best at fulfilling your potential and
-                            achieving your goals.</h1>
+                            achieving your goals</h1>
                         <p class="mb-4">The GMPC family. Church isn't for perfect people. It's for hurting people,
                             for hungry
                             people, for growing people. It doesn't matter your background, your race, your ethnicity,
