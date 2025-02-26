@@ -22,14 +22,16 @@ use App\Models\Banner;
 use App\Models\Community;
 use App\Models\Participant;
 use App\Models\Staff;
+use App\Models\Chaplian;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     $staffs = Staff::all();
     $participant = Participant::all();
     $banner = Banner::latest()->take(5)->get();
+    $chaplains = Chaplian::get();
     $community = Community::get();
-    return view('website.frontend.index', compact('staffs', 'participant', 'banner', 'community'));
+    return view('website.frontend.index', compact('staffs', 'participant', 'banner', 'community','chaplains'));
 });
 
 Route::get('/email/verify', function () {
@@ -136,7 +138,7 @@ Route::group(['prefix' => 'admin'], function () {
     });
 
     Route::prefix('chaplains')->group(function () {
-        Route::get('/', [ChaplainsController::class, 'View'])->name('view-chaplain');
+        Route::get('/', [ChaplainsController::class, 'View'])->name('view-participant');
         Route::get('/mech', [ChaplainsController::class, 'Add'])->name('chaplain-add');
         Route::post('/store', [ChaplainsController::class, 'Store'])->name('chaplain-store');
         Route::get('/edit/{uuid}', [ChaplainsController::class, 'Edit'])->name('chaplain-edit');
@@ -207,5 +209,5 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/update', [CommandController::class, 'Update'])->name('commandants-update');
         Route::get('/delete/{uuid}', [CommandController::class, 'Delete'])->name('commandants-delete');
     });
-    Route::get('/chaplains', [ChaplainController::class, 'index']);
+
 });

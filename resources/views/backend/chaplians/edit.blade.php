@@ -13,7 +13,7 @@
                         </div>
                     </div>
                 </div>
-                <form action="{{ route('participant-update') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('chaplain-update') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="uuid" value="{{ $participant->uuid }}">
                     <div class="card-body">
@@ -21,23 +21,15 @@
                             <div class="row gy-4">
                                 <div class="col-xxl-4 col-md-6">
                                     <div>
-                                        <label for="rank" class="form-label">Rank</label>
-                                        <select name="rank_name" id="rank_name" class="form-control" required>
-                                            <option value="">select rank</option>
-                                            @foreach ($ranks as $list)
-                                                <option
-                                                    value="{{ $list->rank_name }}"{{ $list->rank_name == $participant->rank_name ? 'selected' : '' }}>
-                                                    {{ $list->rank_name }}
-                                                </option>
-                                            @endforeach
-                                        </select>
+                                        <label for="title" class="form-label">Title</label>
+                                        <input type="text" class="form-control" id="title" name="title" value="">
                                     </div>
                                 </div>
                                 <div class="col-xxl-4 col-md-6">
                                     <div>
                                         <label for="participant_name" class="form-label">Participant Name</label>
-                                        <input type="text" class="form-control" id="participant_name"
-                                            name="participant_name" value="{{ $participant->participant_name }}">
+                                        <input type="text" class="form-control" id="chaplain_name"
+                                            name="participant_name" value="{{ $participant->chaplain_name }}">
                                         @error('participant_name')
                                             <span class="badge bg-danger">{{ $message }}</span>
                                         @enderror
@@ -45,11 +37,11 @@
                                 </div>
                                 <div class="col-xxl-4 col-md-6">
                                     <div>
-                                        <label for="participant_course" class="form-label">Participant Course</label>
-                                        <input type="text" class="form-control" id="participant_course"
-                                            placeholder="Course" name="participant_course"
-                                            value="{{ $participant->participant_course }}">
-                                        @error('participant_course')
+                                        <label for="designation" class="form-label">Designation</label>
+                                        <input type="text" class="form-control" id="designation"
+                                            placeholder="Course" name="designation"
+                                            value="{{ $participant->designation }}">
+                                        @error('designation')
                                             <span class="badge bg-danger">{{ $message }}</span>
                                         @enderror
                                     </div>

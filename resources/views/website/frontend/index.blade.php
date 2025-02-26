@@ -343,192 +343,47 @@
     <!-- Features End -->
 
 
-    <!-- Courses Start -->
-    <div class="container-fluid courses overflow-hidden py-5">
-        <div class="container py-5">
-            <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
-                <!-- <h4 class="text-primary"> Meet Our Chaplains</h4> -->
-                <h1 class="display-4 text-white mb-4">Meet Our Chaplains</h1>
-                <!-- <p class="text-white mb-0">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur adipisci facilis cupiditate recusandae aperiam temporibus corporis itaque quis facere, numquam, ad culpa deserunt sint dolorem autem obcaecati, ipsam mollitia hic.
-                </p> -->
-            </div>
-            <div class="row gy-4 gx-0 justify-content-center">
+<!-- Courses Start -->
+<div class="container-fluid courses overflow-hidden py-5">
+    <div class="container py-5">
+        <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+            <h1 class="display-4 text-white mb-4">Meet Our Chaplains</h1>
+        </div>
+        <div class="row gy-4 gx-0 justify-content-center">
+            @foreach($chaplains as $chaplain)
                 <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.2s">
                     <div class="courses-item">
                         <div class="courses-item-inner p-4">
                             <div class="d-flex justify-content-between mb-4">
                                 <div class="courses-icon-img p-3">
-                                    <img src="img/icon-1.png" class="img-fluid" alt="">
+                                    <img src="{{ $chaplain->image ?? 'img/default.png' }}" class="img-fluid" alt="{{ $chaplain->chaplain_name }}">
                                 </div>
                                 <div class="data-info d-flex flex-column">
                                     <div class="courses-trainer d-flex align-items-center mb-1">
                                         <div class="me-2" style="width: 25px; height: 25px;">
-                                            <img src="img/testimonial-3.jpg" class="img-fluid" alt="">
+                                            <img src="{{ $chaplain->image ?? 'img/default.png' }}" class="img-fluid" alt="{{ $chaplain->chaplain_name }}">
                                         </div>
-                                        <p class="mb-0">Paul Flavius</p>
+                                        <p class="mb-0">{{ $chaplain->chaplain_name }}</p>
                                     </div>
                                     <div class="courses-date">
-                                        <p class="mb-1">Date: Saturday</p>
-                                        <p class="mb-0">Time: 06.00 - 07.00</p>
+                                        <p class="mb-1">Designation: {{ $chaplain->designation }}</p>
                                     </div>
                                 </div>
                             </div>
-                            <a href="#" class="d-inline-block h4 mb-3"> Gym Fitness Class</a>
-                            <p class="mb-4">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque tempora
-                                illo placeat.
-                            </p>
+                            <a href="#" class="d-inline-block h4 mb-3">{{ $chaplain->title }}</a>
+                            <p class="mb-4">Some description about {{ $chaplain->chaplain_name }}.</p>
                             <a href="#" class="btn btn-primary py-2 px-4"> <span>Read More</span></a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.4s">
-                    <div class="courses-item">
-                        <div class="courses-item-inner p-4">
-                            <div class="d-flex justify-content-between mb-4">
-                                <div class="courses-icon-img p-3">
-                                    <img src="img/icon-2.png" class="img-fluid" alt="">
-                                </div>
-                                <div class="data-info d-flex flex-column">
-                                    <div class="courses-trainer d-flex align-items-center mb-1">
-                                        <div class="me-2" style="width: 25px; height: 25px;">
-                                            <img src="img/testimonial-3.jpg" class="img-fluid" alt="">
-                                        </div>
-                                        <p class="mb-0">Paul Flavius</p>
-                                    </div>
-                                    <div class="courses-date">
-                                        <p class="mb-1">Date: Saturday</p>
-                                        <p class="mb-0">Time: 06.00 - 07.00</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="#" class="d-inline-block h4 mb-3"> Power Lifting Class</a>
-                            <p class="mb-4">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque tempora
-                                illo placeat.
-                            </p>
-                            <a href="#" class="btn btn-primary py-2 px-4"> <span>Read More</span></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.6s">
-                    <div class="courses-item">
-                        <div class="courses-item-inner p-4">
-                            <div class="d-flex justify-content-between mb-4">
-                                <div class="courses-icon-img p-3">
-                                    <img src="img/icon-3.png" class="img-fluid" alt="">
-                                </div>
-                                <div class="data-info d-flex flex-column">
-                                    <div class="courses-trainer d-flex align-items-center mb-1">
-                                        <div class="me-2" style="width: 25px; height: 25px;">
-                                            <img src="img/testimonial-3.jpg" class="img-fluid" alt="">
-                                        </div>
-                                        <p class="mb-0">Paul Flavius</p>
-                                    </div>
-                                    <div class="courses-date">
-                                        <p class="mb-1">Date: Saturday</p>
-                                        <p class="mb-0">Time: 06.00 - 07.00</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="#" class="d-inline-block h4 mb-3"> Body Building Class</a>
-                            <p class="mb-4">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque tempora
-                                illo placeat.
-                            </p>
-                            <a href="#" class="btn btn-primary py-2 px-4"> <span>Read More</span></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.2s">
-                    <div class="courses-item">
-                        <div class="courses-item-inner p-4">
-                            <div class="d-flex justify-content-between mb-4">
-                                <div class="courses-icon-img p-3">
-                                    <img src="img/icon-4.png" class="img-fluid" alt="">
-                                </div>
-                                <div class="data-info d-flex flex-column">
-                                    <div class="courses-trainer d-flex align-items-center mb-1">
-                                        <div class="me-2" style="width: 25px; height: 25px;">
-                                            <img src="img/testimonial-3.jpg" class="img-fluid" alt="">
-                                        </div>
-                                        <p class="mb-0">Paul Flavius</p>
-                                    </div>
-                                    <div class="courses-date">
-                                        <p class="mb-1">Date: Saturday</p>
-                                        <p class="mb-0">Time: 06.00 - 07.00</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="#" class="d-inline-block h4 mb-3"> Aerobics & Skipping Class</a>
-
-                            <p class="mb-4">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque tempora
-                                illo placeat.
-                            </p>
-                            <a href="#" class="btn btn-primary py-2 px-4"> <span>Read More</span></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.4s">
-                    <div class="courses-item">
-                        <div class="courses-item-inner p-4">
-                            <div class="d-flex justify-content-between mb-4">
-                                <div class="courses-icon-img p-3">
-                                    <img src="img/icon-5.png" class="img-fluid" alt="">
-                                </div>
-                                <div class="data-info d-flex flex-column">
-                                    <div class="courses-trainer d-flex align-items-center mb-1">
-                                        <div class="me-2" style="width: 25px; height: 25px;">
-                                            <img src="img/testimonial-3.jpg" class="img-fluid" alt="">
-                                        </div>
-                                        <p class="mb-0">Paul Flavius</p>
-                                    </div>
-                                    <div class="courses-date">
-                                        <p class="mb-1">Date: Saturday</p>
-                                        <p class="mb-0">Time: 06.00 - 07.00</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="#" class="d-inline-block h4 mb-3"> Boxing Class</a>
-                            <p class="mb-4">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque tempora
-                                illo placeat.
-                            </p>
-                            <a href="#" class="btn btn-primary py-2 px-4"> <span>Read More</span></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.6s">
-                    <div class="courses-item">
-                        <div class="courses-item-inner p-4">
-                            <div class="d-flex justify-content-between mb-4">
-                                <div class="courses-icon-img p-3">
-                                    <img src="img/icon-6.png" class="img-fluid" alt="">
-                                </div>
-                                <div class="data-info d-flex flex-column">
-                                    <div class="courses-trainer d-flex align-items-center mb-1">
-                                        <div class="me-2" style="width: 25px; height: 25px;">
-                                            <img src="img/testimonial-3.jpg" class="img-fluid" alt="">
-                                        </div>
-                                        <p class="mb-0">Paul Flavius</p>
-                                    </div>
-                                    <div class="courses-date">
-                                        <p class="mb-1">Date: Saturday</p>
-                                        <p class="mb-0">Time: 06.00 - 07.00</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="#" class="d-inline-block h4 mb-3"> Cardio Class</a>
-                            <p class="mb-4">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque tempora
-                                illo placeat.
-                            </p>
-                            <a href="#" class="btn btn-primary py-2 px-4"> <span>Read More</span></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.2s">
-                    <a href="#" class="btn btn-primary py-3 px-5"> <span>More</span></a>
-                </div>
+            @endforeach
+            <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.2s">
+                <a href="#" class="btn btn-primary py-3 px-5"> <span>More</span></a>
             </div>
         </div>
     </div>
-    <!-- Courses End -->
+</div>
+<!-- Courses End -->
 
     <!-- Blog Start -->
     <div class="container-fluid blog py-5">

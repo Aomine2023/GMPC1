@@ -8,9 +8,7 @@ use App\Models\Chaplian;
 use App\Models\Rank;
 use Illuminate\Http\Request;
 use Intervention\Image\Drivers\Gd\Driver;
-use Intervention\Image\ImageManager;
-$participants = Participant::all(); // or your specific query
-return view('website.frontend.index', compact('participants'));
+use Intervention\Image\ImageManager;// or your specific query
 
 class ChaplainsController extends Controller
 {
@@ -100,7 +98,7 @@ class ChaplainsController extends Controller
             'message' => 'Partcipant Updated Successfully',
             'alert-type' => 'success',
         ];
-        return redirect()->route('view-participant')->with($notification);
+        return redirect()->route('chaplain-update')->with($notification);
     }
 
     public function Delete($uuid)
