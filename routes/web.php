@@ -41,6 +41,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('backend.layouts.index');
 })->name('dashboard');
 
+Route::get("/login", function(){
+    return view("auth.login");
+});
+
 // Route::get('/dashboard', function () {
 //     return view('backend.layouts.index');
 // })->middleware(['auth:sanctum'])->name('dashboard');
@@ -209,5 +213,9 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/update', [CommandController::class, 'Update'])->name('commandants-update');
         Route::get('/delete/{uuid}', [CommandController::class, 'Delete'])->name('commandants-delete');
     });
+
+    Route::get('/view-chaplain', function () {
+        return view('backend.chaplians.index');
+    })->name('participant');
 
 });

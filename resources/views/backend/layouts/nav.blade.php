@@ -60,7 +60,7 @@
                                             data-key="t-badges">Article</a>
                                     </li> --}}
                                     <li class="nav-item">
-                                        <a href="{{ route('view-chaplain') }}" class="nav-link"
+                                        <a href="{{ route('participant') }}" class="nav-link"
                                             data-key="t-buttons">Chaplains</a>
                                     </li>
                                     <li class="nav-item">
