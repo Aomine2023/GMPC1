@@ -885,8 +885,8 @@
 }
 
 .courses-item .courses-item-inner .courses-icon-img {
-    width: 80px; 
-    height: 80px;
+    width: 85%; 
+    height: 85%;
     background: var(--bs-primary);
     transition: 0.5s;
 }

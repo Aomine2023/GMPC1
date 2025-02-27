@@ -254,19 +254,20 @@
                                     <img src="{{ $chaplain->image ?? 'img/default.png' }}" class="img-fluid" alt="{{ $chaplain->chaplain_name }}">
                                 </div>
                                 <div class="data-info d-flex flex-column">
-                                    <div class="courses-trainer d-flex align-items-center mb-1">
+                                    {{-- <div class="courses-trainer d-flex align-items-center mb-1">
                                         <div class="me-2" style="width: 25px; height: 25px;">
                                             <img src="{{ $chaplain->image ?? 'img/default.png' }}" class="img-fluid" alt="{{ $chaplain->chaplain_name }}">
                                         </div>
                                         <p class="mb-0">{{ $chaplain->chaplain_name }}</p>
-                                    </div>
-                                    <div class="courses-date">
-                                        <p class="mb-1">Designation: {{ $chaplain->designation }}</p>
-                                    </div>
+                                    </div> --}}
+                                    
                                 </div>
                             </div>
                             <a href="#" class="d-inline-block h4 mb-3">{{ $chaplain->title }}</a>
-                            <p class="mb-4">Some description about {{ $chaplain->chaplain_name }}.</p>
+                             <h3 class="mb-0">{{ $chaplain->chaplain_name }}</h3>
+                             <div class="courses-date">
+                                        <p class="mb-1">Designation: {{ $chaplain->designation }}</p>
+                                    </div>
                             <a href="#" class="btn btn-primary py-2 px-4"> <span>Read More</span></a>
                         </div>
                     </div>
