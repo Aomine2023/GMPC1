@@ -30,8 +30,8 @@ Route::get('/', function () {
     $participant = Participant::all();
     $banner = Banner::latest()->take(5)->get();
     $chaplains = Chaplian::get();
-    $community = Community::get();
-    return view('website.frontend.index', compact('staffs', 'participant', 'banner', 'community','chaplains'));
+    $communities = Community::get();
+    return view('website.frontend.index', compact('staffs', 'participant', 'banner', 'communities','chaplains'));
 });
 
 Route::get('/email/verify', function () {

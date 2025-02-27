@@ -20,7 +20,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($community as $list)
+                            @foreach ($communities as $list)
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
                                     <td>{{ $list->title ?? '' }}</td>
