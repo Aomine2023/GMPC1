@@ -28,10 +28,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     $staffs = Staff::all();
     $participant = Participant::all();
-    $banner = Banner::latest()->take(5)->get();
+    $banners = Banner::latest()->take(5)->get();
     $chaplains = Chaplian::get();
     $communities = Community::get();
-    return view('website.frontend.index', compact('staffs', 'participant', 'banner', 'communities','chaplains'));
+    return view('website.frontend.index', compact('staffs', 'participant', 'banners', 'communities','chaplains'));
 });
 
 Route::get('/email/verify', function () {

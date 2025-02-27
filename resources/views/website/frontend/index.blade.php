@@ -24,90 +24,22 @@
     <!-- Modal Search End -->
 
 
-    <!-- Carousel Start -->
-    <!-- <div class="header-carousel owl-carousel overflow-hidden bg-dark">
-            <div class="header-carousel-item hero-section">
-                <div class="hero-bg-half-1"></div>
-                <div class="carousel-caption">
-                    <div class="container">
-                        <div class="row g-4 align-items-center">
-                            <div class="col-lg-7 animated fadeInLeft">
-                                <div class="text-sm-center text-md-start">
-                                    <h4 class="text-primary text-uppercase fw-bold mb-4">Wellcome to the GMPC family</h4>
-                                    <h1 class="display-1 text-white mb-4">The lord is on our side</h1>
-                                    <p class="mb-5 fs-5">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy...
-                                    </p>
-                                    <div class="d-flex justify-content-center justify-content-md-start flex-shrink-0 mb-4">
-                                        <a class="btn btn-dark py-3 px-4 px-md-5 me-2" href="#"><i class="fas fa-play-circle me-2"></i> <span>Watch Video</span></a>
-                                        <a class="btn btn-primary py-3 px-4 px-md-5 ms-2" href="#"><span>Learn More</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="header-carousel-item hero-section">
-                <div class="hero-bg-half-2"></div>
-                <div class="carousel-caption">
-                    <div class="container">
-                        <div class="row g-4 align-items-center">
-                            <div class="col-lg-7 animated fadeInLeft">
-                                <div class="text-sm-center text-md-start">
-                                    <h4 class="text-primary text-uppercase fw-bold mb-4">Wellcome to Garrison Methodist Church</h4>
-                                    <h1 class="display-2 text-white mb-4">God be with you... Now and Forever</h1>
-                                    <p class="mb-5 fs-5">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy...
-                                    </p>
-                                    <div class="d-flex justify-content-center justify-content-md-start flex-shrink-0 mb-4">
-                                        <a class="btn btn-dark py-3 px-4 px-md-5 me-2" href="#"><i class="fas fa-play-circle me-2"></i> <span>Watch Video</span></a>
-                                        <a class="btn btn-primary py-3 px-4 px-md-5 ms-2" href="#"><span>Learn More</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-    <!-- Carousel End -->
-
-        <div class="header-carousel owl-carousel overflow-hidden bg-dark">
-            <div class="header-carousel-item hero-section">
-                <div class="hero-bg-half-1"></div>
-                <div class="carousel-caption">
-                    <div class="container">
-                        <div class="row g-4 align-items-center">
-                            <div class="col-lg-7 animated fadeInLeft">
-                                <div class="text-sm-center text-md-start">
-                                    <h4 class="text-primary text-uppercase fw-bold mb-4">Wellcome To</h4>
-                                    <h1 class="display-1 text-white mb-4">Garrison Methodist Presbyterian Church</h1>
-                                    <p class="mb-5 fs-5">Wellcome to Garrison Methodist Presbyterian Church
-                                    </p>
-                                    <div class="d-flex justify-content-center justify-content-md-start flex-shrink-0 mb-4">
-                                        <a class="btn btn-dark py-3 px-4 px-md-5 me-2" href="#"><i class="fas fa-play-circle me-2"></i> <span>Watch Video</span></a>
-                                        <a class="btn btn-primary py-3 px-4 px-md-5 ms-2" href="#"><span>Learn More</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="header-carousel-item hero-section">
-                <div class="hero-bg-half-2"></div>
-                <div class="carousel-caption">
-                    <div class="container">
-                        <div class="row g-4 align-items-center">
-                            <div class="col-lg-7 animated fadeInLeft">
-                                <div class="text-sm-center text-md-start">
-                                   <h4 class="text-primary text-uppercase fw-bold mb-4">Wellcome To</h4>
-                                    <h1 class="display-1 text-white mb-4">Garrison Methodist Presbyterian Church</h1>
-                                    <p class="mb-5 fs-5">Wellcome to Garrison Methodist Presbyterian Church
-                                    </p>
-                                    <div class="d-flex justify-content-center justify-content-md-start flex-shrink-0 mb-4">
-                                        <a class="btn btn-dark py-3 px-4 px-md-5 me-2" href="#"><i class="fas fa-play-circle me-2"></i> <span>Watch Video</span></a>
-                                        <a class="btn btn-primary py-3 px-4 px-md-5 ms-2" href="#"><span>Learn More</span></a>
-                                    </div>
+<!-- Carousel Start -->
+<div class="header-carousel owl-carousel overflow-hidden bg-dark">
+    @foreach ($banners as $banner)
+        <div class="header-carousel-item hero-section">
+            <div class="hero-bg-half-1" style="background-image: url('{{ asset('storage/' . $banner->image) }}');"></div> <!-- Set the background image -->
+            <div class="carousel-caption">
+                <div class="container">
+                    <div class="row g-4 align-items-center">
+                        <div class="col-lg-7 animated fadeInLeft">
+                            <div class="text-sm-center text-md-start">
+                                <h4 class="text-primary text-uppercase fw-bold mb-4">Welcome To</h4>
+                                <h1 class="display-1 text-white mb-4">Garrison Methodist Presbyterian Church</h1>
+                                <p class="mb-5 fs-5">Welcome to Garrison Methodist Presbyterian Church</p>
+                                <div class="d-flex justify-content-center justify-content-md-start flex-shrink-0 mb-4">
+                                    <a class="btn btn-dark py-3 px-4 px-md-5 me-2" href="#"><i class="fas fa-play-circle me-2"></i> <span>Watch Video</span></a>
+                                    <a class="btn btn-primary py-3 px-4 px-md-5 ms-2" href="#"><span>Learn More</span></a>
                                 </div>
                             </div>
                         </div>
@@ -115,7 +47,9 @@
                 </div>
             </div>
         </div>
-        <!-- Carousel End -->
+    @endforeach
+</div>
+<!-- Carousel End -->
 
     <!-- About Start -->
     <div class="container-fluid about pt-5">
