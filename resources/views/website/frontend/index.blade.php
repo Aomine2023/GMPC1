@@ -164,53 +164,36 @@
     </div>
     <!-- About End -->
 
-    <!-- Fitness Goal start -->
-    <div class="container-fluid goal pt-5">
-        <div class="container pt-5">
-            <div class="row g-5">
-                <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.2s">
-                    <div class="goal-content">
-                        <h4 class="text-primary">History Of GMPC</h4>
-                        <h5 class="display-4 mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit.
-                            Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit,
-                            sed stet lorem sit clita duo justo magna dolore erat amet</h5>
-                        <!-- <div class="goal-item d-flex p-4">
-                            <div class="d-flex me-4">
-                                <div class="bg-primary d-inline p-3" style="width: 80px; height: 80px;">
-                                    <img src="img/icon-1.png" class="img-fluid" alt="">
-                                </div>
-                            </div>
-                            <div>
-                                <h4>Free Fitness Training</h4>
-                                <p class="text-white mb-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore est harum</p>
-                            </div>
-                        </div>
-                        <div class="goal-item d-flex p-4 mb-4">
-                            <div class="d-flex me-4">
-                                <div class="bg-primary d-inline p-3" style="width: 80px; height: 80px;">
-                                    <img src="img/icon-6.png" class="img-fluid" alt="">
-                                </div>
-                            </div>
-                            <div>
-                                <h4>Cardio and Strength</h4>
-                                <p class="text-white mb-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore est harum</p>
-                            </div>
-                        </div>
-                        <div class="ms-1">
-                            <a href="#" class="btn btn-primary py-3 px-5 ms-2"> <span>Read Details</span></a>
-                        </div> -->
+<!-- Fitness Goal Start -->
+<div class="container-fluid goal pt-5">
+    <div class="container pt-5">
+        <div class="row g-5">
+            <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.2s">
+                <div class="goal-content">
+                    <h4 class="text-primary">History Of GMPC</h4>
+                    <h5 class="display-4 mb-4">
+                        @foreach($history as $item)
+                            <strong>{{ $item->title }}</strong><br>
+                            <span>{{ $item->description }}</span><br><br>
+                        @endforeach
+                    </h5>
+                    <!-- Additional content (optional) -->
+                    <div class="ms-1">
+                        <a href="#" class="btn btn-primary py-3 px-5 ms-2">
+                            <span>Read Details</span>
+                        </a>
                     </div>
                 </div>
-                <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.2s">
-                    <div class="h-100">
-                        <img src="img/monstrance.png" class="img-fluid h-100"
-                            style="object-fit: cover;" alt="">
-                    </div>
+            </div>
+            <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.2s">
+                <div class="h-100">
+                    <img src="img/monstrance.png" class="img-fluid h-100" style="object-fit: cover;" alt="Monstrance">
                 </div>
             </div>
         </div>
     </div>
-    <!-- Fitness Goal End -->
+</div>
+<!-- Fitness Goal End -->
 
 <!-- Features Start -->
 <div class="container-fluid feature bg-light py-5">

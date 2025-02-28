@@ -1,10 +1,10 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Models\ChurchHistory;
+use App\Models\ChurchHistory; // Assuming this model is for history entries
 use Illuminate\Http\Request;
 use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
@@ -16,55 +16,60 @@ class ChurchHistoryController extends Controller
         $this->middleware('auth');
     }
 
-    public function View()
+    // View all history entries
+    public function view()
     {
-        $news = ChurchHistory::get();
-        return view('backend.news.index', compact('news'));
+        $history = ChurchHistory::all(); // Fetch all history records
+        return view('backend.news.index', compact('history')); // Adjust view path as necessary
     }
 
-    public function Add()
+    // Show the form to add a new history entry
+    public function add()
     {
-        return view('backend.news.create');
+        return view('backend.news.create'); // Adjust view path as necessary
     }
-    public function Store(Request $request)
+
+    // Store a new history entry
+    public function store(Request $request)
     {
         $request->validate([
             'body' => 'required',
-
+            // Add other validations as necessary
         ]);
+
         ChurchHistory::create([
             'body' => $request->body,
             'created_at' => now(),
+            // Add other fields as necessary
         ]);
+
         $notification = [
-            'message' => 'News Inserted Successfully',
+            'message' => 'History Inserted Successfully',
             'alert-type' => 'success',
         ];
-        return redirect()->route('view-news')->with($notification);
-        $notification = [
-            'message' => 'No image uploaded.',
-            'alert-type' => 'error',
-        ];
-        return redirect()->back()->with($notification);
+        return redirect()->route('view-history')->with($notification);
     }
 
-    public function Edit($uuid)
+    // Show the form to edit a specific history entry
+    public function edit($uuid)
     {
-        $news = ChurchHistory::where('uuid', $uuid)->first();
-        if (!$news) {
+        $history = ChurchHistory::where('uuid', $uuid)->first();
+        if (!$history) {
             abort(404);
         }
-        return view('backend.news.edit', compact('news'));
+        return view('backend.news.edit', compact('history')); // Adjust view path as necessary
     }
 
-    public function Update(Request $request)
+    // Update a specific history entry
+    public function update(Request $request)
     {
         $uuid = $request->uuid;
-        $news = ChurchHistory::where('uuid', $uuid)->first();
-        if (!$news) {
+        $history = ChurchHistory::where('uuid', $uuid)->first();
+        if (!$history) {
             abort(404);
         }
 
+        // Handle image upload if needed
         if ($request->hasFile('image')) {
             $request->validate([
                 'image' => 'image',
@@ -73,30 +78,33 @@ class ChurchHistoryController extends Controller
             $name_gen = hexdec(uniqid()) . '.' . $request->file('image')->getClientOriginalExtension();
             $img = $manager->read($request->file('image'));
             $img->resize(370, 246);
-            $img->save(public_path('upload/staff/' . $name_gen));
-            $save_url = 'upload/staff/' . $name_gen;
-            $news->image = $save_url;
+            $img->save(public_path('upload/history/' . $name_gen)); // Adjust path as necessary
+            $save_url = 'upload/history/' . $name_gen;
+            $history->image = $save_url;
         }
-        $news->body = $request->body;
-        $news->news_date = $request->news_date;
-        $news->venue = $request->venue;
-        $news->save();
+
+        // Update other fields
+        $history->body = $request->body;
+        $history->save();
+
         $notification = [
-            'message' => 'News Updated Successfully',
+            'message' => 'History Updated Successfully',
             'alert-type' => 'success',
         ];
-        return redirect()->route('view-news')->with($notification);
+        return redirect()->route('view-history')->with($notification);
     }
 
-    public function Delete($uuid)
+    // Delete a specific history entry
+    public function delete($uuid)
     {
-        $news = ChurchHistory::where('uuid', $uuid)->first();
-        if (!$news) {
+        $history = ChurchHistory::where('uuid', $uuid)->first();
+        if (!$history) {
             abort(404);
         }
-        $news->delete();
+        $history->delete();
+
         $notification = [
-            'message' => 'News Deleted Successfully',
+            'message' => 'History Deleted Successfully',
             'alert-type' => 'success',
         ];
         return redirect()->back()->with($notification);

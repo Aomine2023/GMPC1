@@ -84,7 +84,7 @@
                                         <a href="ui-cards.html" class="nav-link" data-key="t-cards">Contact Us </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ route('view-news') }}" class="nav-link"
+                                        <a href="{{ route('view-history') }}" class="nav-link"
                                             data-key="t-carousel">Church History</a>
                                     </li>
                                     <li class="nav-item">
