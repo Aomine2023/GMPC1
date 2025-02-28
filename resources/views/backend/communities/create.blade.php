@@ -8,7 +8,7 @@
             <div class="card-header align-items-center d-flex">
                 <h4 class="card-title mb-0 flex-grow-1">Communities</h4>
             </div><!-- end card header -->
-            <form action="{{ route('communities-store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.elders.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="card-body">
                     <div class="live-preview">

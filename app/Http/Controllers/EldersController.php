@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\Elder;
@@ -25,6 +26,7 @@ class EldersController extends Controller
 
     public function store(Request $request)
     {
+        // Validate the request
         $request->validate([
             'title' => 'required',
             'elder_name' => 'required',
@@ -32,10 +34,11 @@ class EldersController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            $manager = new ImageManager();
+            // Initialize ImageManager with a driver
+            $manager = new ImageManager(['driver' => 'imagick']); // Use 'gd' or 'imagick'
             $name_gen = hexdec(uniqid()) . '.' . $request->file('image')->getClientOriginalExtension();
-            $img = $manager->make($request->file('image'));
-            $img->save(public_path('upload/elder/' . $name_gen));
+            $img = $manager->make($request->file('image')); // Create image instance
+            $img->save(public_path('upload/elder/' . $name_gen)); // Save the image
             $save_url = 'upload/elder/' . $name_gen;
 
             Elder::create([
@@ -43,7 +46,7 @@ class EldersController extends Controller
                 'elder_name' => $request->elder_name,
                 'designation' => $request->designation,
                 'image' => $save_url,
-                'uuid' => (string) \Str::uuid(), // Generate UUID
+                'uuid' => (string) \Str::uuid(),
             ]);
 
             return redirect()->route('view-elders')->with('success', 'Elder added successfully.');
@@ -60,6 +63,7 @@ class EldersController extends Controller
 
     public function update(Request $request)
     {
+        // Validate the request
         $request->validate([
             'title' => 'required',
             'elder_name' => 'required',
@@ -69,13 +73,15 @@ class EldersController extends Controller
         $elder = Elder::where('uuid', $request->uuid)->firstOrFail();
 
         if ($request->hasFile('image')) {
-            $manager = new ImageManager();
+            // Initialize ImageManager with a driver
+            $manager = new ImageManager(['driver' => 'gd']); // Use 'gd' or 'imagick'
             $name_gen = hexdec(uniqid()) . '.' . $request->file('image')->getClientOriginalExtension();
-            $img = $manager->make($request->file('image'));
-            $img->save(public_path('upload/elder/' . $name_gen));
-            $elder->image = 'upload/elder/' . $name_gen;
+            $img = $manager->make($request->file('image')); // Create image instance
+            $img->save(public_path('upload/elder/' . $name_gen)); // Save the image
+            $elder->image = 'upload/elder/' . $name_gen; // Update the image path
         }
 
+        // Update other fields
         $elder->title = $request->title;
         $elder->elder_name = $request->elder_name;
         $elder->designation = $request->designation;

@@ -215,6 +215,10 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/delete/{uuid}', [CommandController::class, 'Delete'])->name('commandants-delete');
     });
 
+    Route::post('admin/elders/store', [EldersController::class, 'store'])->name('admin.elders.store');
+    Route::get('admin/elders/add', [EldersController::class, 'add'])->name('admin.elders.add');
+Route::get('admin/elders', [EldersController::class, 'view'])->name('admin.elders.view');
+
     Route::get('/view-chaplain', function () {
         return view('backend.chaplians.index');
     })->name('participant');
