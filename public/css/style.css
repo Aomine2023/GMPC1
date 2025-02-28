@@ -1281,6 +1281,21 @@
 }
 /*** Contact End ***/
 
+.team-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;  /* Prevents overflow */
+    max-height: 200px; /* Set your desired max height */
+    max-width: 200px;  /* Set your desired max width */
+}
+
+.team-img img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: cover; /* Ensures the aspect ratio is maintained */
+}
+
 /*** Footer Start ***/
 .footer {
     overflow: hidden;

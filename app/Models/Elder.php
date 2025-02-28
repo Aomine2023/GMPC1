@@ -15,6 +15,13 @@ class Elder extends Model
         * @var array<int, string>
         */
         protected $fillable = [
+            'title',
+        'elder_name',
+        'designation',
+        'image',
+        'uuid',
+        'created_at',
+
 
         ];
 

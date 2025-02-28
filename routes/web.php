@@ -24,6 +24,7 @@ use App\Models\Participant;
 use App\Models\Staff;
 use App\Models\Chaplian;
 use App\Http\Controllers\EldersController;
+use App\Models\Elder; // Make sure this line is present
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -32,7 +33,8 @@ Route::get('/', function () {
     $banners = Banner::latest()->take(5)->get();
     $chaplains = Chaplian::get();
     $communities = Community::get();
-    return view('website.frontend.index', compact('staffs', 'participant', 'banners', 'communities','chaplains'));
+    $elders = Elder::all(); // Fetch all elders
+    return view('website.frontend.index', compact('staffs', 'participant', 'banners', 'communities','chaplains','elders'));
 });
 
 Route::get('/email/verify', function () {
@@ -222,8 +224,6 @@ Route::get('admin/elders', [EldersController::class, 'view'])->name('admin.elder
     Route::get('/view-chaplain', function () {
         return view('backend.chaplians.index');
     })->name('participant');
-
-
 
 Route::get('/elders', [EldersController::class, 'view'])->name('view-elders');
 Route::get('/elders/add', [EldersController::class, 'add'])->name('elder-add');
