@@ -23,6 +23,7 @@ use App\Models\Community;
 use App\Models\Participant;
 use App\Models\Staff;
 use App\Models\Chaplian;
+use App\Http\Controllers\EldersController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -217,5 +218,14 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/view-chaplain', function () {
         return view('backend.chaplians.index');
     })->name('participant');
+
+
+
+Route::get('/elders', [EldersController::class, 'view'])->name('view-elders');
+Route::get('/elders/add', [EldersController::class, 'add'])->name('elder-add');
+Route::post('/elders/store', [EldersController::class, 'store'])->name('elder-store');
+Route::get('/elders/edit/{uuid}', [EldersController::class, 'edit'])->name('elder-edit');
+Route::post('/elders/update', [EldersController::class, 'update'])->name('elder-update');
+Route::get('/elders/delete/{uuid}', [EldersController::class, 'delete'])->name('elder-delete');
 
 });

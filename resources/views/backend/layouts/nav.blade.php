@@ -51,6 +51,10 @@
                                             class="nav-link {{ $activeRoute === 'view-sermon-vidoe-link' ? 'active locked' : '' }}"
                                             data-key="t-alerts">Sermon Vidoes Links</a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('view-elders') }}" class="nav-link"
+                                            data-key="t-elders">Elders</a>
+                                    </li>
                                     {{-- <li class="nav-item">
                                         <a href="{{ route('view-appointment') }}" class="nav-link"
                                             data-key="t-colors">Appointment</a>
