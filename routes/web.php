@@ -34,6 +34,8 @@ Route::get('/', function () {
     $chaplains = Chaplian::get();
     $communities = Community::get();
     $elders = Elder::all(); // Fetch all elders
+    // $news = News::all();
+    // return view('news.index', compact('news'));
     return view('website.frontend.index', compact('staffs', 'participant', 'banners', 'communities','chaplains','elders'));
 });
 
