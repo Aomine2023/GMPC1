@@ -59,7 +59,7 @@ Route::get('/courses', function () {
 })->name('Courses');
 
 Route::get('/contact', function () {
-    return view('website.layouts.contact');
+    return view('website.frontend.contact');
 })->name('contact');
 
 Route::get('/articles', function () {

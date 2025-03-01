@@ -24,32 +24,36 @@
     <!-- Modal Search End -->
 
 
-<!-- Carousel Start -->
-<div class="header-carousel owl-carousel overflow-hidden bg-dark">
-    @foreach ($banner as $banner)
-        <div class="header-carousel-item hero-section">
-            <div class="hero-bg-half-1" style="background-image: url('{{ asset('storage/' . $banner->image) }}');"></div> <!-- Set the background image -->
-            <div class="carousel-caption">
-                <div class="container">
-                    <div class="row g-4 align-items-center">
-                        <div class="col-lg-7 animated fadeInLeft">
-                            <div class="text-sm-center text-md-start">
-                                <h4 class="text-primary text-uppercase fw-bold mb-4">Welcome To</h4>
-                                <h1 class="display-1 text-white mb-4">Garrison Methodist Presbyterian Church</h1>
-                                <p class="mb-5 fs-5">Welcome to Garrison Methodist Presbyterian Church</p>
-                                <div class="d-flex justify-content-center justify-content-md-start flex-shrink-0 mb-4">
-                                    <a class="btn btn-dark py-3 px-4 px-md-5 me-2" href="#"><i class="fas fa-play-circle me-2"></i> <span>Watch Video</span></a>
-                                    <a class="btn btn-primary py-3 px-4 px-md-5 ms-2" href="#"><span>Learn More</span></a>
+    <!-- Carousel Start -->
+    <div class="header-carousel owl-carousel overflow-hidden bg-dark">
+        @foreach ($banner as $banner)
+            <div class="header-carousel-item hero-section">
+                <div class="hero-bg-half-1" style="background-image: url('{{ asset('storage/' . $banner->image) }}');">
+                </div> <!-- Set the background image -->
+                <div class="carousel-caption">
+                    <div class="container">
+                        <div class="row g-4 align-items-center">
+                            <div class="col-lg-7 animated fadeInLeft">
+                                <div class="text-sm-center text-md-start">
+                                    <h4 class="text-primary text-uppercase fw-bold mb-4">Welcome To</h4>
+                                    <h1 class="display-1 text-white mb-4">Garrison Methodist Presbyterian Church</h1>
+                                    <p class="mb-5 fs-5">Welcome to Garrison Methodist Presbyterian Church</p>
+                                    <div
+                                        class="d-flex justify-content-center justify-content-md-start flex-shrink-0 mb-4">
+                                        <a class="btn btn-dark py-3 px-4 px-md-5 me-2" href="#"><i
+                                                class="fas fa-play-circle me-2"></i> <span>Watch Video</span></a>
+                                        <a class="btn btn-primary py-3 px-4 px-md-5 ms-2" href="#"><span>Learn
+                                                More</span></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    @endforeach
-</div>
-<!-- Carousel End -->
+        @endforeach
+    </div>
+    <!-- Carousel End -->
 
     <!-- About Start -->
     <div class="container-fluid about pt-5" id="about">
@@ -144,7 +148,8 @@
                                     </a>
                                     <div class="d-flex flex-column ms-3">
                                         <span>Call Us On</span>
-                                        <a href="tel:+ 0123 456 7890"><span class="text-white">+233 345 67890</span></a>
+                                        <a href="tel:+ 0123 456 7890"><span class="text-white">+233 345
+                                                67890</span></a>
                                     </div>
                                 </div>
                             </div>
@@ -203,8 +208,8 @@
                 </div>
                 <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.2s">
                     <div class="h-100">
-                        <img src="img/monstrance.png" class="img-fluid h-100"
-                            style="object-fit: cover;" alt="">
+                        <img src="img/monstrance.png" class="img-fluid h-100" style="object-fit: cover;"
+                            alt="">
                     </div>
                 </div>
             </div>
@@ -212,74 +217,78 @@
     </div>
     <!-- Fitness Goal End -->
 
-<!-- Features Start -->
-<div class="container-fluid feature bg-light py-5" id="Communities">
-    <div class="container py-5">
-        <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
-            <h1 class="display-4 mb-4">Join Our Communities</h1>
-        </div>
-        <div class="feature-carousel owl-carousel">
-            @foreach ($communities as $community) <!-- Loop through the communities -->
-                <div class="feature-item wow fadeInUp" data-wow-delay="0.2s">
-                    <div class="feature-img">
-                        <img src="{{ asset($community->image) }}" class="img-fluid w-100" alt="{{ $community->title }}">
+    <!-- Features Start -->
+    <div class="container-fluid feature bg-light py-5" id="Communities">
+        <div class="container py-5">
+            <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+                <h1 class="display-4 mb-4">Join Our Communities</h1>
+            </div>
+            <div class="feature-carousel owl-carousel">
+                @foreach ($communities as $community)
+                    <!-- Loop through the communities -->
+                    <div class="feature-item wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="feature-img">
+                            <img src="{{ asset($community->image) }}" class="img-fluid w-100"
+                                alt="{{ $community->title }}">
+                        </div>
+                        <div class="feature-content p-4">
+                            <h4 class="mb-3">{{ $community->title }}</h4>
+                            <p class="mb-4">{{ Str::limit($community->body, 100) }}</p>
+                            <!-- Limiting the text for display -->
+                            {{-- <a href="{{ route('community.show', $community->uuid) }}" class="btn btn-primary py-2 px-4"> <span>Read More</span></a> --}}
+                        </div>
                     </div>
-                    <div class="feature-content p-4">
-                        <h4 class="mb-3">{{ $community->title }}</h4>
-                        <p class="mb-4">{{ Str::limit($community->body, 100) }}</p> <!-- Limiting the text for display -->
-                        {{-- <a href="{{ route('community.show', $community->uuid) }}" class="btn btn-primary py-2 px-4"> <span>Read More</span></a> --}}
-                    </div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
+            <div class="feature-shaps"></div>
         </div>
-        <div class="feature-shaps"></div>
     </div>
-</div>
-<!-- Features End -->
+    <!-- Features End -->
 
 
-<!-- Courses Start -->
-<div class="container-fluid courses overflow-hidden py-5" id="team">
-    <div class="container py-5">
-        <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
-            <h1 class="display-4 text-white mb-4">Meet Our Chaplains</h1>
-        </div>
-        <div class="row gy-4 gx-0 justify-content-center">
-            @foreach($chaplains as $chaplain)
-                <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.2s">
-                    <div class="courses-item">
-                        <div class="courses-item-inner p-4">
-                            <div class="d-flex justify-content-between mb-4">
-                                <div class="courses-icon-img p-3">
-                                    <img src="{{ $chaplain->image ?? 'img/default.png' }}" class="img-fluid" alt="{{ $chaplain->chaplain_name }}">
-                                </div>
-                                <div class="data-info d-flex flex-column">
-                                    {{-- <div class="courses-trainer d-flex align-items-center mb-1">
+    <!-- Courses Start -->
+    <div class="container-fluid courses overflow-hidden py-5" id="team">
+        <div class="container py-5">
+            <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+                <h1 class="display-4 text-white mb-4">Meet Our Chaplains</h1>
+            </div>
+            <div class="row gy-4 gx-0 justify-content-center">
+                @foreach ($chaplains as $chaplain)
+                    <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="courses-item">
+                            <div class="courses-item-inner p-4">
+                                <div class="d-flex justify-content-between mb-4">
+                                    <div class="courses-icon-img p-3">
+                                        <img src="{{ $chaplain->image ?? 'img/default.png' }}" class="img-fluid"
+                                            alt="{{ $chaplain->chaplain_name }}">
+                                    </div>
+                                    <div class="data-info d-flex flex-column">
+                                        {{-- <div class="courses-trainer d-flex align-items-center mb-1">
                                         <div class="me-2" style="width: 25px; height: 25px;">
                                             <img src="{{ $chaplain->image ?? 'img/default.png' }}" class="img-fluid" alt="{{ $chaplain->chaplain_name }}">
                                         </div>
                                         <p class="mb-0">{{ $chaplain->chaplain_name }}</p>
                                     </div> --}}
-                                    
-                                </div>
-                            </div>
-                            <a href="#" class="d-inline-block h4 mb-3">{{ $chaplain->title }}</a>
-                             <h3 class="mb-0">{{ $chaplain->chaplain_name }}</h3>
-                             <div class="courses-date">
-                                        <p class="mb-1">Designation: {{ $chaplain->designation }}</p>
+
                                     </div>
-                            <a href="#" class="btn btn-primary py-2 px-4"> <span>Read More</span></a>
+                                </div>
+                                <a href="#" class="d-inline-block h4 mb-3">{{ $chaplain->title }}</a>
+                                <h3 class="mb-0">{{ $chaplain->chaplain_name }}</h3>
+                                <div class="courses-date">
+                                    <p class="mb-1">Designation: {{ $chaplain->designation }}</p>
+                                </div>
+                                <a href="#" class="btn btn-primary py-2 px-4"> <span>Read More</span></a>
+                            </div>
                         </div>
                     </div>
+                @endforeach
+                <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.2s">
+                    <a href="#" class="btn btn-primary py-3 px-5"> <span>More</span></a>
                 </div>
-            @endforeach
-            <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.2s">
-                <a href="#" class="btn btn-primary py-3 px-5"> <span>More</span></a>
             </div>
         </div>
     </div>
-</div>
-<!-- Courses End -->
+    <!-- Courses End -->
 
     <!-- Blog Start -->
     <div class="container-fluid blog py-5" id="blogs">
@@ -378,43 +387,45 @@
     <div class="container-fluid explore py-5 wow zoomIn" data-wow-delay="0.2s" id="features">
         <div class="container py-5 text-center">
             <h1 class="display-1 text-white mb-0"> Explore Our Featured Viedeos</h1>
-            <a class="btn btn-primary py-3 px-4 px-md-5 me-2" href="https://www.youtube.com/channel/UCPHN3fnS0mbc2JcxAaTNUUw"><i
+            <a class="btn btn-primary py-3 px-4 px-md-5 me-2"
+                href="https://www.youtube.com/channel/UCPHN3fnS0mbc2JcxAaTNUUw"><i
                     class="fas fa-play-circle me-2"></i> <span>Watch Video</span></a>
         </div>
     </div>
     <!-- Explore Fitness End -->
 
 
-<!-- Team Start -->
-<div class="container-fluid team py-5" id="elder">
-    <div class="container py-5">
-        <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
-            <h1 class="display-4 mb-4">Meet Our Elders</h1>
-        </div>
-        <div class="row gy-5 gy-lg-4 gx-4">
-            @foreach($elders as $elder)
-                <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-delay="{{ $loop->index * 0.2 }}s">
-                    <div class="team-item">
-                        <div class="team-img">
-                            <img src="{{ asset($elder->image) }}" class="img-fluid" alt="{{ $elder->elder_name }}">
-                            {{-- <div class="team-icon">
+    <!-- Team Start -->
+    <div class="container-fluid team py-5" id="elder">
+        <div class="container py-5">
+            <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+                <h1 class="display-4 mb-4">Meet Our Elders</h1>
+            </div>
+            <div class="row gy-5 gy-lg-4 gx-4">
+                @foreach ($elders as $elder)
+                    <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-delay="{{ $loop->index * 0.2 }}s">
+                        <div class="team-item">
+                            <div class="team-img">
+                                <img src="{{ asset($elder->image) }}" class="img-fluid"
+                                    alt="{{ $elder->elder_name }}">
+                                {{-- <div class="team-icon">
                                 <a href="#" class="btn btn-primary btn-sm-square"><i class="fab fa-facebook-f"></i></a>
                                 <a href="#" class="btn btn-primary btn-sm-square"><i class="fab fa-twitter"></i></a>
                                 <a href="#" class="btn btn-primary btn-sm-square"><i class="fab fa-instagram"></i></a>
                                 <a href="#" class="btn btn-primary btn-sm-square"><i class="fab fa-linkedin-in"></i></a>
                             </div> --}}
-                        </div>
-                        <div class="team-content">
-                            <h4>{{ $elder->elder_name }}</h4>
-                            <p class="mb-0">{{ $elder->designation }}</p>
+                            </div>
+                            <div class="team-content">
+                                <h4>{{ $elder->elder_name }}</h4>
+                                <p class="mb-0">{{ $elder->designation }}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
         </div>
     </div>
-</div>
-<!-- Team End -->
+    <!-- Team End -->
 
     <!-- Testimonial Start -->
     <div class="container-fluid testimonial bg-dark py-5" style="margin-bottom: 90px;" id="contact">
@@ -485,14 +496,19 @@
                                 </div>
                             </form>
                         </div>
+
+                    </div>
+                    <div class="d-flex justify-content-center justify-content-md-start flex-shrink-0 mb-4">
+                        <a class="btn btn-primary py-3 px-4 px-md-5 ms-2" href="{{ url('contact') }}">
+                            <span>Locate Us</span>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Testimonial End -->
+        <!-- Testimonial End -->
 
 
-   </main>
+</main>
 
 @include('website.frontend.footer')
