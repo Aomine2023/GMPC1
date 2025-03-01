@@ -164,36 +164,53 @@
     </div>
     <!-- About End -->
 
-<!-- Fitness Goal Start -->
-<div class="container-fluid goal pt-5">
-    <div class="container pt-5">
-        <div class="row g-5">
-            <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.2s">
-                <div class="goal-content">
-                    <h4 class="text-primary">History Of GMPC</h4>
-                    <h5 class="display-4 mb-4">
-                        @foreach($history as $item)
-                            <strong>{{ $item->title }}</strong><br>
-                            <span>{{ $item->description }}</span><br><br>
-                        @endforeach
-                    </h5>
-                    <!-- Additional content (optional) -->
-                    <div class="ms-1">
-                        <a href="#" class="btn btn-primary py-3 px-5 ms-2">
-                            <span>Read Details</span>
-                        </a>
+    <!-- Fitness Goal start -->
+    <div class="container-fluid goal pt-5">
+        <div class="container pt-5">
+            <div class="row g-5">
+                <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.2s">
+                    <div class="goal-content">
+                        <h4 class="text-primary">History Of GMPC</h4>
+                        <h5 class="display-4 mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit.
+                            Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit,
+                            sed stet lorem sit clita duo justo magna dolore erat amet</h5>
+                        <!-- <div class="goal-item d-flex p-4">
+                            <div class="d-flex me-4">
+                                <div class="bg-primary d-inline p-3" style="width: 80px; height: 80px;">
+                                    <img src="img/icon-1.png" class="img-fluid" alt="">
+                                </div>
+                            </div>
+                            <div>
+                                <h4>Free Fitness Training</h4>
+                                <p class="text-white mb-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore est harum</p>
+                            </div>
+                        </div>
+                        <div class="goal-item d-flex p-4 mb-4">
+                            <div class="d-flex me-4">
+                                <div class="bg-primary d-inline p-3" style="width: 80px; height: 80px;">
+                                    <img src="img/icon-6.png" class="img-fluid" alt="">
+                                </div>
+                            </div>
+                            <div>
+                                <h4>Cardio and Strength</h4>
+                                <p class="text-white mb-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore est harum</p>
+                            </div>
+                        </div>
+                        <div class="ms-1">
+                            <a href="#" class="btn btn-primary py-3 px-5 ms-2"> <span>Read Details</span></a>
+                        </div> -->
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.2s">
-                <div class="h-100">
-                    <img src="img/monstrance.png" class="img-fluid h-100" style="object-fit: cover;" alt="Monstrance">
+                <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.2s">
+                    <div class="h-100">
+                        <img src="img/monstrance.png" class="img-fluid h-100"
+                            style="object-fit: cover;" alt="">
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- Fitness Goal End -->
+    <!-- Fitness Goal End -->
 
 <!-- Features Start -->
 <div class="container-fluid feature bg-light py-5">
@@ -368,104 +385,36 @@
     <!-- Explore Fitness End -->
 
 
-    <!-- Team Start -->
-    <div class="container-fluid team py-5">
-        <div class="container py-5">
-            <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
-                <!-- <h4 class="text-primary">Meet Our Elders</h4> -->
-                <h1 class="display-4 mb-4">Meet Our Elders</h1>
-                <!-- <p class="mb-0">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur adipisci facilis cupiditate recusandae aperiam temporibus corporis itaque quis facere, numquam, ad culpa deserunt sint dolorem autem obcaecati, ipsam mollitia hic.
-                </p> -->
-            </div>
-            <div class="row gy-5 gy-lg-4 gx-4">
-                <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-delay="0.2s">
+<!-- Team Start -->
+<div class="container-fluid team py-5">
+    <div class="container py-5">
+        <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+            <h1 class="display-4 mb-4">Meet Our Elders</h1>
+        </div>
+        <div class="row gy-5 gy-lg-4 gx-4">
+            @foreach($elders as $elder)
+                <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-delay="{{ $loop->index * 0.2 }}s">
                     <div class="team-item">
                         <div class="team-img">
-                            <img src="img/team-1.jpg" class="img-fluid w-100" alt="Image">
-                            <div class="team-icon">
-                                <a href="#" class="btn btn-primary btn-sm-square"><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <a href="#" class="btn btn-primary btn-sm-square"><i
-                                        class="fab fa-twitter"></i></a>
-                                <a href="#" class="btn btn-primary btn-sm-square"><i
-                                        class="fab fa-instagram"></i></a>
-                                <a href="#" class="btn btn-primary btn-sm-square"><i
-                                        class="fab fa-linkedin-in"></i></a>
-                            </div>
+                            <img src="{{ asset($elder->image) }}" class="img-fluid" alt="{{ $elder->elder_name }}">
+                            {{-- <div class="team-icon">
+                                <a href="#" class="btn btn-primary btn-sm-square"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" class="btn btn-primary btn-sm-square"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="btn btn-primary btn-sm-square"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="btn btn-primary btn-sm-square"><i class="fab fa-linkedin-in"></i></a>
+                            </div> --}}
                         </div>
                         <div class="team-content">
-                            <h4>Trainer Name</h4>
-                            <p class="mb-0">Profession</p>
+                            <h4>{{ $elder->elder_name }}</h4>
+                            <p class="mb-0">{{ $elder->designation }}</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-delay="0.4s">
-                    <div class="team-item">
-                        <div class="team-img">
-                            <img src="img/team-2.jpg" class="img-fluid w-100" alt="Image">
-                            <div class="team-icon">
-                                <a href="#" class="btn btn-primary btn-sm-square"><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <a href="#" class="btn btn-primary btn-sm-square"><i
-                                        class="fab fa-twitter"></i></a>
-                                <a href="#" class="btn btn-primary btn-sm-square"><i
-                                        class="fab fa-instagram"></i></a>
-                                <a href="#" class="btn btn-primary btn-sm-square"><i
-                                        class="fab fa-linkedin-in"></i></a>
-                            </div>
-                        </div>
-                        <div class="team-content">
-                            <h4>Trainer Name</h4>
-                            <p class="mb-0">Profession</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-delay="0.6s">
-                    <div class="team-item">
-                        <div class="team-img">
-                            <img src="img/team-3.jpg" class="img-fluid w-100" alt="Image">
-                            <div class="team-icon">
-                                <a href="#" class="btn btn-primary btn-sm-square"><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <a href="#" class="btn btn-primary btn-sm-square"><i
-                                        class="fab fa-twitter"></i></a>
-                                <a href="#" class="btn btn-primary btn-sm-square"><i
-                                        class="fab fa-instagram"></i></a>
-                                <a href="#" class="btn btn-primary btn-sm-square"><i
-                                        class="fab fa-linkedin-in"></i></a>
-                            </div>
-                        </div>
-                        <div class="team-content">
-                            <h4>Trainer Name</h4>
-                            <p class="mb-0">Profession</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-delay="0.8s">
-                    <div class="team-item">
-                        <div class="team-img">
-                            <img src="img/team-4.jpg" class="img-fluid w-100" alt="Image">
-                            <div class="team-icon">
-                                <a href="#" class="btn btn-primary btn-sm-square"><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <a href="#" class="btn btn-primary btn-sm-square"><i
-                                        class="fab fa-twitter"></i></a>
-                                <a href="#" class="btn btn-primary btn-sm-square"><i
-                                        class="fab fa-instagram"></i></a>
-                                <a href="#" class="btn btn-primary btn-sm-square"><i
-                                        class="fab fa-linkedin-in"></i></a>
-                            </div>
-                        </div>
-                        <div class="team-content">
-                            <h4>Trainer Name</h4>
-                            <p class="mb-0">Profession</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
-    <!-- Team End -->
+</div>
+<!-- Team End -->
 
     <!-- Testimonial Start -->
     <div class="container-fluid testimonial bg-dark py-5" style="margin-bottom: 90px;">
