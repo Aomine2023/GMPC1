@@ -92,31 +92,32 @@
                 <span class="fa fa-bars"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
-                <div class="navbar-nav mx-0 mx-lg-auto">
-                    <a href="index.html" class="nav-item nav-link active">Home</a>
-                    <a href="about.html" class="nav-item nav-link">About Us</a>
-                    <a href="course.html" class="nav-item nav-link">Events</a>
-                    <a href="blog.html" class="nav-item nav-link">Blogs</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link" data-bs-toggle="dropdown">
-                            <span class="dropdown-toggle">Pages</span>
-                        </a>
-                        <div class="dropdown-menu">
-                            <a href="feature.html" class="dropdown-item">Our Features</a>
-                            <a href="team.html" class="dropdown-item">Our team</a>
-                            <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                            <a href="404.html" class="dropdown-item">404 Page</a>
-                        </div>
-                    </div>
-                    <a href="contact.html" class="nav-item nav-link">Contact Us</a>
-                    <div class="nav-btn ps-3">
-                        <button class="btn-search btn btn-primary btn-md-square mt-2 mt-lg-0 mb-4 mb-lg-0 flex-shrink-0" data-bs-toggle="modal" data-bs-target="#searchModal">
-                            <i class="fas fa-search"></i>
-                        </button>
-                        <a href="#" class="btn btn-primary py-2 px-4 ms-0 ms-lg-3"> <span>Get Quote</span></a>
-                    </div>
-                </div>
+    <div class="navbar-nav mx-0 mx-lg-auto">
+        <a href="#home" class="nav-item nav-link active">Home</a>
+        <a href="#about" class="nav-item nav-link">About Us</a>
+        <a href="#events" class="nav-item nav-link">Events</a>
+        <a href="#blogs" class="nav-item nav-link">Blogs</a>
+        <div class="nav-item dropdown">
+            <a href="#" class="nav-link" data-bs-toggle="dropdown">
+                <span class="dropdown-toggle">Pages</span>
+            </a>
+            <div class="dropdown-menu">
+                <a href="#features" class="dropdown-item">Featured</a>
+                <a href="#team" class="dropdown-item">Chaplains</a>
+                <a href="#elder" class="dropdown-item">Elders</a>
+                <a href="#Communities" class="dropdown-item">Communities</a>
+                <a href="#testimonial" class="dropdown-item">Testimonial</a>
             </div>
+        </div>
+        <a href="#contact" class="nav-item nav-link">Contact Us</a>
+        <div class="nav-btn ps-3">
+            <button class="btn-search btn btn-primary btn-md-square mt-2 mt-lg-0 mb-4 mb-lg-0 flex-shrink-0" data-bs-toggle="modal" data-bs-target="#searchModal">
+                <i class="fas fa-search"></i>
+            </button>
+            <a href="#" class="btn btn-primary py-2 px-4 ms-0 ms-lg-3"> <span>Get Quote</span></a>
+        </div>
+    </div>
+</div>
         </nav>
     </div>
 </div>

@@ -26,7 +26,7 @@
 
 <!-- Carousel Start -->
 <div class="header-carousel owl-carousel overflow-hidden bg-dark">
-    @foreach ($banners as $banner)
+    @foreach ($banner as $banner)
         <div class="header-carousel-item hero-section">
             <div class="hero-bg-half-1" style="background-image: url('{{ asset('storage/' . $banner->image) }}');"></div> <!-- Set the background image -->
             <div class="carousel-caption">
@@ -52,7 +52,7 @@
 <!-- Carousel End -->
 
     <!-- About Start -->
-    <div class="container-fluid about pt-5">
+    <div class="container-fluid about pt-5" id="about">
         <div class="container pt-5">
             <div class="row g-5">
                 <div class="col-xl-6 wow fadeInLeft" data-wow-delay="0.2s">
@@ -213,7 +213,7 @@
     <!-- Fitness Goal End -->
 
 <!-- Features Start -->
-<div class="container-fluid feature bg-light py-5">
+<div class="container-fluid feature bg-light py-5" id="Communities">
     <div class="container py-5">
         <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
             <h1 class="display-4 mb-4">Join Our Communities</h1>
@@ -239,7 +239,7 @@
 
 
 <!-- Courses Start -->
-<div class="container-fluid courses overflow-hidden py-5">
+<div class="container-fluid courses overflow-hidden py-5" id="team">
     <div class="container py-5">
         <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
             <h1 class="display-4 text-white mb-4">Meet Our Chaplains</h1>
@@ -282,10 +282,10 @@
 <!-- Courses End -->
 
     <!-- Blog Start -->
-    <div class="container-fluid blog py-5">
+    <div class="container-fluid blog py-5" id="blogs">
         <div class="container py-5">
             <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
-                <h4 class="text-primary"> Featured Videos</h4>
+                <h4 class="text-primary"> Featured Blogs</h4>
                 <h1 class="display-4 mb-4">Check out our latest stories</h1>
                 <p class="mb-0">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur adipisci facilis
                     cupiditate recusandae aperiam temporibus corporis itaque quis facere, numquam, ad culpa deserunt
@@ -375,7 +375,7 @@
     <!-- Blog End -->
 
     <!-- Explore Fitness Start -->
-    <div class="container-fluid explore py-5 wow zoomIn" data-wow-delay="0.2s">
+    <div class="container-fluid explore py-5 wow zoomIn" data-wow-delay="0.2s" id="features">
         <div class="container py-5 text-center">
             <h1 class="display-1 text-white mb-0"> Explore Our Featured Viedeos</h1>
             <a class="btn btn-primary py-3 px-4 px-md-5 me-2" href="https://www.youtube.com/channel/UCPHN3fnS0mbc2JcxAaTNUUw"><i
@@ -386,7 +386,7 @@
 
 
 <!-- Team Start -->
-<div class="container-fluid team py-5">
+<div class="container-fluid team py-5" id="elder">
     <div class="container py-5">
         <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
             <h1 class="display-4 mb-4">Meet Our Elders</h1>
@@ -417,7 +417,7 @@
 <!-- Team End -->
 
     <!-- Testimonial Start -->
-    <div class="container-fluid testimonial bg-dark py-5" style="margin-bottom: 90px;">
+    <div class="container-fluid testimonial bg-dark py-5" style="margin-bottom: 90px;" id="contact">
         <div class="container py-5">
             <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
                 <h4 class="text-primary">Hello There!</h4>
