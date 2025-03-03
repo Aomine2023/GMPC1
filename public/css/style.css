@@ -1081,7 +1081,6 @@
 .team .team-item .team-img {
     position: relative;
     overflow: hidden;
-    transform: matrix(1, -0.1, 0, 1, 0, 0);
     transition: 0.5s;
 }
 
@@ -1133,7 +1132,6 @@
     padding: 25px;
     border: 1px solid var(--bs-primary);
     border-top: none;
-    transform: matrix(1, -0.1, 0, 1, 0, 0);
     transition: 0.5s;
 }
 
