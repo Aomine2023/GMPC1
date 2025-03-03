@@ -26,9 +26,9 @@
 
     <!-- Carousel Start -->
     <div class="header-carousel owl-carousel overflow-hidden bg-dark">
-        @foreach ($banner as $banner)
+        @foreach ($banner as $banners)
             <div class="header-carousel-item hero-section">
-                <div class="hero-bg-half-1" style="background-image: url('{{ asset('storage/' . $banner->image) }}');">
+                <div class="hero-bg-half-1" style="background-image: url('{{ asset($banners->image) }}');">
                 </div> <!-- Set the background image -->
                 <div class="carousel-caption">
                     <div class="container">
@@ -37,7 +37,7 @@
                                 <div class="text-sm-center text-md-start">
                                     <h4 class="text-primary text-uppercase fw-bold mb-4">Welcome To</h4>
                                     <h1 class="display-1 text-white mb-4">Garrison Methodist Presbyterian Church</h1>
-                                    <p class="mb-5 fs-5">Welcome to Garrison Methodist Presbyterian Church</p>
+                                    <p class="mb-5 fs-5">{{ $banners->title }}</p>
                                     <div
                                         class="d-flex justify-content-center justify-content-md-start flex-shrink-0 mb-4">
                                         <a class="btn btn-dark py-3 px-4 px-md-5 me-2" href="#"><i

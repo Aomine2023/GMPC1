@@ -35,7 +35,7 @@ class EldersController extends Controller
 
         if ($request->hasFile('image')) {
             // Initialize ImageManager with a driver
-            $manager = new ImageManager(['driver' => 'imagick']); // Use 'gd' or 'imagick'
+            $manager = new ImageManager(['driver' => 'gd']); // Use 'gd' or 'imagick'
             $name_gen = hexdec(uniqid()) . '.' . $request->file('image')->getClientOriginalExtension();
             $img = $manager->make($request->file('image')); // Create image instance
             $img->save(public_path('upload/elder/' . $name_gen)); // Save the image
