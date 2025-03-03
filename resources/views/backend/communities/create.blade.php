@@ -2,11 +2,12 @@
 
 @section('content')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
-            <div class="card-header align-items-center d-flex">
-                <h4 class="card-title mb-0 flex-grow-1">Communities</h4>
+            <div class="card-header d-flex align-items-center">
+                <h4 class="card-title mb-0 flex-grow-1">Create Community</h4>
             </div><!-- end card header -->
             <form action="{{ route('admin.elders.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -43,7 +44,9 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Save</button>
+                <div class="card-footer text-end">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
             </form>
         </div>
     </div>

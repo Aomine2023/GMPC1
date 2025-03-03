@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Elder;
 use Illuminate\Http\Request;
 use Intervention\Image\ImageManager;
+use Illuminate\Support\Str;
 
 class EldersController extends Controller
 {
@@ -15,30 +16,42 @@ class EldersController extends Controller
 
     public function view()
     {
-        $elders = Elder::all(); // Fetch all elders
-        return view('backend.elders.index', compact('elders')); // Pass the variable to the view
+        $elders = Elder::all();
+        return view('backend.elders.index', compact('elders'));
     }
 
     public function add()
     {
+<<<<<<< HEAD
         return view('backend.elders.create'); // Show the form to add a new elder
+=======
+        return view('backend.elders.create');
+>>>>>>> c362216 (.)
     }
 
     public function store(Request $request)
     {
         // Validate the request
         $request->validate([
-            'title' => 'required',
-            'elder_name' => 'required',
-            'image' => 'required|image',
+            'title' => 'required|string|max:255',
+            'elder_name' => 'required|string|max:255',
+            'designation' => 'nullable|string|max:255',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         if ($request->hasFile('image')) {
+<<<<<<< HEAD
             // Initialize ImageManager with a driver
             $manager = new ImageManager(['driver' => 'gd']); // Use 'gd' or 'imagick'
             $name_gen = hexdec(uniqid()) . '.' . $request->file('image')->getClientOriginalExtension();
             $img = $manager->make($request->file('image')); // Create image instance
             $img->save(public_path('upload/elder/' . $name_gen)); // Save the image
+=======
+            $manager = new ImageManager(['driver' => 'gd']);
+            $name_gen = hexdec(uniqid()) . '.' . $request->file('image')->getClientOriginalExtension();
+            $img = $manager->make($request->file('image'));
+            $img->save(public_path('upload/elder/' . $name_gen));
+>>>>>>> c362216 (.)
             $save_url = 'upload/elder/' . $name_gen;
 
             Elder::create([
@@ -46,7 +59,11 @@ class EldersController extends Controller
                 'elder_name' => $request->elder_name,
                 'designation' => $request->designation,
                 'image' => $save_url,
+<<<<<<< HEAD
                 'uuid' => (string) \Str::uuid(),
+=======
+                'uuid' => (string) Str::uuid(),
+>>>>>>> c362216 (.)
             ]);
 
             return redirect()->route('view-elders')->with('success', 'Elder added successfully.');
@@ -57,27 +74,51 @@ class EldersController extends Controller
 
     public function edit($uuid)
     {
+<<<<<<< HEAD
         $elder = Elder::where('uuid', $uuid)->firstOrFail(); // Fetch elder by UUID
+=======
+        $elder = Elder::where('uuid', $uuid)->firstOrFail();
+>>>>>>> c362216 (.)
         return view('backend.elders.edit', compact('elder'));
     }
 
     public function update(Request $request)
     {
+<<<<<<< HEAD
         // Validate the request
         $request->validate([
             'title' => 'required',
             'elder_name' => 'required',
             'image' => 'image|nullable',
+=======
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'elder_name' => 'required|string|max:255',
+            'designation' => 'nullable|string|max:255',
+            'image' => 'image|nullable|mimes:jpeg,png,jpg,gif|max:2048',
+>>>>>>> c362216 (.)
         ]);
 
         $elder = Elder::where('uuid', $request->uuid)->firstOrFail();
 
         if ($request->hasFile('image')) {
+<<<<<<< HEAD
             // Initialize ImageManager with a driver
             $manager = new ImageManager(['driver' => 'gd']); // Use 'gd' or 'imagick'
             $name_gen = hexdec(uniqid()) . '.' . $request->file('image')->getClientOriginalExtension();
             $img = $manager->make($request->file('image')); // Create image instance
             $img->save(public_path('upload/elder/' . $name_gen)); // Save the image
+=======
+            // Delete the old image file before updating
+            if ($elder->image) {
+                @unlink(public_path($elder->image)); // Use @ to suppress errors if the file doesn't exist
+            }
+
+            $manager = new ImageManager(['driver' => 'gd']);
+            $name_gen = hexdec(uniqid()) . '.' . $request->file('image')->getClientOriginalExtension();
+            $img = $manager->make($request->file('image'));
+            $img->save(public_path('upload/elder/' . $name_gen));
+>>>>>>> c362216 (.)
             $elder->image = 'upload/elder/' . $name_gen; // Update the image path
         }
 
@@ -93,6 +134,15 @@ class EldersController extends Controller
     public function delete($uuid)
     {
         $elder = Elder::where('uuid', $uuid)->firstOrFail();
+<<<<<<< HEAD
+=======
+        
+        // Delete the image file before removing the record
+        if ($elder->image) {
+            @unlink(public_path($elder->image));
+        }
+
+>>>>>>> c362216 (.)
         $elder->delete();
         return redirect()->back()->with('success', 'Elder deleted successfully.');
     }

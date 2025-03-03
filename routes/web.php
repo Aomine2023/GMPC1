@@ -229,11 +229,11 @@ Route::get('admin/elders', [EldersController::class, 'view'])->name('admin.elder
         return view('backend.chaplians.index');
     })->name('participant');
 
-Route::get('/elders', [EldersController::class, 'view'])->name('view-elders');
-Route::get('/elders/add', [EldersController::class, 'add'])->name('elder-add');
-Route::post('/elders/store', [EldersController::class, 'store'])->name('elder-store');
-Route::get('/elders/edit/{uuid}', [EldersController::class, 'edit'])->name('elder-edit');
-Route::post('/elders/update', [EldersController::class, 'update'])->name('elder-update');
-Route::get('/elders/delete/{uuid}', [EldersController::class, 'delete'])->name('elder-delete');
+    Route::get('/elders', [EldersController::class, 'view'])->name('view-elders');
+    Route::get('/elders/add', [EldersController::class, 'add'])->name('elder-add');
+    Route::post('/elders/store', [EldersController::class, 'store'])->name('elder-store');
+    Route::get('/elders/edit/{uuid}', [EldersController::class, 'edit'])->name('elder-edit');
+    Route::post('/elders/update/{uuid}', [EldersController::class, 'update'])->name('elder-update');
+    Route::delete('/elders/{uuid}', [EldersController::class, 'delete'])->name('elder-delete');
 
 });
