@@ -114,4 +114,18 @@ class EventsController extends Controller
         ];
         return redirect()->back()->with($notification);
     }
+
+    public function UpcomingPrograms()
+{
+    $events = Event::where('event_date', '>=', now())->get(); // Fetch upcoming events
+    return view('frontend.upcoming_programs', compact('events'));
+}
+public function index()
+{
+    // Fetch the latest event
+    $latestEvent = Event::orderBy('event_date', 'desc')->first();
+
+    // Return the view with the latest event
+    return view('frontend.upcoming_programs', compact('latestEvent'));
+}
 }

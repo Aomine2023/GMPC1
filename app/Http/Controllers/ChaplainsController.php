@@ -16,11 +16,11 @@ class ChaplainsController extends Controller
     {
         $this->middleware('auth');
     }
-    public function View()
-    {
-        $participant = Chaplian::get();
-        return view('backend.chaplians.index', compact('participant'));
-    }
+    public function view()
+{
+    $participants = Chaplain::all(); // Fetch all chaplains from the database
+    return view('backend.chaplains.index', compact('participants')); // Pass the participants variable to the view
+}
     public function Add()
     {
         $ranks = Rank::all();
