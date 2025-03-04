@@ -22,21 +22,23 @@ use App\Models\Banner;
 use App\Models\Community;
 use App\Models\Participant;
 use App\Models\Staff;
-use App\Models\Chaplain; // Corrected model name from Chaplian to Chaplain
+use App\Models\Chaplian;
 use App\Models\Elder;
 use App\Http\Controllers\EldersController;
 use Illuminate\Support\Facades\Route;
 
-
 Route::get('/', function () {
     $staffs = Staff::all();
-    $participants = Participant::all(); // Renamed variable to plural for consistency
-    $banners = Banner::latest()->take(5)->get();
-    $chaplains = Chaplain::all(); // Ensure the model name is correct
-    $communities = Community::all();
+    $participant = Participant::all();
+    $participant = participant::get();
+    $banner = Banner::latest()->take(5)->get();
+    $chaplains = Chaplian::get();
+    $communities = Community::get();
     $elders = Elder::all(); // Fetch all elders
-
-    return view('website.frontend.index', compact('staffs', 'participants', 'banners', 'communities', 'chaplains', 'elders'));
+    // $news = News::all();
+    // return view('news.index', compact('news'));
+    return view('website.frontend.index', compact('staffs', 'participant', 'banner', 'communities','chaplains','elders'));
+    // return view('backend')
 });
 
 Route::get('/email/verify', function () {
