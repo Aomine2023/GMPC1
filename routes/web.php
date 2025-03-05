@@ -236,4 +236,7 @@ Route::get('admin/elders', [EldersController::class, 'view'])->name('admin.elder
     Route::post('/elders/update/{uuid}', [EldersController::class, 'update'])->name('elder-update');
     Route::delete('/elders/{uuid}', [EldersController::class, 'delete'])->name('elder-delete');
 
+Route::get('/admin/elders', [EldersController::class, 'view'])->name('elders.index');
+Route::post('/admin/elders/store', [EldersController::class, 'store'])->name('elders.store');
+
 });

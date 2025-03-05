@@ -38,7 +38,7 @@
                                 </td>
                                 <td>
                                     <div class="dropdown d-inline-block">
-                                        <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <button class="btn btn-soft-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                             <i class="ri-more-fill align-middle"></i>
                                         </button>
                                         <ul class="dropdown-menu dropdown-menu-end">
@@ -46,7 +46,7 @@
                                                 <a class="dropdown-item" href="{{ route('elder-edit', $list->uuid) }}">Edit</a>
                                             </li>
                                             <li>
-                                                <a class="dropdown-item" href="{{ route('elder-delete', $list->uuid) }}">Delete</a>
+                                                <a class="dropdown-item" href="{{ route('elder-delete', $list->uuid) }}" onclick="return confirm('Are you sure you want to delete this elder?');">Delete</a>
                                             </li>
                                         </ul>
                                     </div>

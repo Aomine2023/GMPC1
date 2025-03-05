@@ -6,12 +6,6 @@
             <div class="card">
                 <div class="card-header align-items-center d-flex">
                     <h4 class="card-title mb-0 flex-grow-1">Chaplains</h4>
-                    {{-- <div class="flex-shrink-0">
-                        <div class="form-check form-switch form-switch-right form-switch-md">
-                            <label for="form-grid-showcode" class="form-label text-muted">Show Code</label>
-                            <input class="form-check-input code-switcher" type="checkbox" id="form-grid-showcode">
-                        </div>
-                    </div> --}}
                 </div>
                 <form action="{{ route('chaplain-store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
@@ -21,7 +15,7 @@
                                 <div class="col-xxl-4 col-md-6">
                                     <div>
                                         <label for="title" class="form-label">Title</label>
-                                        <input type="text" class="form-control" id="title" name="title">
+                                        <input type="text" class="form-control" id="title" name="title" required>
                                         @error('title')
                                             <span class="badge bg-danger">{{ $message }}</span>
                                         @enderror
@@ -31,8 +25,7 @@
                                 <div class="col-xxl-4 col-md-6">
                                     <div>
                                         <label for="chaplain_name" class="form-label">Name</label>
-                                        <input type="text" class="form-control" id="chaplain_name"
-                                            name="chaplain_name">
+                                        <input type="text" class="form-control" id="chaplain_name" name="chaplain_name" required>
                                         @error('chaplain_name')
                                             <span class="badge bg-danger">{{ $message }}</span>
                                         @enderror
@@ -41,8 +34,7 @@
                                 <div class="col-xxl-4 col-md-6">
                                     <div>
                                         <label for="designation" class="form-label">Designation</label>
-                                        <input type="text" class="form-control" id="designation"
-                                            name="designation">
+                                        <input type="text" class="form-control" id="designation" name="designation">
                                         @error('designation')
                                             <span class="badge bg-danger">{{ $message }}</span>
                                         @enderror
@@ -52,9 +44,9 @@
                                 <div class="col-xxl-4 col-md-6">
                                     <div>
                                         <img id="showImage" class="rounded avatar-lg" src="{{ url('upload/no_image.jpg') }}"
-                                            alt="IMAGE" style="width: 200px; border: 1px solid #000000;height:250px;">
+                                            alt="IMAGE" style="width: 200px; border: 1px solid #000000; height: 250px;">
                                         <hr>
-                                        <input name="image" class="form-control" type="file" id="image">
+                                        <input name="image" class="form-control" type="file" id="image" accept="image/*" required>
                                         @error('image')
                                             <span class="badge bg-danger">{{ $message }}</span>
                                         @enderror
@@ -64,7 +56,7 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Save User</button>
+                    <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Save Chaplain</button>
                 </form>
             </div>
         </div>
@@ -77,7 +69,7 @@
                 reader.onload = function(e) {
                     $('#showImage').attr('src', e.target.result);
                 }
-                reader.readAsDataURL(e.target.files['0']);
+                reader.readAsDataURL(e.target.files[0]);
             });
         });
     </script>

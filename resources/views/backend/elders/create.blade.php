@@ -1,14 +1,13 @@
 @extends('backend.layouts.master')
 
 @section('content')
-<div class="row">
-    <div class="col-lg-12">
-        <div class="card">
-            <div class="card-header">
-                <h5 class="card-title mb-0">Add Elder</h5>
-            </div>
-            <div class="card-body">
-                <form action="{{ route('elder-store') }}" method="POST" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Add Elder</h5>
+                </div>
+                <form action="{{ route('elders.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
@@ -31,5 +30,5 @@
             </div>
         </div>
     </div><!-- end col -->
-</div><!-- end row -->
+    </div><!-- end row -->
 @endsection

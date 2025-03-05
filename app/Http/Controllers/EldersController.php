@@ -29,21 +29,21 @@ class EldersController extends Controller
     {
         // Validate the request
         $request->validate([
-            'title' => 'required|string|max:255',
-            'elder_name' => 'required|string|max:255',
-            'designation' => 'nullable|string|max:255',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'title' => 'required',
+            'elder_name' => 'required',
+            'image' => 'required|image',
         ]);
-
+    
         if ($request->hasFile('image')) {
             // Initialize ImageManager with a driver
-            $manager = new ImageManager(['driver' => 'gd']); // Use 'gd' or 'imagick'
+            $manager = new ImageManager(['driver' => 'imagick']); // Use 'gd' or 'imagick'
             $name_gen = hexdec(uniqid()) . '.' . $request->file('image')->getClientOriginalExtension();
-            $img = $manager->make($request->file('image')); // Create image instance
+            $img = $manager->make($request->file('image'));
             $img->save(public_path('upload/elder/' . $name_gen)); // Save the image
             
             $save_url = 'upload/elder/' . $name_gen;
-
+    
+            // Store elder details in the database
             Elder::create([
                 'title' => $request->title,
                 'elder_name' => $request->elder_name,
@@ -51,11 +51,12 @@ class EldersController extends Controller
                 'image' => $save_url,
                 'uuid' => (string) Str::uuid(),
             ]);
-
-            return redirect()->route('view-elders')->with('success', 'Elder added successfully.');
+    
+            // Redirect to the index view after successful storage
+            return redirect()->route('elders.index')->with('success', 'Elder added successfully.');
         }
-
-        return redirect()->back()->with('error', 'No image uploaded.');
+    
+        return redirect()->back()->with('error', 'No image uploaded.')->withInput();
     }
 
     public function edit($uuid)
@@ -68,26 +69,19 @@ class EldersController extends Controller
     {
         // Validate the request
         $request->validate([
-            'title' => 'required|string|max:255',
-            'elder_name' => 'required|string|max:255',
-            'designation' => 'nullable|string|max:255',
-            'image' => 'image|nullable|mimes:jpeg,png,jpg,gif|max:2048',
+            'title' => 'required',
+            'elder_name' => 'required',
+            'image' => 'image|nullable',
         ]);
 
         $elder = Elder::where('uuid', $request->uuid)->firstOrFail();
 
         if ($request->hasFile('image')) {
-            // Delete the old image file before updating
-            if ($elder->image) {
-                @unlink(public_path($elder->image)); // Use @ to suppress errors if the file doesn't exist
-            }
-
             // Initialize ImageManager with a driver
-            $manager = new ImageManager(['driver' => 'gd']);
+            $manager = new ImageManager(['driver' => 'gd']); // Use 'gd' or 'imagick'
             $name_gen = hexdec(uniqid()) . '.' . $request->file('image')->getClientOriginalExtension();
-            $img = $manager->make($request->file('image'));
+            $img = $manager->make($request->file('image')); // Create image instance
             $img->save(public_path('upload/elder/' . $name_gen)); // Save the image
-
             $elder->image = 'upload/elder/' . $name_gen; // Update the image path
         }
 
@@ -103,12 +97,6 @@ class EldersController extends Controller
     public function delete($uuid)
     {
         $elder = Elder::where('uuid', $uuid)->firstOrFail();
-        
-        // Delete the image file before removing the record
-        if ($elder->image) {
-            @unlink(public_path($elder->image));
-        }
-
         $elder->delete();
         return redirect()->back()->with('success', 'Elder deleted successfully.');
     }
