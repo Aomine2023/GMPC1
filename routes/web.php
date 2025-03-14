@@ -52,9 +52,9 @@ Route::get("/login", function(){
     return view("auth.login");
 });
 
-// Route::get('/dashboard', function () {
-//     return view('backend.layouts.index');
-// })->middleware(['auth:sanctum'])->name('dashboard');
+Route::get('/dashboard', function () {
+    return view('backend.layouts.index');
+})->middleware(['auth:sanctum'])->name('dashboard');
 
 Route::get('/courses', function () {
     return view('website.layouts.courses');

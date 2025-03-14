@@ -26,9 +26,9 @@
 
     <!-- Carousel Start -->
     <div class="header-carousel owl-carousel overflow-hidden bg-dark">
-        @foreach ($banner as $banner)
+        @foreach ($banner as $banners)
             <div class="header-carousel-item hero-section">
-                <div class="hero-bg-half-1" style="background-image: url('{{ asset('storage/' . $banner->image) }}');">
+                <div class="hero-bg-half-1" style="background-image: src="{{ asset($banners->image) }}" alt=""">
                 </div> <!-- Set the background image -->
                 <div class="carousel-caption">
                     <div class="container">
