@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use App\Models\Traits\UuidTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Traits\UuidTrait;
 
-class Community extends Model
+class ContactUs extends Model
 {
     use HasFactory;
     use UuidTrait;
@@ -18,9 +18,10 @@ class Community extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'title',
-        'image',
-        'body',
+        'full_name',
+        'email',
+        'phone',
+        'message',
     ];
 
     /**

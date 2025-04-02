@@ -15,9 +15,8 @@ class ChurchHistory extends Model
         * @var array<int, string>
         */
         protected $fillable = [
-'body'
+          'body'
         ];
-
         /**
         * The attributes that should be cast.
         *

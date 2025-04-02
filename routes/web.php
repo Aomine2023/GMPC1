@@ -8,6 +8,7 @@ use App\Http\Controllers\ChurchHistoryController;
 use App\Http\Controllers\CommandController;
 use App\Http\Controllers\SermonVidoesLinkController;
 use App\Http\Controllers\CommunitiesController;
+use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\Frontend\AboutController;
 use App\Http\Controllers\Frontend\CommandantController;
@@ -22,9 +23,12 @@ use App\Models\Banner;
 use App\Models\Community;
 use App\Models\Participant;
 use App\Models\Staff;
+use App\Models\Sermonvideolink;
 use App\Models\Chaplian;
-use App\Models\Elder;
+use App\Models\ChurchHistory;
 use App\Http\Controllers\EldersController;
+use App\Models\Event;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -33,11 +37,19 @@ Route::get('/', function () {
     $participant = participant::get();
     $banner = Banner::latest()->take(5)->get();
     $chaplains = Chaplian::get();
-    $communities = Community::get();
-    $elders = Elder::all(); // Fetch all elders
+    $community = Community::get();
     // $news = News::all();
     // return view('news.index', compact('news'));
-    return view('website.frontend.index', compact('staffs', 'participant', 'banner', 'communities','chaplains','elders'));
+    $history = ChurchHistory::get();
+    $church_sermons_vidoes = Sermonvideolink::latest()->take(5)->get();
+    // Limit history content to 50 words
+    foreach ($history as $item) {
+        $cleanText = strip_tags($item->body); // Remove HTML tags
+        $item->short_content = Str::words($cleanText, 50, '...');
+    }
+    $events = Event::orderBy('event_date', 'asc')->take(5)->get(); // Get upcoming events
+
+    return view('website.layouts.gmpc.index', compact('staffs', 'participant', 'banner', 'community', 'chaplains', 'history', 'church_sermons_vidoes', 'events'));
     // return view('backend')
 });
 
@@ -48,7 +60,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('backend.layouts.index');
 })->name('dashboard');
 
-Route::get("/login", function(){
+Route::get("/login", function () {
     return view("auth.login");
 });
 
@@ -106,12 +118,14 @@ Route::get('/detail-staff', function () {
 
 Route::prefix('about')->group(function () {
     Route::get('/', [AboutController::class, 'index'])->name('about');
-
 });
 
 Route::prefix('commandant')->group(function () {
     Route::get('/', [CommandantController::class, 'index'])->name('commandant');
 });
+
+
+Route::post('contact-us', [ContactUsController::class, 'store'])->name('site-store-contact-us');
 
 Route::post('login', [LogsController::class, 'Log_in'])->name('log-in');
 Route::get('logout', [LogsController::class, 'Logout'])->name('logout')->middleware('auth');
@@ -173,7 +187,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/update', [SermonVidoesLinkController::class, 'Update'])->name('sermon-vidoe-link-update');
         Route::get('/delete/{uuid}', [SermonVidoesLinkController::class, 'Delete'])->name('sermon-vidoe-link-delete');
     });
-    
+
     Route::prefix('news')->group(function () {
         Route::get('/', [ChurchHistoryController::class, 'View'])->name('view-news');
         Route::get('/mech', [ChurchHistoryController::class, 'Add'])->name('news-add');
@@ -213,6 +227,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/store', [BannerController::class, 'Store'])->name('banner-store');
         Route::get('/delete/{uuid}', [BannerController::class, 'Delete'])->name('banner-delete');
     });
+
     Route::prefix('commandant')->group(function () {
         Route::get('/', [CommandController::class, 'View'])->name('view-commandants');
         Route::get('/mech', [CommandController::class, 'Add'])->name('commandants-add');
@@ -224,9 +239,9 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::post('admin/elders/store', [EldersController::class, 'store'])->name('admin.elders.store');
     Route::get('admin/elders/add', [EldersController::class, 'add'])->name('admin.elders.add');
-Route::get('admin/elders', [EldersController::class, 'view'])->name('admin.elders.view');
+    Route::get('admin/elders', [EldersController::class, 'view'])->name('admin.elders.view');
 
-   
+
     Route::get('/elders', [EldersController::class, 'view'])->name('view-elders');
     Route::get('/elders/add', [EldersController::class, 'add'])->name('elder-add');
     Route::post('/elders/store', [EldersController::class, 'store'])->name('elder-store');
@@ -234,7 +249,6 @@ Route::get('admin/elders', [EldersController::class, 'view'])->name('admin.elder
     Route::post('/elders/update/{uuid}', [EldersController::class, 'update'])->name('elder-update');
     Route::delete('/elders/{uuid}', [EldersController::class, 'delete'])->name('elder-delete');
 
-Route::get('/admin/elders', [EldersController::class, 'view'])->name('elders.index');
-Route::post('/admin/elders/store', [EldersController::class, 'store'])->name('elders.store');
-
+    Route::get('/admin/elders', [EldersController::class, 'view'])->name('elders.index');
+    Route::post('/admin/elders/store', [EldersController::class, 'store'])->name('elders.store');
 });

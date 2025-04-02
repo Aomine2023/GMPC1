@@ -5,12 +5,12 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h5 class="card-title mb-0">Communities</h5>
+                <h5 class="mb-0 card-title">Communities</h5>
                 <a href="{{ route('communities-add') }}" type="button" class="btn btn-primary waves-effect waves-light"
                    style="float: right;">Add Community</a>
             </div>
             <div class="card-body">
-                <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle"
+                <table id="example" class="table align-middle table-bordered dt-responsive nowrap table-striped"
                        style="width:100%">
                     <thead>
                         <tr>
@@ -29,7 +29,7 @@
                                 <td>{{ $list->body ?? '' }}</td>
                                 <td>
                                     @if($list->image)
-                                        <img src="{{ asset('storage/' . $list->image) }}" alt="{{ $list->title }}" style="width: 100px; height: auto;">
+                                        <img src="{{ asset($list->image) }}" alt="{{ $list->title }}" style="width: 100px; height: auto;">
                                     @else
                                         No Image
                                     @endif
@@ -38,20 +38,20 @@
                                     <div class="dropdown d-inline-block">
                                         <button class="btn btn-soft-secondary btn-sm dropdown" type="button"
                                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class="ri-more-fill align-middle"></i>
+                                            <i class="align-middle ri-more-fill"></i>
                                         </button>
                                         <ul class="dropdown-menu dropdown-menu-end">
                                             <li>
                                                 <a class="dropdown-item edit-item-btn"
                                                    href="{{ route('communities-edit', $list->uuid) }}">
-                                                   <i class="ri-pencil-fill align-bottom me-2 text-muted"></i>
+                                                   <i class="align-bottom ri-pencil-fill me-2 text-muted"></i>
                                                    Edit
                                                 </a>
                                             </li>
                                             <li>
                                                 <a class="dropdown-item remove-item-btn"
                                                    href="{{ route('communities-delete', $list->uuid) }}">
-                                                   <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>
+                                                   <i class="align-bottom ri-delete-bin-fill me-2 text-muted"></i>
                                                    Delete
                                                 </a>
                                             </li>

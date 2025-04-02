@@ -1,20 +1,30 @@
     <!-- About Start -->
     @extends('website.layouts.gmpc.master')
     @section('content')
-        <div class="container-xxl py-5">
+    <style>
+        .list-group-item {
+    background: #f8f9fa;
+    border-left: 5px solid #007bff;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+    </style>
+        <div class="py-5 container-xxl">
             <div class="container">
                 <div class="row g-5">
                     <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="position-relative overflow-hidden rounded ps-5 pt-5 h-100" style="min-height: 400px">
+                        <div class="pt-5 overflow-hidden rounded position-relative ps-5 h-100" style="min-height: 400px">
                             <img class="position-absolute w-100 h-100" src="img/about1.jpg" alt=""
                                 style="object-fit: cover" />
-                            <div class="position-absolute top-0 start-0 bg-white rounded pe-3 pb-3"
+                            <div class="top-0 pb-3 bg-white rounded position-absolute start-0 pe-3"
                                 style="width: 200px; height: 200px">
                                 <div
-                                    class="d-flex flex-column justify-content-center text-center bg-primary rounded h-100 p-3">
-                                    <h1 class="text-white mb-0">67</h1>
+                                    class="p-3 text-center rounded d-flex flex-column justify-content-center bg-primary h-100">
+                                    <h1 class="mb-0 text-white">67</h1>
                                     <h2 class="text-white">Years</h2>
-                                    <h5 class="text-white mb-0">In Christ</h5>
+                                    <h5 class="mb-0 text-white">In Christ</h5>
                                 </div>
                             </div>
                         </div>
@@ -22,45 +32,60 @@
 
                     <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
                         <div class="h-100">
-                            <h3 class="display-8 mb-6">
-                                Upcoming Programs
-                            </h3>
-                            <p class="fs-5 text-primary mb-4">
-                                The GMPC family. Church isn't for perfect people. It's for hurting people, for hungry
-                                people, for growing people. It doesn't matter your background, your race, your ethnicity,
-                                your lifestyle, or what you've been through. You are welcome here. This is one of the
-                                avenues members converge to fellowship during the week.
-                            </p>
-                            <h3 class="display-8 mb-6">
-                                Prayer Meetings
-                            </h3>
-                            <p class="fs-5 text-primary mb-4">
-                                The GMPC family meets every Friday evening to commit family and loved ones into the hands of
-                                God. This is one of the avenues members converge to fellowship during the week.
-                            </p>
+                            <h3 class="mb-6 display-8">Upcoming Programs</h3>
+                            @if($events->count())
+                                <ul class="list-group">
+                                    @foreach($events as $event)
+                                        <li class="list-group-item d-flex align-items-center">
+                                            <!-- Event Image Section (side-by-side) -->
+                                            <div class="event-image" style="flex-shrink: 0; max-width: 200px;">
+                                                @if ($event->image)
+                                                    <img src="{{ asset($event->image) }}" alt="Event Image"
+                                                         style="width: 100%; height: auto;">
+                                                @else
+                                                    <p class="text-muted">No Image Available</p>
+                                                @endif
+                                            </div>
+                    
+                                            <!-- Event Details Section -->
+                                            <div class="event-details" style="margin-left: 20px; flex-grow: 1;">
+                                                <h5 class="mb-1 text-dark">{{ $event->body }}</h5>
+                                                <p class="mb-0"><strong>Date:</strong> {{ \Carbon\Carbon::parse($event->event_date)->format('M d, Y') }}</p>
+                                                <p class="mb-0"><strong>Time:</strong> {{ \Carbon\Carbon::parse($event->event_time)->format('h:i A') }}</p>
+                                                <p class="mb-0"><strong>Venue:</strong> {{ $event->venue }}</p>
+                                            </div>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            @else
+                                <p class="text-muted">No upcoming events at the moment.</p>
+                            @endif
                         </div>
                     </div>
+                    
+                    
 
-                    <div class="border-top mt-4 pt-4">
+                    <div class="pt-4 mt-4 border-top">
                         <div class="d-flex align-items-center">
                         </div>
                     </div>
                 </div>
             </div>
             <!-- About End -->
-            <!-- Facts Start -->
-            <div class="container-fluid overflow-hidden my-5 px-lg-0">
+            <div class="my-5 overflow-hidden container-fluid px-lg-0">
                 <div class="container facts px-lg-0">
                     <div class="row g-0 mx-lg-0">
                         <div class="col facts-text wow fadeIn" data-wow-delay="0.1s">
-                            <div class="h-100 px-4 ps-lg-0">
-                                <h1 class="text-white mb-4">History Of GMPC</h1>
-                                <p class="text-light mb-5">
-                                    Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit.
-                                    Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit,
-                                    sed stet lorem sit clita duo justo magna dolore erat amet
+                            <div class="px-4 h-100 ps-lg-0">
+                                <h1 class="mb-4 text-white">History Of GMPC</h1>
+                                <p class="mb-5 text-light">
+                                    @if($history->isNotEmpty())
+                                        {{ $history->first()->short_content }}
+                                    @else
+                                        No history available.
+                                    @endif
                                 </p>
-                                <a href="" class="align-self-start btn btn-secondary py-3 px-5">More Details</a>
+                                <a href="#" class="px-5 py-3 align-self-start btn btn-secondary">More Details</a>
                             </div>
                         </div>
                     </div>
@@ -70,26 +95,26 @@
         <!-- Facts End -->
 
         <!-- Service Start -->
-        <div class="container-xxl py-5">
+        <div class="py-5 container-xxl">
             <div class="container">
-                <div class="text-center mx-auto" style="max-width: 500px">
-                    <h1 class="display-6 mb-5">
+                <div class="mx-auto text-center" style="max-width: 500px">
+                    <h1 class="mb-5 display-6">
                         Join Our Communities
                     </h1>
                 </div>
                 <div class="row g-4 justify-content-center">
                     @foreach ($community as $list)
                         <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                            <div class="service-item rounded h-100 p-5">
-                                <div class="d-flex align-items-center ms-n5 mb-4">
-                                    <div class="service-icon flex-shrink-0 bg-primary rounded-end me-4">
+                            <div class="p-5 rounded service-item h-100">
+                                <div class="mb-4 d-flex align-items-center ms-n5">
+                                    <div class="flex-shrink-0 service-icon bg-primary rounded-end me-4">
                                     </div>
                                     <h4 class="mb-0">{{ $list->title }}</h4>
                                 </div>
                                 <p class="mb-4">
                                   {{ \Illuminate\Support\Str::words($list->body, 100, '...') }}
                                 </p>
-                                <a class="btn btn-light px-3" href="">Read More</a>
+                                <a class="px-3 btn btn-light" href="">Read More</a>
                             </div>
                         </div>
                     @endforeach
@@ -98,133 +123,79 @@
         </div>
         <!-- Service End -->
 
-        <div class="container-fluid appointment my-5 py-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="py-5 my-5 container-fluid appointment wow fadeIn" data-wow-delay="0.1s">
             <div class="container py-5">
                 <div class="row g-5">
-                    <div class="col-lg-6 wow fadeIn" data-wow-delay="0.3s">
-
+                    <div class="col-lg-12 wow fadeIn" data-wow-delay="0.3s">
                         <section class="dark-bg no-bottom-padding">
                             <div class="container">
                                 <div class="main-video-wrap fl-wrap">
-                                    <div class="video-main-cont">
-                                        <div class="video-section-title fl-wrap">
-                                            <h2>Featured Video</h2>
-                                            <h4>Stay up-to-date</h4>
-                                            <a href="https://www.youtube.com/@officialgaftv" target="_blank" view=""
-                                                all="" <i="" class="fas fa-caret-right"></a>
-                                        </div>
-                                        <a class="video-holder vh-main fl-wrap  image-popup" style="height:500px"
-                                            href="https://www.youtube.com/embed/https://www.youtube.com/watch?v=vhu7JP7doSU">
-                                            <iframe width="100%" height="500"
-                                                src="https://www.youtube.com/embed/https://www.youtube.com/watch?v=vhu7JP7doSU">
-                                            </iframe>
-                                        </a>
-
-                                    </div>
-
-                                    <!-- video-links-wrap   -->
-                                    <div class="video-links-wrap ps ps--active-y">
-                                        <!-- video-item  -->
-                                        <div class="video-item fl-wrap" data-url="javascript:void(0)"
-                                            data-video-link="https://www.youtube.com/watch?v=K-6tPkm6cZA">
-                                            <iframe width="100%" height="300"
-                                                src="https://www.youtube.com/embed/1pQFgf2n-Nc">
-                                            </iframe>
-                                            <div class="video-item-title">
-                                                <h4>Defence Minister Cuts Sod for Infrastructural Development Projects at
-                                                    Military Training Schools.</h4>
-                                                <span class="video-date"><i class="far fa-clock"></i>
-                                                    <strong>Jul 31 2023</strong></span>
+                                    <!-- video-links-wrap -->
+                                    <div class="flex-row overflow-auto video-links-wrap d-flex flex-nowrap" style="gap: 15px;">
+                                        @foreach($church_sermons_vidoes as $video)
+                                        @php
+                                            // Extract video ID from the saved URL
+                                            preg_match('/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/', $video->sermon_vidoe_link, $matches);
+                                            $videoId = $matches[1] ?? null;
+                                        @endphp
+                                    
+                                        @if($videoId)
+                                            <div class="video-item fl-wrap" style="width: 250px; flex-shrink: 0;">
+                                                <a href="#" data-bs-toggle="modal" data-bs-target="#videoModal{{ $loop->index }}">
+                                                    <img src="https://img.youtube.com/vi/{{ $videoId }}/hqdefault.jpg" alt="{{ $video->sermon_title }}" width="100%">
+                                                </a>
+                                                <div class="video-item-title">
+                                                    <h6>{{ $video->sermon_title }}</h6>
+                                                    <span class="video-date">
+                                                        <i class="far fa-clock"></i> <strong>{{ \Carbon\Carbon::parse($video->sermon_date)->format('M d Y') }}</strong>
+                                                    </span>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="video-item fl-wrap" data-url="javascript:void(0)"
-                                            data-video-link="https://www.youtube.com/watch?v=K-6tPkm6cZA">
-                                            <iframe width="100%" height="300"
-                                                src="https://www.youtube.com/embed/QG957ewLYlE">
-                                            </iframe>
-                                            <div class="video-item-title">
-                                                <h4>CAS Sees Off 12 Ab Initio and 4 Certified Instructor Pilots to Train in
-                                                    USA.</h4>
-                                                <span class="video-date"><i class="far fa-clock"></i>
-                                                    <strong>Jun 19 2023</strong></span>
+                                    
+                                            <!-- Bootstrap Modal -->
+                                            <div class="modal fade" id="videoModal{{ $loop->index }}" tabindex="-1" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">{{ $video->sermon_title }}</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <iframe width="100%" height="400" src="https://www.youtube.com/embed/{{ $videoId }}?autoplay=1" frameborder="0" allowfullscreen></iframe>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="video-item fl-wrap" data-url="javascript:void(0)"
-                                            data-video-link="https://www.youtube.com/watch?v=K-6tPkm6cZA">
-                                            <iframe width="100%" height="300"
-                                                src="https://www.youtube.com/embed/z96Or3b_Vlo">
-                                            </iframe>
-                                            <div class="video-item-title">
-                                                <h4>AVM FAK Bekoe Appointed Chief of the Air Staff.</h4>
-                                                <span class="video-date"><i class="far fa-clock"></i>
-                                                    <strong>Jun 19 2023</strong></span>
-                                            </div>
-                                        </div>
-                                        <div class="video-item fl-wrap" data-url="javascript:void(0)"
-                                            data-video-link="https://www.youtube.com/watch?v=K-6tPkm6cZA">
-                                            <iframe width="100%" height="300"
-                                                src="https://www.youtube.com/embed/vhu7JP7doSU">
-                                            </iframe>
-                                            <div class="video-item-title">
-                                                <h4>BURIAL SERVICE FOR THE LATE AIR COMMODORE GODFRIED SACKEY PARKER</h4>
-                                                <span class="video-date"><i class="far fa-clock"></i>
-                                                    <strong>Feb 12 2024</strong></span>
-                                            </div>
-                                        </div>
-                                        <!--video-item end   -->
-                                        <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
-                                            <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
-                                        </div>
-                                        <div class="ps__rail-y" style="top: 0px; height: 516px; right: 0px;">
-                                            <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 211px;">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- video-links-wrap end   -->
+                                        @endif
+                                    @endforeach
+                                </div>
+                                    <!-- video-links-wrap end -->
                                 </div>
                             </div>
-
-
                         </section>
-
-
-
                     </div>
-
                 </div>
             </div>
         </div>
-        <!-- Appointment End -->
 
         <!-- Team Start -->
-        <div class="container-xxl py-5">
+        <div class="py-5 container-xxl">
             <div class="container">
-                <div class="text-center mx-auto" style="max-width: 500px">
-                    <h1 class="display-6 mb-5">Meet Our Chaplains</h1>
+                <div class="mx-auto text-center" style="max-width: 500px">
+                    <h1 class="mb-5 display-6">Meet Our Chaplains</h1>
                 </div>
-               @foreach ($participant as $list)
+               @foreach ($chaplains as $list)
                   <div class="row g-4">
                     <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="team-item rounded">
+                        <div class="rounded team-item">
                             <img class="img-fluid" src="{{ asset($list->image) }}" alt="" />
-                            <div class="text-center p-4">
-                                <h5>{{ $list->rank_name }}.{{ $list->participant_name }}</h5>
-                                <span>Designation</span>
+                            <div class="p-4 text-center">
+                                <h5>{{ $list->title }}.{{ $list->chaplain_name }}</h5>
+                                <span>Designation:{{ $list->designation}}</span>
                             </div>
-                            <div class="team-text text-center bg-white p-4">
-                               <h5>{{ $list->rank_name }}.{{ $list->participant_name }}</h5>
+                            <div class="p-4 text-center bg-white team-text">
+                                <h5>{{ $list->designation}}</h5>
                                 <p>Designation</p>
-                                {{-- <div class="d-flex justify-content-center">
-                                    <a class="btn btn-square btn-light m-1" href=""><i
-                                            class="fab fa-twitter"></i></a>
-                                    <a class="btn btn-square btn-light m-1"
-                                        href="https://www.facebook.com/gmpcburmacamp/"><i
-                                            class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-square btn-light m-1" href=""><i
-                                            class="fab fa-youtube"></i></a>
-                                    <a class="btn btn-square btn-light m-1" href=""><i
-                                            class="fab fa-linkedin-in"></i></a>
-                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -233,67 +204,65 @@
             </div>
         </div>
         <!-- Team End -->
-
         <!-- Appointment Start -->
-        <div class="container-fluid appointment my-5 py-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="py-5 my-5 container-fluid appointment wow fadeIn" data-wow-delay="0.1s">
             <div class="container py-5">
                 <div class="row g-5">
                     <div class="col-lg-6 wow fadeIn" data-wow-delay="0.3s">
-                        <h1 class="display-6 text-white mb-5">
+                        <h1 class="mb-5 text-white display-6">
                             Worship With Us
                         </h1>
-                        <p class="text-white mb-5">
+                        <p class="mb-5 text-white">
                             At Garrison Methodist Preby Church, we believe your best days are still out in front of you.
                             Whether you are joining us in person or online, we invite you to experience our services and be
                             a part of the GMPC family. The Bible says when you are planted in the house of the Lord, you
                             will flourish. Get ready to step into a new level of your destiny!
                         </p>
-                        <div class="bg-white rounded p-3">
-                            <div class="d-flex align-items-center bg-primary rounded p-3">
-                                <h5 class="text-white mb-0">Call Us: +233 345 6789</h5>
+                        <div class="p-3 bg-white rounded">
+                            <div class="p-3 rounded d-flex align-items-center bg-primary">
+                                <h5 class="mb-0 text-white">Call Us: +233 345 6789</h5>
                             </div>
                         </div>
                     </div>
+                    
                     <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                        <div class="bg-white rounded p-5">
-                            <form>
+                        <div class="p-5 bg-white rounded">
+                            <form action="{{ route('site-store-contact-us') }}" method="POST">
+                                @csrf
                                 <div class="row g-3">
                                     <div class="col-sm-6">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control" id="gname"
+                                            <input type="text" class="form-control" id="gname" name="full_name"
                                                 placeholder="Gurdian Name" />
+                                                @error('full_name')
+                                                   <span class="text-danger">{{ $message }}</span> 
+                                                @enderror
                                             <label for="gname">Your Name</label>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-floating">
-                                            <input type="email" class="form-control" id="gmail"
+                                            <input type="email" class="form-control" id="gmail" name="email"
                                                 placeholder="Gurdian Email" />
                                             <label for="gmail">Your Email</label>
                                         </div>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-12">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control" id="cname"
+                                            <input type="text" class="form-control" id="cname" name="phone"
                                                 placeholder="Child Name" />
                                             <label for="cname">Your Mobile</label>
                                         </div>
                                     </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="cage"
-                                                placeholder="Child Age" />
-                                            <label for="cage">Occupation</label>
-                                        </div>
-                                    </div>
+                                  
                                     <div class="col-12">
                                         <div class="form-floating">
-                                            <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 80px"></textarea>
+                                            <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 80px" name="message"></textarea>
                                             <label for="message">Message</label>
                                         </div>
                                     </div>
                                     <div class="col-12">
-                                        <button class="btn btn-primary py-3 px-5" type="submit">
+                                        <button class="px-5 py-3 btn btn-primary" type="submit">
                                             Be a member
                                         </button>
                                     </div>
@@ -305,109 +274,28 @@
             </div>
         </div>
         <!-- Appointment End -->
-
-        <!-- Team Start -->
-        <div class="container-xxl py-5">
+        <div class="py-5 container-xxl">
             <div class="container">
-                <div class="text-center mx-auto" style="max-width: 500px">
-                    <h1 class="display-6 mb-5">Meet Our Elders</h1>
+                <div class="mx-auto text-center" style="max-width: 500px">
+                    <h1 class="mb-5 display-6">Meet Our Elders</h1>
                 </div>
-                <div class="row g-4">
+               @foreach ($chaplains as $list)
+                  <div class="row g-4">
                     <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="team-item rounded">
-                            <img class="img-fluid" src="img/team-1.jpg" alt="" />
-                            <div class="text-center p-4">
-                                <h5>Full Name</h5>
-                                <span>Designation</span>
+                        <div class="rounded team-item">
+                            <img class="img-fluid" src="{{ asset($list->image) }}" alt="" />
+                            <div class="p-4 text-center">
+                                <h5>{{ $list->title }}.{{ $list->chaplain_name }}</h5>
+                                <span>Designation:{{ $list->designation}}</span>
                             </div>
-                            <div class="team-text text-center bg-white p-4">
-                                <h5>Full Name</h5>
+                            <div class="p-4 text-center bg-white team-text">
+                                <h5>{{ $list->designation}}</h5>
                                 <p>Designation</p>
-                                <div class="d-flex justify-content-center">
-                                    <a class="btn btn-square btn-light m-1" href=""><i
-                                            class="fab fa-twitter"></i></a>
-                                    <a class="btn btn-square btn-light m-1"
-                                        href="https://www.facebook.com/gmpcburmacamp/"><i
-                                            class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-square btn-light m-1" href=""><i
-                                            class="fab fa-youtube"></i></a>
-                                    <a class="btn btn-square btn-light m-1" href=""><i
-                                            class="fab fa-linkedin-in"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="team-item rounded">
-                            <img class="img-fluid" src="img/team-2.jpg" alt="" />
-                            <div class="text-center p-4">
-                                <h5>Full Name</h5>
-                                <span>Designation</span>
-                            </div>
-                            <div class="team-text text-center bg-white p-4">
-                                <h5>Full Name</h5>
-                                <p>Designation</p>
-                                <div class="d-flex justify-content-center">
-                                    <a class="btn btn-square btn-light m-1" href=""><i
-                                            class="fab fa-twitter"></i></a>
-                                    <a class="btn btn-square btn-light m-1" href=""><i
-                                            class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-square btn-light m-1" href=""><i
-                                            class="fab fa-youtube"></i></a>
-                                    <a class="btn btn-square btn-light m-1" href=""><i
-                                            class="fab fa-linkedin-in"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="team-item rounded">
-                            <img class="img-fluid" src="img/team-3.jpg" alt="" />
-                            <div class="text-center p-4">
-                                <h5>Full Name</h5>
-                                <span>Designation</span>
-                            </div>
-                            <div class="team-text text-center bg-white p-4">
-                                <h5>Full Name</h5>
-                                <p>Designation</p>
-                                <div class="d-flex justify-content-center">
-                                    <a class="btn btn-square btn-light m-1" href=""><i
-                                            class="fab fa-twitter"></i></a>
-                                    <a class="btn btn-square btn-light m-1" href=""><i
-                                            class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-square btn-light m-1" href=""><i
-                                            class="fab fa-youtube"></i></a>
-                                    <a class="btn btn-square btn-light m-1" href=""><i
-                                            class="fab fa-linkedin-in"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-                        <div class="team-item rounded">
-                            <img class="img-fluid" src="img/team-4.jpg" alt="" />
-                            <div class="text-center p-4">
-                                <h5>Full Name</h5>
-                                <span>Designation</span>
-                            </div>
-                            <div class="team-text text-center bg-white p-4">
-                                <h5>Full Name</h5>
-                                <p>Designation</p>
-                                <div class="d-flex justify-content-center">
-                                    <a class="btn btn-square btn-light m-1" href=""><i
-                                            class="fab fa-twitter"></i></a>
-                                    <a class="btn btn-square btn-light m-1" href=""><i
-                                            class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-square btn-light m-1" href=""><i
-                                            class="fab fa-youtube"></i></a>
-                                    <a class="btn btn-square btn-light m-1" href=""><i
-                                            class="fab fa-linkedin-in"></i></a>
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+               @endforeach
             </div>
         </div>
-        <!-- Team End -->
     @endsection
