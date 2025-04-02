@@ -173,6 +173,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/update', [SermonVidoesLinkController::class, 'Update'])->name('sermon-vidoe-link-update');
         Route::get('/delete/{uuid}', [SermonVidoesLinkController::class, 'Delete'])->name('sermon-vidoe-link-delete');
     });
+    
     Route::prefix('news')->group(function () {
         Route::get('/', [ChurchHistoryController::class, 'View'])->name('view-news');
         Route::get('/mech', [ChurchHistoryController::class, 'Add'])->name('news-add');
@@ -225,10 +226,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('admin/elders/add', [EldersController::class, 'add'])->name('admin.elders.add');
 Route::get('admin/elders', [EldersController::class, 'view'])->name('admin.elders.view');
 
-    Route::get('/view-chaplain', function () {
-        return view('backend.chaplians.index');
-    })->name('participant');
-
+   
     Route::get('/elders', [EldersController::class, 'view'])->name('view-elders');
     Route::get('/elders/add', [EldersController::class, 'add'])->name('elder-add');
     Route::post('/elders/store', [EldersController::class, 'store'])->name('elder-store');

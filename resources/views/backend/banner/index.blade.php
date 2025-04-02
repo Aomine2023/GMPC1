@@ -11,7 +11,7 @@
                         <div class="col-lg-8">
                             <div class="card-body">
                                 <table id="example"
-                                       class="table table-bordered dt-responsive nowrap table-striped align-middle"
+                                       class="table align-middle table-bordered dt-responsive nowrap table-striped"
                                        style="width:100%">
                                     <thead>
                                         <tr>
@@ -28,7 +28,7 @@
                                                 <td>{{ $list->title }}</td>
                                                 <td>
                                                     @if ($list->image)
-                                                        <img src="{{ asset('storage/' . $list->image) }}" alt="Banner Image"
+                                                     <img src="{{ asset($list->image ?? '') }}" alt="Banner Image"
                                                              style="max-width:200px; max-height: 80px;">
                                                     @else
                                                         No Image Available
@@ -39,13 +39,13 @@
                                                         <button class="btn btn-soft-secondary btn-sm dropdown"
                                                                 type="button" data-bs-toggle="dropdown"
                                                                 aria-expanded="false">
-                                                            <i class="ri-more-fill align-middle"></i>
+                                                            <i class="align-middle ri-more-fill"></i>
                                                         </button>
                                                         <ul class="dropdown-menu dropdown-menu-end">
                                                             <li>
                                                                 <a class="dropdown-item remove-item-btn"
                                                                    href="{{ route('banner-delete', $list->uuid) }}">
-                                                                    <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>
+                                                                    <i class="align-bottom ri-delete-bin-fill me-2 text-muted"></i>
                                                                     Delete
                                                                 </a>
                                                             </li>
@@ -87,7 +87,7 @@
                                         </div>
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Save</button>
+                                    <button type="submit" class="pl-4 pr-4 mt-4 btn btn-primary">Save</button>
                                 </form>
                             </div>
                         </div>

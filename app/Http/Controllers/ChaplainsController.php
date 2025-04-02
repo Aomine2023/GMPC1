@@ -1,6 +1,6 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
@@ -8,7 +8,7 @@ use App\Models\Chaplian;
 use App\Models\Rank;
 use Illuminate\Http\Request;
 use Intervention\Image\Drivers\Gd\Driver;
-use Intervention\Image\ImageManager;// or your specific query
+use Intervention\Image\ImageManager; // or your specific query
 
 class ChaplainsController extends Controller
 {
@@ -17,10 +17,10 @@ class ChaplainsController extends Controller
         $this->middleware('auth');
     }
     public function view()
-{
-    $participants = Chaplain::all(); // Fetch all chaplains from the database
-    return view('backend.chaplains.index', compact('participants')); // Pass the participants variable to the view
-}
+    {
+        $participant = Chaplian::all(); // Fetch all chaplains from the database
+        return view('backend.chaplians.index', compact('participant')); // Pass the participants variable to the view
+    }
     public function Add()
     {
         $ranks = Rank::all();
@@ -52,7 +52,7 @@ class ChaplainsController extends Controller
                 'message' => 'Participant Inserted Successfully',
                 'alert-type' => 'success',
             ];
-            return redirect()->route('view-chaplain')->with($notification);
+            return redirect()->route('view-participant')->with($notification);
         }
         $notification = [
             'message' => 'No image uploaded.',

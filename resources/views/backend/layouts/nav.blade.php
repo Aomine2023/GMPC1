@@ -11,7 +11,7 @@
                 <h3 style="color: #fff; padding-top:20px;">GMPC CHURCH</h3>
             </span>
         </a>
-        <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover"
+        <button type="button" class="p-0 btn btn-sm fs-20 header-item float-end btn-vertical-sm-hover"
             id="vertical-hover">
             <i class="ri-record-circle-line"></i>
         </button>
@@ -64,7 +64,7 @@
                                             data-key="t-badges">Article</a>
                                     </li> --}}
                                     <li class="nav-item">
-                                        <a href="{{ route('participant') }}" class="nav-link"
+                                        <a href="{{ route('view-participant') }}" class="nav-link"
                                             data-key="t-buttons">Chaplains</a>
                                     </li>
                                     <li class="nav-item">

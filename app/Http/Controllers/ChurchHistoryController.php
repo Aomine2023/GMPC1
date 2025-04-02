@@ -47,7 +47,7 @@ class ChurchHistoryController extends Controller
             'message' => 'History Inserted Successfully',
             'alert-type' => 'success',
         ];
-        return redirect()->route('view-history')->with($notification);
+        return redirect()->route('view-news')->with($notification);
     }
 
     // Show the form to edit a specific history entry

@@ -7,9 +7,9 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header d-flex align-items-center">
-                <h4 class="card-title mb-0 flex-grow-1">Create Community</h4>
+                <h4 class="mb-0 card-title flex-grow-1">Create Community</h4>
             </div><!-- end card header -->
-            <form action="{{ route('admin.elders.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('commandants-store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="card-body">
                     <div class="live-preview">
