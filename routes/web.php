@@ -1,57 +1,20 @@
 <?php
 
-use App\Http\Controllers\AppointmentController;
-use App\Http\Controllers\ArticleController;
-use App\Http\Controllers\BannerController;
-use App\Http\Controllers\ChaplainsController;
-use App\Http\Controllers\ChurchHistoryController;
-use App\Http\Controllers\CommandController;
-use App\Http\Controllers\SermonVidoesLinkController;
-use App\Http\Controllers\CommunitiesController;
+use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\ContactUsController;
-use App\Http\Controllers\EventsController;
-use App\Http\Controllers\Frontend\AboutController;
-use App\Http\Controllers\Frontend\CommandantController;
-use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\Investors\InvestorCardController;
+use App\Http\Controllers\Investors\InvestorChatController;
+use App\Http\Controllers\Investors\InvestorDashboardController;
+use App\Http\Controllers\Investors\InvestorFaqsController;
+use App\Http\Controllers\LoginInvestor;
 use App\Http\Controllers\LogsController;
+use App\Http\Controllers\OTPController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\RankController;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\UserController;
-use App\Models\Article;
-use App\Models\Banner;
-use App\Models\Community;
-use App\Models\Participant;
-use App\Models\Staff;
-use App\Models\Sermonvideolink;
-use App\Models\Chaplian;
-use App\Models\ChurchHistory;
-use App\Http\Controllers\EldersController;
-use App\Models\Event;
+use App\Http\Controllers\registerInvestor;
+use App\Http\Controllers\registerInvestorController;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    $staffs = Staff::all();
-    $participant = Participant::all();
-    $participant = participant::get();
-    $banner = Banner::latest()->take(5)->get();
-    $chaplains = Chaplian::get();
-    $community = Community::get();
-    // $news = News::all();
-    // return view('news.index', compact('news'));
-    $history = ChurchHistory::get();
-    $church_sermons_vidoes = Sermonvideolink::latest()->take(5)->get();
-    // Limit history content to 50 words
-    foreach ($history as $item) {
-        $cleanText = strip_tags($item->body); // Remove HTML tags
-        $item->short_content = Str::words($cleanText, 50, '...');
-    }
-    $events = Event::orderBy('event_date', 'asc')->take(5)->get(); // Get upcoming events
-
-    return view('website.layouts.gmpc.index', compact('staffs', 'participant', 'banner', 'community', 'chaplains', 'history', 'church_sermons_vidoes', 'events'));
-    // return view('backend')
-});
 
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
@@ -60,195 +23,74 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('backend.layouts.index');
 })->name('dashboard');
 
-Route::get("/login", function () {
+Route::get("/", function () {
     return view("auth.login");
-});
+})->name('investor.login');
+
+Route::get("/admin-login", function () {
+    return view("auth.adminlogin");
+})->name('admin-login'); // Add the name here
+
+// Route::get("/admin-login", function () {
+//     return view("auth.adminlogin");
+// });
 
 Route::get('/dashboard', function () {
     return view('backend.layouts.index');
 })->middleware(['auth:sanctum'])->name('dashboard');
 
-Route::get('/courses', function () {
-    return view('website.layouts.courses');
-})->name('Courses');
 
-Route::get('/contact', function () {
-    return view('website.frontend.contact');
-})->name('contact');
-
-Route::get('/articles', function () {
-    return view('website.layouts.articles');
-})->name('articles');
-
-Route::get('/article-details/{uuid}', function ($uuid) {
-    $article_details = Article::where('uuid', $uuid)->firstOrFail();
-    return view('website.layouts.articledetails', compact('article_details'));
-})->name('article-detail');
-
-Route::get('/article/{uuid}', function ($uuid) {
-    $article = Article::where('uuid', $uuid)->firstOrFail();
-    return view('website.layouts.articles', compact('article'));
-})->name('article');
-
-Route::get('/matriculation', function () {
-    return view('website.layouts.matriculation');
-})->name('matriculation');
-
-Route::get('/join', function () {
-    return view('website.layouts.join');
-})->name('join');
-
-Route::get('/admission', function () {
-    return view('website.layouts.admission');
-})->name('admission');
-
-Route::get('/participant', function () {
-    $participant = Participant::all();
-    return view('website.layouts.participant', compact('participant'));
-})->name('participant');
-
-Route::get('/gallery', function () {
-    return view('website.layouts.gallery');
-})->name('gallery');
-
-Route::get('/detail-staff', function () {
-    $staffs = Staff::all();
-    return view('website.frontend.index', compact('staffs'));
-})->name('detail_staff');
-
-Route::prefix('about')->group(function () {
-    Route::get('/', [AboutController::class, 'index'])->name('about');
-});
-
-Route::prefix('commandant')->group(function () {
-    Route::get('/', [CommandantController::class, 'index'])->name('commandant');
-});
+Route::get('/register-account', function () {
+    return view('auth.register');
+})->name('register-account');
 
 
-Route::post('contact-us', [ContactUsController::class, 'store'])->name('site-store-contact-us');
 
+// register investor
+Route::post('/investor-registion', [registerInvestorController::class, 'registerInvestor'])->name('investor-registion');
+
+Route::get('/verify/otp', [OTPController::class, 'showVerifyOtpForm'])->name('verify.otp');
+
+Route::post('investor-login', [LoginInvestor::class, 'Log_in'])->name('investor-login');
+Route::get('/investor/logout', [LoginInvestor::class, 'logoutInvestor'])->name('investor.logout');
+
+Route::post('/verify/otp', [OTPController::class, 'verifyOtp'])->name('otp.verify');
+Route::post('/resend-otp', [OTPController::class, 'resendOtp'])->name('otp.resend');
+//Admin
 Route::post('login', [LogsController::class, 'Log_in'])->name('log-in');
-Route::get('logout', [LogsController::class, 'Logout'])->name('logout')->middleware('auth');
-Route::group(['prefix' => 'admin'], function () {
-    Route::group(['prefix' => 'settings'], function () {
-        Route::resource('roles', RoleController::class);
-        Route::resource('users', UserController::class);
-        Route::prefix('profile')->group(function () {
-            Route::get('/', [ProfileController::class, 'ProfileView'])->name('profileview');
-            Route::get('/edit', [ProfileController::class, 'ProfileEdit'])->name('profile.edit');
-            Route::post('/store', [ProfileController::class, 'ProfileStore'])->name('profile.store');
-            Route::get('/password/view', [ProfileController::class, 'PasswordView'])->name('password.view');
-            Route::post('/password/update', [ProfileController::class, 'PasswordUpdate'])->name('password.update');
-            Route::get('/inactivation{id}', [ProfileController::class, 'Inactive'])->name('user.inactive');
-            Route::get('/activation{id}', [ProfileController::class, 'Active'])->name('user.active');
-        });
+Route::get('logout', [LogsController::class, 'Logout'])->name('admin-logout')->middleware('auth');
+Route::get('admin/verify/otp', [OTPController::class, 'AdminVerifyOtpForm'])->name('admin.verify.otp');
+Route::post('admin/verify/otp', [OTPController::class, 'AdminverifyOtp'])->name('admin.otp.verify');
+Route::post('admin/resend-otp', [OTPController::class, 'adminresendOtp'])->name('admin.otp.resend');
+Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
+    Route::prefix('profile')->group(function () {
+        Route::get('/', [ProfileController::class, 'ProfileView'])->name('profileview');
+        Route::get('/edit', [ProfileController::class, 'ProfileEdit'])->name('profile.edit');
+        Route::post('/store', [ProfileController::class, 'ProfileStore'])->name('profile.store');
+        Route::get('/password/view', [ProfileController::class, 'PasswordView'])->name('password.view');
+        Route::post('/password/update', [ProfileController::class, 'PasswordUpdate'])->name('password.update');
+        Route::get('/inactivation{id}', [ProfileController::class, 'Inactive'])->name('user.inactive');
+        Route::get('/activation{id}', [ProfileController::class, 'Active'])->name('user.active');
     });
 
-    Route::prefix('rank')->group(function () {
-        Route::get('/', [RankController::class, 'View'])->name('view-rank');
-        Route::get('/mech', [RankController::class, 'RankAdd'])->name('rank-add');
-        Route::post('/store', [RankController::class, 'Store'])->name('rank-store');
-        Route::get('/edit/{uuid}', [RankController::class, 'Edit'])->name('rank-edit');
-        Route::post('/update{uuid}', [RankController::class, 'Update'])->name('rank-update');
-        Route::get('/delete{uuid}', [RankController::class, 'Delete'])->name('rank-delete');
+    Route::prefix('dashbaord')->group(function () {
+        Route::get('/', [AdminDashboardController::class, 'admin_dashboard'])->name('dashboard');
     });
-
-    Route::prefix('appointment')->group(function () {
-        Route::get('/', [AppointmentController::class, 'View'])->name('view-appointment');
-        Route::get('/mech', [AppointmentController::class, 'Add'])->name('appointment-add');
-        Route::post('/store', [AppointmentController::class, 'Store'])->name('appointment-store');
-        Route::get('/edit/{uuid}', [AppointmentController::class, 'Edit'])->name('appointment-edit');
-        Route::post('/update{uuid}', [AppointmentController::class, 'Update'])->name('appointment-update');
-        Route::get('/delete{uuid}', [AppointmentController::class, 'Delete'])->name('appointment-delete');
-    });
-
-    Route::prefix('chaplains')->group(function () {
-        Route::get('/', [ChaplainsController::class, 'View'])->name('view-participant');
-        Route::get('/mech', [ChaplainsController::class, 'Add'])->name('chaplain-add');
-        Route::post('/store', [ChaplainsController::class, 'Store'])->name('chaplain-store');
-        Route::get('/edit/{uuid}', [ChaplainsController::class, 'Edit'])->name('chaplain-edit');
-        Route::post('/update', [ChaplainsController::class, 'Update'])->name('chaplain-update');
-        Route::get('/delete/{uuid}', [ChaplainsController::class, 'Delete'])->name('chaplain-delete');
-    });
-
-    Route::prefix('communities')->group(function () {
-        Route::get('/', [CommunitiesController::class, 'View'])->name('view-communities');
-        Route::get('/mech', [CommunitiesController::class, 'Add'])->name('communities-add');
-        Route::post('/store', [CommunitiesController::class, 'Store'])->name('communities-store');
-        Route::get('/edit/{uuid}', [CommunitiesController::class, 'Edit'])->name('communities-edit');
-        Route::post('/update', [CommunitiesController::class, 'Update'])->name('communities-update');
-        Route::get('/delete/{uuid}', [CommunitiesController::class, 'Delete'])->name('communities-delete');
-    });
-    Route::prefix('sermon-links')->group(function () {
-        Route::get('/', [SermonVidoesLinkController::class, 'View'])->name('view-sermon-vidoe-link');
-        Route::get('/mech', [SermonVidoesLinkController::class, 'Add'])->name('sermon-vidoe-link-add');
-        Route::post('/store', [SermonVidoesLinkController::class, 'Store'])->name('sermon-vidoe-link-store');
-        Route::get('/edit/{uuid}', [SermonVidoesLinkController::class, 'Edit'])->name('sermon-vidoe-link-edit');
-        Route::post('/update', [SermonVidoesLinkController::class, 'Update'])->name('sermon-vidoe-link-update');
-        Route::get('/delete/{uuid}', [SermonVidoesLinkController::class, 'Delete'])->name('sermon-vidoe-link-delete');
-    });
-
-    Route::prefix('news')->group(function () {
-        Route::get('/', [ChurchHistoryController::class, 'View'])->name('view-news');
-        Route::get('/mech', [ChurchHistoryController::class, 'Add'])->name('news-add');
-        Route::post('/store', [ChurchHistoryController::class, 'Store'])->name('news-store');
-        Route::get('/edit/{uuid}', [ChurchHistoryController::class, 'Edit'])->name('news-edit');
-        Route::post('/update', [ChurchHistoryController::class, 'Update'])->name('news-update');
-        Route::get('/delete/{uuid}', [ChurchHistoryController::class, 'Delete'])->name('news-delete');
-    });
-    Route::prefix('events')->group(function () {
-        Route::get('/', [EventsController::class, 'View'])->name('view-events');
-        Route::get('/mech', [EventsController::class, 'Add'])->name('events-add');
-        Route::post('/store', [EventsController::class, 'Store'])->name('events-store');
-        Route::get('/edit/{uuid}', [EventsController::class, 'Edit'])->name('events-edit');
-        Route::post('/update', [EventsController::class, 'Update'])->name('events-update');
-        Route::get('/delete/{uuid}', [EventsController::class, 'Delete'])->name('events-delete');
-    });
-    Route::prefix('article')->group(function () {
-        Route::get('/', [ArticleController::class, 'View'])->name('view-article');
-        Route::get('/mech', [ArticleController::class, 'Add'])->name('article-add');
-        Route::post('/store', [ArticleController::class, 'Store'])->name('article-store');
-        Route::get('/edit/{uuid}', [ArticleController::class, 'Edit'])->name('article-edit');
-        Route::post('/update', [ArticleController::class, 'Update'])->name('article-update');
-        Route::get('/delete/{uuid}', [ArticleController::class, 'Delete'])->name('article-delete');
-    });
-    Route::prefix('gallery')->group(function () {
-        Route::get('/', [GalleryController::class, 'View'])->name('view-gallery');
-        Route::get('/mech', [GalleryController::class, 'Add'])->name('gallery-add');
-        Route::get('/view', [GalleryController::class, 'view_gallery'])->name('gallery-view');
-        Route::post('/store', [GalleryController::class, 'Store'])->name('gallery-store');
-        Route::get('/delete/{uuid}', [GalleryController::class, 'Delete'])->name('gallery-delete');
-    });
-
-    Route::prefix('banner')->group(function () {
-        Route::get('/', [BannerController::class, 'View'])->name('view-banner');
-        Route::get('/mech', [BannerController::class, 'Add'])->name('banner-add');
-        Route::get('/view', [BannerController::class, 'view_banner'])->name('banner-view');
-        Route::post('/store', [BannerController::class, 'Store'])->name('banner-store');
-        Route::get('/delete/{uuid}', [BannerController::class, 'Delete'])->name('banner-delete');
-    });
-
-    Route::prefix('commandant')->group(function () {
-        Route::get('/', [CommandController::class, 'View'])->name('view-commandants');
-        Route::get('/mech', [CommandController::class, 'Add'])->name('commandants-add');
-        Route::post('/store', [CommandController::class, 'Store'])->name('commandants-store');
-        Route::get('/edit/{uuid}', [CommandController::class, 'Edit'])->name('commandants-edit');
-        Route::post('/update', [CommandController::class, 'Update'])->name('commandants-update');
-        Route::get('/delete/{uuid}', [CommandController::class, 'Delete'])->name('commandants-delete');
-    });
-
-    Route::post('admin/elders/store', [EldersController::class, 'store'])->name('admin.elders.store');
-    Route::get('admin/elders/add', [EldersController::class, 'add'])->name('admin.elders.add');
-    Route::get('admin/elders', [EldersController::class, 'view'])->name('admin.elders.view');
+});
 
 
-    Route::get('/elders', [EldersController::class, 'view'])->name('view-elders');
-    Route::get('/elders/add', [EldersController::class, 'add'])->name('elder-add');
-    Route::post('/elders/store', [EldersController::class, 'store'])->name('elder-store');
-    Route::get('/elders/edit/{uuid}', [EldersController::class, 'edit'])->name('elder-edit');
-    Route::post('/elders/update/{uuid}', [EldersController::class, 'update'])->name('elder-update');
-    Route::delete('/elders/{uuid}', [EldersController::class, 'delete'])->name('elder-delete');
+Route::middleware(['auth.investor'])->group(function () {
+    Route::prefix('investors-community')->group(function () {
+        Route::get('/welcome-investor', [InvestorDashboardController::class, 'investor_dashboard'])->name('investor.dashboard');
+        Route::get('/nvestor-profile', [InvestorDashboardController::class, 'investor_profile'])->name('investor.profile');
+        Route::post('/investor/profile/update', [InvestorDashboardController::class, 'updateProfile'])->name('investor.update.profile');
 
-    Route::get('/admin/elders', [EldersController::class, 'view'])->name('elders.index');
-    Route::post('/admin/elders/store', [EldersController::class, 'store'])->name('elders.store');
+        //cards
+        Route::post('/investor/card/store', [InvestorCardController::class, 'store'])->name('investor.card.store');
+
+        //faqs
+        Route::get('/faqs', [InvestorFaqsController::class, 'investor_faqs'])->name('investor-faqs');
+        //investor relations
+        Route::get('investor/relation', [InvestorChatController::class, 'investor_chats'])->name('investor-chats');
+    });
 });

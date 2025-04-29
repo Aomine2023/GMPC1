@@ -1,16 +1,16 @@
 <!doctype html>
-<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg"
-    data-sidebar-image="none" data-preloader="disable">
+<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
 
 <head>
 
-    <title>@yield('title') | {{ config('app.name') }}</title>
+    
+    <title>Login | {{ config('app.name') }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta content="{{ config('app.name') }}" name="description" />
     <meta content="{{ config('app.name') }}" name="author" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="assets/images/finallogo.svg">
+    <link rel="shortcut icon" href="{{ asset('assets/img/favicon.ico') }}">
 
     <!-- Layout config Js -->
     <script src="{{ asset('assets/js/layout.js') }}"></script>
@@ -27,100 +27,156 @@
 
 <body>
 
-    <div class="auth-page-wrapper pt-5">
-        <!-- auth page bg -->
-        <div class="auth-one-bg-position auth-one-bg" id="auth-particles">
-            <div class="bg-overlay"></div>
-
-            <div class="shape">
-                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
-                    viewBox="0 0 1440 120">
-                    <path d="M 0,36 C 144,53.6 432,123.2 720,124 C 1008,124.8 1296,56.8 1440,40L1440 140L0 140z"></path>
-                </svg>
-            </div>
-        </div>
-
-        <!-- auth page content -->
-        <div class="auth-page-content">
+    <!-- auth-page wrapper -->
+    <div class="py-5 auth-page-wrapper auth-bg-cover d-flex justify-content-center align-items-center min-vh-100">
+        <div class="bg-overlay"></div>
+        <!-- auth-page content -->
+        <div class="overflow-hidden auth-page-content pt-lg-5">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="text-center mt-sm-5 mb-4 text-white-50">
-                            <div>
-                                <a href="index.html" class="d-inline-block auth-logo">
-                                    <img src="{{ asset('frontend/assets/img/GMPC LOGO.png') }}" alt=""
-                                        height="80">
-                                </a>
-                            </div>
-                            <p class="mt-3 fs-15 fw-medium">THE GARRISON PRESBYTERIAN CHURCH</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- end row -->
+                        <div class="overflow-hidden card">
+                            <div class="row g-0">
+                                <div class="col-lg-6">
+                                    <div class="p-4 p-lg-5 auth-one-bg h-100">
+                                        <div class="bg-overlay"></div>
+                                        <div class="position-relative h-100 d-flex flex-column">
+                                            <div class="mb-4">
+                                                <a href="index.html" class="d-block">
+                                                    <img src="assets/images/logo-light.png" alt="" height="18">
+                                                </a>
+                                            </div>
+                                            <div class="mt-auto">
+                                                <div class="mb-3">
+                                                    <i class="ri-double-quotes-l display-4 text-success"></i>
+                                                </div>
 
-                <div class="row justify-content-center">
-                    <div class="col-md-8 col-lg-6 col-xl-5">
-                        <div class="card mt-4">
-                            <div class="card-body p-4">
-                                <div class="text-center mt-2">
-                                    <h5 class="text-primary">Welcome !</h5>
-                                    <p class="text-muted">Sign in to continue to NCDS.</p>
+                                                <div id="qoutescarouselIndicators" class="carousel slide" data-bs-ride="carousel">
+                                                    <div class="carousel-indicators">
+                                                        <button type="button" data-bs-target="#qoutescarouselIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                                        <button type="button" data-bs-target="#qoutescarouselIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                                        <button type="button" data-bs-target="#qoutescarouselIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                                    </div>
+                                                    <div class="pb-5 text-center carousel-inner text-white-50">
+                                                        <div class="carousel-item active">
+                                                            <p class="fs-15 fst-italic">" Great! Clean code, clean design, easy for customization. Thanks very much! "</p>
+                                                        </div>
+                                                        <div class="carousel-item">
+                                                            <p class="fs-15 fst-italic">" The theme is really great with an amazing customer support."</p>
+                                                        </div>
+                                                        <div class="carousel-item">
+                                                            <p class="fs-15 fst-italic">" Great! Clean code, clean design, easy for customization. Thanks very much! "</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- end carousel -->
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="p-2 mt-4">
-                                    <form action="{{ route('log-in') }}" method="POST">
-                                        @csrf
-                                        <div class="mb-3">
-                                            <label for="username" class="form-label">Email</label>
-                                            <input type="email" class="form-control" id="email" name="email"
-                                                placeholder="Email">
-                                            @error('email')
-                                                <span class="badge bg-warning">{{ $message }}</span>
-                                            @enderror
+                                <!-- end col -->
+
+                                <div class="col-lg-6">
+                                    <div class="p-4 p-lg-5">
+                                        <div>
+                                            <h5 class="text-primary">Welcome Back !</h5>
+                                            <p class="text-muted">Sign in to TGR AFRICA INVESTORS COMMUNITY PLATFORM.</p>
                                         </div>
-                                        <div class="mb-3">
-                                            <div class="float-end">
-                                                <a href="auth-pass-reset-basic.html" class="text-muted">Forgot
-                                                    password?</a>
-                                            </div>
-                                            <label class="form-label" for="password-input">Password</label>
-                                            <div class="position-relative auth-pass-inputgroup mb-3">
-                                                <input type="password" class="form-control pe-5 password-input"
-                                                    name="password" placeholder="Enter password" id="password-input">
-                                                @error('password')
-                                                    <span class="badge bg-warning">{{ $message }}</span>
-                                                @enderror
-                                                <button
-                                                    class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon"
-                                                    type="button" id="password-addon"><i
-                                                        class="ri-eye-fill align-middle"></i></button>
-                                            </div>
-                                        </div>
+
                                         <div class="mt-4">
-                                            <button class="btn btn-success w-100" type="submit">Sign In</button>
-                                        </div>
-                                    </form>
-                                </div>
+                                            @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
                             </div>
-                            <!-- end card body -->
-                        </div>
+                        @endif
+                                            <form action="{{ route('investor-login') }}" method="POST">
+                                                @csrf
+                                                <div class="mb-3">
+                                                    <label for="username" class="form-label">Email</label>
+                                                    <input type="email" class="form-control" id="email" name="email"
+                                                        placeholder="Email">
+                                                    @error('email')
+                                                    <span class="badge bg-warning">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
 
+                                                <div class="mb-3">
+                                                    <div class="float-end">
+                                                        <a href="auth-pass-reset-basic.html" class="text-muted">Forgot
+                                                            password?</a>
+                                                    </div>
+                                                    <label class="form-label" for="password-input">Password</label>
+                                                    <div class="mb-3 position-relative auth-pass-inputgroup">
+                                                        <input type="password" class="form-control pe-5 password-input"
+                                                            name="password" placeholder="Enter password" id="password-input">
+                                                        @error('password')
+                                                        <span class="badge bg-warning">{{ $message }}</span>
+                                                        @enderror
+                                                        <button
+                                                            class="top-0 btn btn-link position-absolute end-0 text-decoration-none text-muted password-addon"
+                                                            type="button" id="password-addon"><i
+                                                                class="align-middle ri-eye-fill"></i></button>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="" id="auth-remember-check">
+                                                    <label class="form-check-label" for="auth-remember-check">Remember me</label>
+                                                </div>
+
+                                                <div class="mt-4">
+                                                    <button class="btn btn-success w-100" type="submit">Sign In</button>
+                                                </div>
+
+                                                <div class="mt-4 text-center">
+                                                    <div class="signin-other-title">
+                                                        <h5 class="mb-4 fs-13 title">Sign In with</h5>
+                                                    </div>
+
+                                                    <div>
+                                                        <button type="button" class="btn btn-primary btn-icon waves-effect waves-light"><i class="ri-facebook-fill fs-16"></i></button>
+                                                        <button type="button" class="btn btn-danger btn-icon waves-effect waves-light"><i class="ri-google-fill fs-16"></i></button>
+                                                        <button type="button" class="btn btn-dark btn-icon waves-effect waves-light"><i class="ri-github-fill fs-16"></i></button>
+                                                        <button type="button" class="btn btn-info btn-icon waves-effect waves-light"><i class="ri-twitter-fill fs-16"></i></button>
+                                                    </div>
+                                                </div>
+
+                                            </form>
+                                        </div>
+
+                                        <div class="mt-5 text-center">
+                                            <p class="mb-0">Don't have an account ? <a href="{{ route('register-account') }}" class="fw-semibold text-primary text-decoration-underline"> Signup</a> </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end col -->
+                            </div>
+                            <!-- end row -->
+                        </div>
+                        <!-- end card -->
                     </div>
+                    <!-- end col -->
+
                 </div>
                 <!-- end row -->
             </div>
-
+            <!-- end container -->
         </div>
+        <!-- end auth page content -->
 
+        <!-- footer -->
         <footer class="footer">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="text-center">
-                            <p class="mb-0 text-muted">&copy;
-                                <script>
-                                    document.write(new Date().getFullYear())
-                                </script> | All Rights Reserved <i class="mdi mdi-heart text-danger"></i>
-                                | Powered by (GHQ)
+                            <p class="mb-0">&copy;
+                                <script>document.write(new Date().getFullYear())</script> TGR AFRICA. Crafted<i class="mdi mdi-heart text-danger"></i> by Wantect Solution
                             </p>
                         </div>
                     </div>
@@ -130,6 +186,7 @@
         <!-- end Footer -->
     </div>
     <!-- end auth-page-wrapper -->
+
     <!-- JAVASCRIPT -->
     <script src="{{ asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>

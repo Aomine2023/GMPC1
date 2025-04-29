@@ -7,8 +7,12 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
+use App\Mail\OtpMail;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\RateLimiter;
 
 class LogsController extends Controller
 {
@@ -20,11 +24,14 @@ class LogsController extends Controller
         ]);
         $email = $request->email;
         $password = $request->password;
+
         $now = Carbon::now();
         $todayDate = $now->toDateTimeString();
         if (Auth::attempt(['email' => $email, 'password' => $password])) {
             $user = Auth::user();
+            // If it's the first login or password is expired, force password change
             if ($user->status == 1) {
+                // Log the activity
                 $activityLog = [
                     'uuid' => Str::uuid(),
                     'name' => $user->name,
@@ -33,13 +40,18 @@ class LogsController extends Controller
                     'date_time' => $todayDate,
                 ];
                 DB::table('activity_logs')->insert($activityLog);
-                return redirect()->intended('/dashboard');
+                $otp = rand(1000, 9999);
+                Session::put('otp_code', $otp);
+                Session::put('otp_verified', false);
+                // Send OTP email to the authenticated user
+                Mail::to($user->email)->send(new OtpMail($otp));
+                return redirect()->route('admin.verify.otp');
             } else {
                 Auth::logout();
-                return redirect()->route('login')->withErrors(['error' => 'Your account is deactivated.']);
+                return redirect()->route('admin-login')->withErrors(['error' => 'Your account is deactivated. Please contact the Admin.']);
             }
         }
-        return redirect()->route('login')->withErrors(['error' => 'Invalid credentials. Please try again.']);
+        return redirect()->route('admin-login')->withErrors(['error' => 'Invalid credentials. Please try again.']);
     }
 
     public function Logout()
@@ -58,6 +70,6 @@ class LogsController extends Controller
         ];
         DB::table('activity_logs')->insert($activityLog);
         Auth::logout();
-        return redirect()->route('login')->with('success', 'User Logout Successfully');
+        return redirect()->route('admin-login')->with('success', 'User Logout Successfully');
     }
 }

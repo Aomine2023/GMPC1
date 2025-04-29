@@ -5,10 +5,10 @@
     <div class="navbar-brand-box">
         <a href="index.html" class="logo logo-light">
             <span class="logo-sm">
-                <img src="{{ asset('assets/images/logoncds.jpeg') }}" alt="" height="22">
+                <img src="{{ asset('assets/images/') }}" alt="" height="22">
             </span>
             <span class="logo-lg">
-                <h3 style="color: #fff; padding-top:20px;">GMPC CHURCH</h3>
+                <h5 style="color: #fff; padding-top:20px;">ADMIN:TRG AFRICA</h5>
             </span>
         </a>
         <button type="button" class="p-0 btn btn-sm fs-20 header-item float-end btn-vertical-sm-hover"
@@ -30,7 +30,7 @@
                         <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboards">Dashboards</span>
                     </a>
                 </li> <!-- end Dashboard Menu -->
-                <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-components">Website
+                <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-components">
                         Components</span>
                 </li>
                 <li class="nav-item">
@@ -43,16 +43,16 @@
                             <div class="col-lg-4">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                        <a href="{{ route('view-banner') }}" class="nav-link"
+                                        <a href="#" class="nav-link"
                                             data-key="t-alerts">Banner</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ route('view-sermon-vidoe-link') }}"
-                                            class="nav-link {{ $activeRoute === 'view-sermon-vidoe-link' ? 'active locked' : '' }}"
+                                        <a href="#"
+                                            class="nav-link"
                                             data-key="t-alerts">Sermon Vidoes Links</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ route('view-elders') }}" class="nav-link"
+                                        <a href="#" class="nav-link"
                                             data-key="t-elders">Elders</a>
                                     </li>
                                     {{-- <li class="nav-item">
@@ -64,41 +64,34 @@
                                             data-key="t-badges">Article</a>
                                     </li> --}}
                                     <li class="nav-item">
-                                        <a href="{{ route('view-participant') }}" class="nav-link"
+                                        <a href="" class="nav-link"
                                             data-key="t-buttons">Chaplains</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ route('gallery-view') }}" class="nav-link" data-key="t-colors">
+                                        <a href="#" class="nav-link" data-key="t-colors">
                                             View
                                             Gallery</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ route('view-gallery') }}" class="nav-link" data-key="t-colors">Add
+                                        <a href="#" class="nav-link" data-key="t-colors">Add
                                             Gallery</a>
                                     </li>
-                                    <li class="nav-item {{ Route::is('view-communities') ? 'active' : '' }}">
-                                        <a href="{{ route('view-communities') }}" class="nav-link"
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link"
                                             data-key="t-colors">Community</a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="ui-cards.html" class="nav-link" data-key="t-cards">Contact Us </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ route('view-news') }}" class="nav-link"
+                                        <a href="#" class="nav-link"
                                             data-key="t-carousel">Church History</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ route('view-events') }}" class="nav-link"
+                                        <a href="#" class="nav-link"
                                             data-key="t-carousel">Events</a>
                                     </li>
-                                    {{-- <li class="nav-item">
-                                        <a href="{{ route('view-commandants') }}" class="nav-link"
-                                            data-key="t-dropdowns">Commandant</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="ui-grid.html" class="nav-link" data-key="t-grid">Joining
-                                            Instructions</a>
-                                    </li> --}}
+                                   
                                 </ul>
                             </div>
                         </div>
@@ -106,7 +99,7 @@
                 </li>
                 <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-components">Settings</span>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link menu-link" href="index.html#sidebarIcons" data-bs-toggle="collapse"
                         role="button" aria-expanded="false" aria-controls="sidebarIcons">
                         <i class="ri-compasses-2-line"></i> <span data-key="t-icons">Setting</span>
@@ -122,7 +115,7 @@
                             </li>
                         </ul>
                     </div>
-                </li>
+                </li> --}}
             </ul>
         </div>
     </div>

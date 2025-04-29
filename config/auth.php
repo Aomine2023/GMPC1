@@ -40,6 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'investor' => [
+            'driver' => 'session',
+            'provider' => 'user_investors',
+        ],
     ],
 
     /*
@@ -64,12 +68,20 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-
+        'user_investors' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\UserInvestor::class,
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
     ],
+    // guards
+
+
+    // providers
+
 
     /*
     |--------------------------------------------------------------------------

@@ -15,7 +15,11 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
     {
         if (! $request->expectsJson()) {
-            return route('dashboard');
+            if ($request->is('investors-community/*')) {
+                return route('investor.login'); // 🔒 Redirect to investor login
+            }
+
+            return route('login'); // 
         }
     }
 }

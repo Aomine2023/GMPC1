@@ -1,60 +1,206 @@
-<x-guest-layout>
-    <x-jet-authentication-card>
-        <x-slot name="logo">
-            <x-jet-authentication-card-logo />
-        </x-slot>
+<!doctype html>
+<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
 
-        <x-jet-validation-errors class="mb-4" />
+<head>
 
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
+    
+    <title>Register | {{ config('app.name') }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta content="{{ config('app.name') }}" name="description" />
+    <meta content="{{ config('app.name') }}" name="author" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="{{ asset('assets/img/favicon.ico') }}">
 
-            <div>
-                <x-jet-label for="name" value="{{ __('Name') }}" />
-                <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            </div>
+    <!-- Layout config Js -->
+    <script src="{{ asset('assets/js/layout.js') }}"></script>
+    <!-- Bootstrap Css -->
+    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" />
+    <!-- custom Css-->
+    <link href="{{ asset('assets/css/custom.min.css') }}" rel="stylesheet" type="text/css" />
 
-            <div class="mt-4">
-                <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
-            </div>
+</head>
 
-            <div class="mt-4">
-                <x-jet-label for="password" value="{{ __('Password') }}" />
-                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-            </div>
+<body>
 
-            <div class="mt-4">
-                <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
-                <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
-            </div>
+    <!-- auth-page wrapper -->
+    <div class="py-5 auth-page-wrapper auth-bg-cover d-flex justify-content-center align-items-center min-vh-100">
+        <div class="bg-overlay"></div>
+        <!-- auth-page content -->
+        <div class="overflow-hidden auth-page-content pt-lg-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="m-0 overflow-hidden card">
+                            <div class="row justify-content-center g-0">
+                                <div class="col-lg-6">
+                                    <div class="p-4 p-lg-5 auth-one-bg h-100">
+                                        <div class="bg-overlay"></div>
+                                        <div class="position-relative h-100 d-flex flex-column">
+                                            <div class="mb-4">
+                                                <a href="index.html" class="d-block">
+                                                    <img src="{{ asset('assets/images/logo-light.png') }}" alt="" height="18">
+                                                </a>
+                                            </div>
+                                            <div class="mt-auto">
+                                                <div class="mb-3">
+                                                    <i class="ri-double-quotes-l display-4 text-success"></i>
+                                                </div>
 
-            @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
-                <div class="mt-4">
-                    <x-jet-label for="terms">
-                        <div class="flex items-center">
-                            <x-jet-checkbox name="terms" id="terms"/>
+                                                <div id="qoutescarouselIndicators" class="carousel slide" data-bs-ride="carousel">
+                                                    <div class="carousel-indicators">
+                                                        <button type="button" data-bs-target="#qoutescarouselIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                                        <button type="button" data-bs-target="#qoutescarouselIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                                        <button type="button" data-bs-target="#qoutescarouselIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                                    </div>
+                                                    <div class="pb-5 text-center carousel-inner text-white-50">
+                                                        <div class="carousel-item active">
+                                                            <p class="fs-15 fst-italic">" Great! Clean code, clean design, easy for customization. Thanks very much! "</p>
+                                                        </div>
+                                                        <div class="carousel-item">
+                                                            <p class="fs-15 fst-italic">" The theme is really great with an amazing customer support."</p>
+                                                        </div>
+                                                        <div class="carousel-item">
+                                                            <p class="fs-15 fst-italic">" Great! Clean code, clean design, easy for customization. Thanks very much! "</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- end carousel -->
 
-                            <div class="ml-2">
-                                {!! __('I agree to the :terms_of_service and :privacy_policy', [
-                                        'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Terms of Service').'</a>',
-                                        'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Privacy Policy').'</a>',
-                                ]) !!}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="p-4 p-lg-5">
+                                        <div>
+                                            <h5 class="text-primary">Register Account</h5>
+                                            <p class="text-muted">Get your Free Investor account now.</p>
+                                        </div>
+
+                                        <div class="mt-4">
+                                            <form class="needs-validation" novalidate action="{{route('investor-registion') }}" method="POST">
+                                                @csrf
+                                                <div class="mb-3">
+                                                    <label for="useremail" class="form-label">Email <span class="text-danger">*</span></label>
+                                                    <input type="email" class="form-control" id="useremail" placeholder="Enter email address" name="email">
+                                                    <div class="invalid-feedback">
+                                                        Please enter email
+                                                    </div>
+                                                    @error('email')
+                                                    <span class="badge bg-warning">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="username" class="form-label">Username <span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control" id="username" placeholder="Enter username" name="name">
+                                                    <div class="invalid-feedback">
+                                                        Please enter username
+                                                    </div>
+                                                    @error('name')
+                                                    <span class="badge bg-warning">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label class="form-label" for="password-input">Password</label>
+                                                    <div class="position-relative auth-pass-inputgroup">
+                                                        <input type="password" class="form-control pe-5 password-input" onpaste="return false" placeholder="Enter password" id="password-input" aria-describedby="passwordInput" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" name="password">
+                                                        <button class="top-0 btn btn-link position-absolute end-0 text-decoration-none text-muted password-addon" type="button" id="password-addon"><i class="align-middle ri-eye-fill"></i></button>
+                                                        <div class="invalid-feedback">
+                                                            Please enter password
+                                                        </div>
+                                                        @error('password')
+                                                        <span class="badge bg-warning">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+
+                                                <div class="mb-4">
+                                                    <p class="mb-0 fs-12 text-muted fst-italic">By registering you agree to the Velzon <a href="auth-signup-cover.html#" class="text-primary text-decoration-underline fst-normal fw-medium">Terms of Use</a></p>
+                                                </div>
+
+                                                <div id="password-contain" class="p-3 mb-2 rounded bg-light">
+                                                    <h5 class="fs-13">Password must contain:</h5>
+                                                    <p id="pass-length" class="mb-2 invalid fs-12">Minimum <b>8 characters</b></p>
+                                                    <p id="pass-lower" class="mb-2 invalid fs-12">At <b>lowercase</b> letter (a-z)</p>
+                                                    <p id="pass-upper" class="mb-2 invalid fs-12">At least <b>uppercase</b> letter (A-Z)</p>
+                                                    <p id="pass-number" class="mb-0 invalid fs-12">A least <b>number</b> (0-9)</p>
+                                                </div>
+
+                                                <div class="mt-4">
+                                                    <button class="btn btn-success w-100" type="submit">Sign Up</button>
+                                                </div>
+
+                                                <div class="mt-4 text-center">
+                                                    <div class="signin-other-title">
+                                                        <h5 class="mb-4 fs-13 title text-muted">Create account with</h5>
+                                                    </div>
+
+                                                    <div>
+                                                        <button type="button" class="btn btn-primary btn-icon waves-effect waves-light"><i class="ri-facebook-fill fs-16"></i></button>
+                                                        <button type="button" class="btn btn-danger btn-icon waves-effect waves-light"><i class="ri-google-fill fs-16"></i></button>
+                                                        <button type="button" class="btn btn-dark btn-icon waves-effect waves-light"><i class="ri-github-fill fs-16"></i></button>
+                                                        <button type="button" class="btn btn-info btn-icon waves-effect waves-light"><i class="ri-twitter-fill fs-16"></i></button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                        <div class="mt-5 text-center">
+                                            <p class="mb-0">Already have an account ? <a href="{{ url('/') }}" class="fw-semibold text-primary text-decoration-underline"> Signin</a> </p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </x-jet-label>
+                        <!-- end card -->
+                    </div>
+                    <!-- end col -->
+
                 </div>
-            @endif
-
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
-
-                <x-jet-button class="ml-4">
-                    {{ __('Register') }}
-                </x-jet-button>
+                <!-- end row -->
             </div>
-        </form>
-    </x-jet-authentication-card>
-</x-guest-layout>
+            <!-- end container -->
+        </div>
+        <!-- end auth page content -->
+
+       <!-- footer -->
+       <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-center">
+                        <p class="mb-0">&copy;
+                            <script>document.write(new Date().getFullYear())</script> TGR AFRICA. Crafted<i class="mdi mdi-heart text-danger"></i> by Wantect Solution
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- end Footer -->
+    </div>
+    <!-- end auth-page-wrapper -->
+
+    <!-- JAVASCRIPT -->
+    <script src="{{ asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/node-waves/waves.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/feather-icons/feather.min.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/plugins/lord-icon-2.1.0.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins.js') }}"></script>
+    <!-- particles js -->
+    <script src="{{ asset('assets/libs/particles.js/particles.js') }}"></script>
+    <!-- particles app js -->
+    <script src="{{ asset('assets/js/pages/particles.app.js') }}"></script>
+    <!-- password-addon init -->
+    <script src="{{ asset('assets/js/pages/password-addon.init.js') }}"></script>
+</body>
+
+</html>
