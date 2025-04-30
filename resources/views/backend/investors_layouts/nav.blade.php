@@ -58,19 +58,19 @@
                             <div class="col-lg-4">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                        <a href="ui-alerts.html" class="nav-link" data-key="t-alerts">Alerts</a>
+                                        <a href="ui-alerts.html" class="nav-link" data-key="t-alerts">Start up</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="ui-badges.html" class="nav-link" data-key="t-badges">Badges</a>
+                                        <a href="ui-badges.html" class="nav-link" data-key="t-badges">Investors</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="ui-buttons.html" class="nav-link" data-key="t-buttons">Buttons</a>
+                                        <a href="ui-buttons.html" class="nav-link" data-key="t-buttons">Funds</a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="ui-colors.html" class="nav-link" data-key="t-colors">Colors</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="ui-cards.html" class="nav-link" data-key="t-cards">Cards</a>
+                                        <a href="ui-cards.html" class="nav-link" data-key="t-cards">People</a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="ui-carousel.html" class="nav-link" data-key="t-carousel">Carousel</a>
@@ -222,7 +222,7 @@
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
                                         <a href="forms-elements.html" class="nav-link" data-key="t-basic-elements">Basic
-</a>
+                                           </a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="forms-select.html" class="nav-link" data-key="t-form-select"> Form Select </a>

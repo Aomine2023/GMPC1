@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\companycontroller;
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\Investors\InvestorCardController;
 use App\Http\Controllers\Investors\InvestorChatController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\OTPController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\registerInvestor;
 use App\Http\Controllers\registerInvestorController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Route;
 
@@ -57,11 +59,13 @@ Route::get('/investor/logout', [LoginInvestor::class, 'logoutInvestor'])->name('
 Route::post('/verify/otp', [OTPController::class, 'verifyOtp'])->name('otp.verify');
 Route::post('/resend-otp', [OTPController::class, 'resendOtp'])->name('otp.resend');
 //Admin
+
 Route::post('login', [LogsController::class, 'Log_in'])->name('log-in');
 Route::get('logout', [LogsController::class, 'Logout'])->name('admin-logout')->middleware('auth');
 Route::get('admin/verify/otp', [OTPController::class, 'AdminVerifyOtpForm'])->name('admin.verify.otp');
 Route::post('admin/verify/otp', [OTPController::class, 'AdminverifyOtp'])->name('admin.otp.verify');
 Route::post('admin/resend-otp', [OTPController::class, 'adminresendOtp'])->name('admin.otp.resend');
+
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::prefix('profile')->group(function () {
         Route::get('/', [ProfileController::class, 'ProfileView'])->name('profileview');
@@ -76,6 +80,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::prefix('dashbaord')->group(function () {
         Route::get('/', [AdminDashboardController::class, 'admin_dashboard'])->name('dashboard');
     });
+    Route::prefix('companies')->group(function () {
+        Route::get('/', [companycontroller::class, 'add_company_portfolio'])->name('add-company');
+    });
+    Route::resource('users', UserController::class);
 });
 
 

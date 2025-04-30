@@ -1,15 +1,18 @@
 @extends('backend.layouts.master')
+@section('title')
+   USERS
+@endsection
 @section('content')
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title mb-0">Roles Datatables</h5>
+                    <h5 class="mb-0 card-title">Users</h5>
                     <a href="{{ route('users.create') }}" type="button" class="btn btn-primary waves-effect waves-light"
                         style="float: right;">Add User</a>
                 </div>
                 <div class="card-body">
-                    <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle"
+                    <table id="example" class="table align-middle table-bordered dt-responsive nowrap table-striped"
                         style="width:100%">
                         <thead>
                             <tr>
@@ -52,26 +55,26 @@
                                         <div class="dropdown d-inline-block">
                                             <button class="btn btn-soft-secondary btn-sm dropdown" type="button"
                                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                                <i class="ri-more-fill align-middle"></i>
+                                                <i class="align-middle ri-more-fill"></i>
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-end">
                                                 <li>
                                                     <a class="dropdown-item edit-item-btn"
                                                         href="{{ route('users.create') }}"><i
-                                                            class="ri-pencil-fill align-bottom me-2 text-muted"></i>
+                                                            class="align-bottom ri-pencil-fill me-2 text-muted"></i>
                                                         Create</a>
                                                 </li>
                                                 <li>
                                                     <a class="dropdown-item edit-item-btn"
                                                         href="{{ route('users.edit', $user->id) }}"><i
-                                                            class="ri-pencil-fill align-bottom me-2 text-muted"></i>
+                                                            class="align-bottom ri-pencil-fill me-2 text-muted"></i>
                                                         Edit</a>
                                                 </li>
                                                 <li>
                                                     <a class="dropdown-item remove-item-btn"
                                                         href="{{ route('users.destroy', $user->id) }}"
                                                         onclick="event.preventDefault(); confirmDelete('{{ $user->id }}');">
-                                                        <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>
+                                                        <i class="align-bottom ri-delete-bin-fill me-2 text-muted"></i>
                                                         Delete
                                                     </a>
                                                     <form id="delete-form-{{ $user->id }}"
